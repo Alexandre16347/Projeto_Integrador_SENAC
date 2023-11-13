@@ -1,21 +1,3 @@
-/* *{
-    margin: 0;
-    padding: 0;
-}
-
-html,body{
-    width: 100%;
-    min-height: 100vh;
-    background-color: blue;
-}
-
-/* Estilo do topo */
-/* #top-menu{
-    background-color: white;
-    width: 100%;
-    height: 50px;
-}  */
-
 *{
     margin: 0;
     padding: 0;
@@ -29,7 +11,7 @@ html, body{
 }
 
 div{
-    padding-top: 10px;
+    /* padding-top: 10px; */
 }
 
 .btn-menu {
@@ -57,7 +39,7 @@ div{
     color: white;
 }
 
-#top-bar {
+#top-bar, #bottom-bar {
     background-color: white;
     width: 100%;
     min-height: 100px;
@@ -75,7 +57,7 @@ div{
 .logo{
     width: 95px;
     height: 65px;
-    margin-right: 10%;
+    margin-right: 5%;
     margin-left: 5%;
 }
 
@@ -84,7 +66,56 @@ a{
     
 }
 
-#row{
-    padding-left: 50px;
-    background-color: aliceblue;
-}
+#areaSearch{
+    width: 100%;
+    /* min-height: 100px; */
+    height: 50%;
+    background: url("../media/chefe-de-cozinha.jpg");
+    opacity: 60%;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+}   
+
+
+#divSearch{
+    padding-top: 0px;
+    background-color:#E0EEEE;
+    border:solid 2px #00488A;
+    border-radius:10px;
+    width:300px;
+    height:32px;
+  }
+  
+  #txtSearch{
+    float:left;
+    background-color:transparent;
+    padding-left:5px;
+    font-size:18px;
+    border:none;
+    height:32px;
+    width:191px;
+  }
+  
+  #btnSearch{
+    border:none;
+    float:left;
+    height:32px;
+    border-radius:0 7px 7px 0;
+    width:70px;
+    font-weight:bold;
+    background:#00488A;
+    color: white;
+  }
+  
+  #divSearch img{
+    float:left;
+    height:22px;
+    border-radius:0 7px 7px 0;
+    width:35px;
+    padding-top: 4px;
+    padding-left: 4px;
+  }
