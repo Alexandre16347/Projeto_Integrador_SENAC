@@ -12,34 +12,35 @@ body {
 #container {
     width: 100%;
     min-height: 100vh;
-    background-color: blue;
+
 
 }
 
 #object {
-    width: 100px;
-    height: 100px;
-    background-color: black;
+    margin: 100px;
+    width: 150px;
+    height: 50px;
+    border-radius: 3mm;
+    background-color: blue;
     position: relative;
-    animation: ir-para-direita 5s infinite;
+
+}
+
+#object:hover {
+    animation: ir-para-direita 1s infinite;
 }
 
 @keyframes ir-para-direita {
     from {
-        top: 0;
-        left: 0;
-        background-color: rgb(0, 255, 76);
-      transform: rotate(0)
+        background-color: chartreuse;
     }
 
     to {
-        top: 500px;
-        left: 500px;
-        background-color: aqua;
-        transform: rotate(360deg)
+        background-color: indigo;
 
     }
 }
+
 
 #object2 {
     width: 100px;
@@ -49,7 +50,7 @@ body {
     animation: ir-para-esquerda 5s infinite;
 }
 
-@keyframes ir-para-esquerda{
+@keyframes ir-para-esquerda {
     from {
         top: 500px;
         left: 500px;
@@ -60,9 +61,7 @@ body {
         left: 0px;
         top: 0px;
         transform: rotate(360deg)
-
-        
     }
 
-   
+
 }
