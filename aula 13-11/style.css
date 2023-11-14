@@ -65,3 +65,28 @@ body {
 
 
 }
+
+.card{
+    width: 300px;
+    height: 400px;
+    border: 1px solid #333;
+    border-radius: 5mm;
+    margin: 2mm;
+}
+
+.top{
+    width: calc(100% - 4mm);
+    height: calc(50% - 4mm);
+    margin: 2mm;
+    border-radius: 3mm;
+    background-color: #bbb;
+}
+
+.botton{
+    width: calc(100% - 4mm);
+    height: calc(50% - 4mm);
+    margin: 2mm;
+    margin-top: 0;
+    border-radius: 3mm;
+    background-color: #bbb;
+}
