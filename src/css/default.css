@@ -1,0 +1,144 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+
+html, body{
+    width: 100%;
+    min-height: 100vh;
+    background-color: #00488A;
+
+}
+
+div{
+    /* padding-top: 10px; */
+}
+
+.btn-menu {
+    flex-wrap: wrap;
+    /* margin: 10px; */
+    border-radius: 6px;
+    padding: 10px;
+    /* box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px; */
+    border: none;
+   
+    background-color: rgb(255, 255, 255);
+    color: #00488A;
+
+    font-size: larger;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    padding-left: 20px;
+    padding-right: 20px;
+}
+
+.btn-social{
+    flex-wrap: wrap;
+    /* margin: 10px; */
+    border-radius: 6px;
+    /* box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px; */
+    border: none;
+   
+    background-color: #a7a8aa;
+
+    width: 30px;
+    height: 30px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+}
+
+#img-social{
+    height:20px;
+    border-radius:0 7px 7px 0;
+    width:13px;
+}
+
+.btn-menu:hover, .btn-social:hover {
+    background: rgb(0, 72, 138);
+    background: linear-gradient(0deg, rgba(0, 72, 138, 1) 0%, rgba(0, 72, 138, 1) 100%);
+
+    color: white;
+}
+
+#top-bar, #bottom-bar {
+    background-color: white;
+    width: 100%;
+    min-height: 100px;
+    /* background-color: blue; */
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: start;
+    align-items: center;
+}
+
+#select{
+    font-weight: bold;
+}
+
+.logo{
+    width: 95px;
+    height: 65px;
+    margin-right: 5%;
+    margin-left: 5%;
+}
+
+a{
+    /* margin: none; */
+    
+}
+
+#areaSearch{
+    width: 100%;
+    /* min-height: 100px; */
+    height: 50%;
+    background: url("../media/chefe-de-cozinha.jpg");
+    opacity: 60%;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+}   
+
+
+#divSearch{
+    padding-top: 0px;
+    background-color:#E0EEEE;
+    border:solid 2px #00488A;
+    border-radius:10px;
+    width:300px;
+    height:32px;
+  }
+  
+  #txtSearch{
+    float:left;
+    background-color:transparent;
+    padding-left:5px;
+    font-size:18px;
+    border:none;
+    height:32px;
+    width:191px;
+  }
+  
+  #btnSearch{
+    border:none;
+    float:left;
+    height:32px;
+    border-radius:0 7px 7px 0;
+    width:70px;
+    font-weight:bold;
+    background:#00488A;
+    color: white;
+  }
+  
+  #divSearch img{
+    float:left;
+    height:22px;
+    border-radius:0 7px 7px 0;
+    width:35px;
+    padding-top: 4px;
+    padding-left: 4px;
+  }
