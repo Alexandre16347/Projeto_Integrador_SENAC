@@ -78,7 +78,7 @@ div{
 }
 
 .logo{
-    width: 95px;
+    width: 100px;
     height: 65px;
     margin-right: 5%;
     margin-left: 5%;
@@ -92,9 +92,10 @@ a{
 #areaSearch{
     width: 100%;
     /* min-height: 100px; */
-    height: 50%;
+    height: 65%;
     background: url("../media/chefe-de-cozinha.jpg");
-    opacity: 60%;
+    background-size: 100%;
+    opacity: 50%;
     margin-top: 20px;
     margin-bottom: 20px;
     display: flex;
