@@ -145,7 +145,7 @@ body {
     flex-direction: row;
 }
 
-.cont-categorias{
+#cont-categorias{
   padding: 20px;
   /* margin: 20px; */
   /* margin-right: calc(4% - 4mm); */
@@ -155,6 +155,7 @@ body {
   align-items: center;
   overflow: scroll;
   background-color: white;
+  border-top: #f78b1f solid 4px;
 }
 
 #bottom-bar label{
@@ -167,9 +168,9 @@ body {
 
 .logo {
   width: 100px;
-  height: 65px;
+  height: 55px;
   margin-right: 5%;
-  margin-left: 5%;
+  margin-left: 7%;
 }
 
 #areaSearch {
@@ -185,7 +186,7 @@ body {
   flex-wrap: wrap;
   justify-content: center;
   align-items: center;
-  border-bottom: #f78b1f solid 4px;
+  /* border-bottom: #f78b1f solid 4px; */
 }
 
 #divSearch {
@@ -238,6 +239,7 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
+  flex-shrink: 0;
 }
 
 .chef-avatar {
@@ -318,7 +320,7 @@ body {
   text-decoration: underline;
 }
 
-.scrollcard {
+#scrollcard {
   /* border-top: 4px solid #f78b1f;
   width: 100%;
   height: 430px;
@@ -329,7 +331,7 @@ body {
   display: block; */
   width: 100%;
   padding: 20px;
-  display: inline-flex;
+  display: flex;
   flex-direction: row;
   align-items: center;
   overflow: scroll;

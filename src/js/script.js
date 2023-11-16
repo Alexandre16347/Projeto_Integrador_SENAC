@@ -1,12 +1,22 @@
-let container = document.getElementById("container");
+let logos_redes = ["src/media/icon-facebook.png", "src/media/instagram.png", "src/media/twitter.png", "src/media/linkedin.svg", "src/media/youtube.png"];
+let href_redes = ["https://www.facebook.com/SenacBrasil", "https://www.instagram.com/senacbrasil/", "https://twitter.com/SenacBrasil", "https://www.linkedin.com/company/2655383", "https://www.youtube.com/user/SenacNacional"]
 
-let fragment = document.createDocumentFragment();
+let tam_social = logos_redes.length;
 
-let barra_menu = document.createElement(`div`);
-barra_menu.setAttribute("id", "top-bar");
 
-let container_menu = document.createElement(`div`);
-container_menu.setAttribute("class", "container-menu");
+const categorias = ["Salgados", "Doces", "Massas", "Bebidas", "Sobremesas", "Confeitaria", "Saladas", "Refeições", "Comidas Rápidas", "Sopas", "Farofas", "Drinks", "Sorvetes"]
+
+let tam_cat = categorias.length
+
+
+
+
+// *******************************************************************************************************************************************
+// TOP BAR
+
+
+let top_bar = document.getElementById("top-bar")
+let barra_menu = document.createDocumentFragment();
 
 let a_logo = document.createElement(`a`);
 a_logo.setAttribute("class", "logo");
@@ -18,9 +28,10 @@ img_logo.setAttribute("class", "logo");
 
 a_logo.append(img_logo);
 
-container_menu.append(a_logo);
+let container_menu = document.createElement(`div`);
+container_menu.setAttribute("class", "container-menu");
 
-barra_menu.append(container_menu);
+barra_menu.append(a_logo);
 
 const botoes_menu = ["O Senac", "Início", "Chefes", "Sobre", "Login"];
 const paginas_menu = [
@@ -45,22 +56,11 @@ for (let i = 0; i < tam; i++) {
 
   botao.append(button);
   container_menu.append(botao);
-  barra_menu.append(container_menu);
 }
-
-// {/* <a href="">
-//     <button class="btn-social">
-//         <img src="src/media/facebook.png" alt="" id="img-social">
-//     </button>
-// </a> */}
+barra_menu.append(container_menu);
 
 let container_redes = document.createElement(`div`);
 container_redes.setAttribute('class', 'container-redes')
-
-let logos_redes = ["src/media/icon-facebook.png", "src/media/instagram.png", "src/media/twitter.png", "src/media/linkedin.svg", "src/media/youtube.png"];
-let href_redes = ["https://www.facebook.com/SenacBrasil", "https://www.instagram.com/senacbrasil/", "https://twitter.com/SenacBrasil", "https://www.linkedin.com/company/2655383", "https://www.youtube.com/user/SenacNacional"]
-
-let tam_social = logos_redes.length;
 
 for (let i = 0; i < tam_social; i++) {
   let link_social = `${href_redes[i]}`
@@ -76,10 +76,33 @@ for (let i = 0; i < tam_social; i++) {
   btn_rede.append(img_social)
   rede.append(btn_rede)
   container_redes.append(rede)
-  barra_menu.append(container_redes)
+  
 }
 
-fragment.append(barra_menu);
+barra_menu.append(container_redes)
+
+top_bar.append(barra_menu)
+
+
+
+
+
+
+
+
+
+
+
+
+// *******************************************************************************************************************************************
+// Area Search
+
+
+let areaSearch = document.getElementById("areaSearch");
+
+let area = document.createDocumentFragment();
+
+
 
 // <div id="areaSearch">
 //     <div id="divSearch">
@@ -89,8 +112,8 @@ fragment.append(barra_menu);
 //     </div>
 // </div>
 
-let areaSearch = document.createElement(`div`);
-areaSearch.setAttribute("id", "areaSearch");
+// let areaSearch = document.createElement(`div`);
+// areaSearch.setAttribute("id", "areaSearch");
 
 let divSearch = document.createElement(`div`);
 divSearch.setAttribute("id", "divSearch");
@@ -112,22 +135,21 @@ divSearch.append(imgSearch);
 divSearch.append(txtSearch);
 divSearch.append(btnSearch);
 
-areaSearch.append(divSearch);
+area.append(divSearch);
 
-fragment.append(areaSearch);
-
-
+areaSearch.append(area)
 
 
 
-
-const categorias = ["Salgados", "Doces", "Massas", "Bebidas", "Sobremesas", "Confeitaria", "Saladas", "Refeições", "Comidas Rápidas", "Sopas", "Farofas", "Drinks", "Sorvetes"]
-
-let container_cat = document.createElement(`div`)
-container_cat.setAttribute('class', 'cont-categorias')
+// *******************************************************************************************************************************************
+// Area Categorias
 
 
-let tam_cat = categorias.length
+let cont_cat = document.getElementById("cont-categorias")
+let area_cat = document.createDocumentFragment()
+
+// let container_cat = document.createElement(`div`)
+// container_cat.setAttribute('class', 'cont-categorias')
 
 for(let i=0; i<tam_cat;i++){
 
@@ -139,25 +161,21 @@ for(let i=0; i<tam_cat;i++){
   btn_cat.setAttribute('class', 'btn-menu')
 
   cat.append(btn_cat)
-  container_cat.append(cat)
+  area_cat.append(cat)
 }
 
-fragment.append(container_cat)
+cont_cat.append(area_cat)
 
 
 
+// *******************************************************************************************************************************************
+// Area Cards
 
+let scrollcard = document.getElementById("scrollcard")
+let area_cards = document.createDocumentFragment()
 
-
-
-
-
-
-
-
-
-let cards = document.createElement(`div`);
-cards.setAttribute("class", "scrollcard");
+// let cards = document.createElement(`div`);
+// cards.setAttribute("class", "scrollcard");
 
 for (let i = 0; i < 50; i++) {
   let card = document.createElement(`div`);
@@ -201,13 +219,11 @@ for (let i = 0; i < 50; i++) {
   txt_chef.setAttribute("class", "txt-chef");
 
   card.append(txt_chef);
-  cards.append(card);
+  area_cards.append(card);
 }
 // shmebulock
 
-
-fragment.append(cards);
-
+scrollcard.append(area_cards)
 
 
 
@@ -225,17 +241,11 @@ fragment.append(cards);
 
 
 
+// *******************************************************************************************************************************************
+// BOTTOM BAR
 
-
-
-// {/* <a href="">
-//     <button class="btn-social">
-//         <img src="src/media/facebook.png" alt="" id="img-social">
-//     </button>
-// </a> */}
-
-let bottom_bar = document.createElement(`div`)
-bottom_bar.setAttribute('id', 'bottom-bar')
+let bottom_bar = document.getElementById("bottom-bar")
+let barra_bottom = document.createDocumentFragment();
 
 let a_logo_b = document.createElement(`a`);
 a_logo_b.setAttribute("class", "logo");
@@ -247,16 +257,21 @@ img_logo_b.setAttribute("class", "logo");
 
 a_logo_b.append(img_logo_b);
 
-bottom_bar.append(a_logo_b);
+barra_bottom.append(a_logo_b);
 
 let txt_direitos = document.createElement(`label`)
 txt_direitos.append("© Todos os Direitos Reservados - 2017.");
 // txt_direitos.setAttribute('class', 'txt')
 
-bottom_bar.append(txt_direitos)
+barra_bottom.append(txt_direitos)
 
 let container_redes_b = document.createElement(`div`)
 container_redes_b.setAttribute('class', 'container-redes')
+
+// let logos_redes = ["src/media/icon-facebook.png", "src/media/instagram.png", "src/media/twitter.png", "src/media/linkedin.svg", "src/media/youtube.png"];
+// let href_redes = ["https://www.facebook.com/SenacBrasil", "https://www.instagram.com/senacbrasil/", "https://twitter.com/SenacBrasil", "https://www.linkedin.com/company/2655383", "https://www.youtube.com/user/SenacNacional"]
+
+// let tam_social = logos_redes.length;
 
 for (let i = 0; i < tam_social; i++) {
   let link_social = `${href_redes[i]}`
@@ -272,17 +287,10 @@ for (let i = 0; i < tam_social; i++) {
   btn_rede.append(img_social)
   rede.append(btn_rede)
   container_redes_b.append(rede)
-  bottom_bar.append(container_redes_b)
+//   bottom_bar.append(container_redes_b)
 }
 
 
-fragment.append(bottom_bar);
+barra_bottom.append(container_redes_b);
 
-
-
-
-
-
-
-
-container.append(fragment);
+bottom_bar.append(barra_bottom);
