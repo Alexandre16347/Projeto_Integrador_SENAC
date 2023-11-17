@@ -1,6 +1,12 @@
-let container = document.getElementById("container");
+// *******************************************************************************************************************************************
+// Area Search
 
-let fragment = document.createDocumentFragment();
+
+let areaSearch = document.getElementById("areaSearch");
+
+let area = document.createDocumentFragment();
+
+
 
 // <div id="areaSearch">
 //     <div id="divSearch">
@@ -10,8 +16,8 @@ let fragment = document.createDocumentFragment();
 //     </div>
 // </div>
 
-let areaSearch = document.createElement(`div`);
-areaSearch.setAttribute("id", "areaSearch");
+// let areaSearch = document.createElement(`div`);
+// areaSearch.setAttribute("id", "areaSearch");
 
 let divSearch = document.createElement(`div`);
 divSearch.setAttribute("id", "divSearch");
@@ -33,8 +39,6 @@ divSearch.append(imgSearch);
 divSearch.append(txtSearch);
 divSearch.append(btnSearch);
 
-areaSearch.append(divSearch);
+area.append(divSearch);
 
-fragment.append(areaSearch);
-
-container.append(fragment);
+areaSearch.append(area)

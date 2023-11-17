@@ -268,7 +268,7 @@ barra_bottom.append(a_logo_b);
 
 let txt_direitos = document.createElement(`label`)
 txt_direitos.append("© Todos os Direitos Reservados - 2017.");
-// txt_direitos.setAttribute('class', 'txt')
+txt_direitos.setAttribute('class', 'txt')
 
 barra_bottom.append(txt_direitos)
 
