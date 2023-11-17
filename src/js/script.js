@@ -206,9 +206,9 @@ for (let i = 0; i < 50; i++) {
 
   card.append(div_chef);
 
-  let txt_card = document.createElement(`label`);
+  let txt_card = document.createElement(`button`);
   txt_card.append("Bolo de Cenoura com Cobertura de Chocolate");
-  txt_card.setAttribute("class", "txt-card");
+  txt_card.setAttribute("class", "btn-card");
   
 
   card.append(txt_card);
@@ -219,6 +219,13 @@ for (let i = 0; i < 50; i++) {
   txt_chef.setAttribute("class", "txt-chef");
 
   card.append(txt_chef);
+
+  let lb_avaliacao = document.createElement(`label`)
+  lb_avaliacao.setAttribute('class', 'lb-avaliacao')
+  lb_avaliacao.textContent = "❤ 1.511"
+
+  card.append(lb_avaliacao)
+  
   area_cards.append(card);
 }
 // shmebulock
