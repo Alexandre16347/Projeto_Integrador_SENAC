@@ -1,6 +1,7 @@
 * {
   margin: 0;
   padding: 0;
+  box-sizing: border-box;
   /* border: 1px solid red; */
 }
 
@@ -14,11 +15,19 @@ body {
 
 .container {
   display: flex;
-  /* background-color: #00488a; */
-  display: flex;
-  /* flex-wrap: wrap; */
   justify-content: center;
   align-items: center;
+  position: relative; /* A posição do container deve ser relativa */
+  min-height: 100vh; /* Especificar a altura do container em vh*/
+}
+
+#content{
+  width: 100%;
+  min-height: calc(100vh - 100px); /* Subtraindo a altura do topo para que, caso não tenha conteudo suficiente, a div content preencha toda a altura da página sem exibir o rodapé*/
+  flex-direction: column;
+  /* padding: 15mm; */
+  /* padding-bottom: calc(200px + 15mm);  */
+  /*Considerando a altura do rodapé, para que ele não se sobreponha sobre o conteúdo e vice-versa*/
 }
 
 .btn-menu {
@@ -86,7 +95,7 @@ body {
 #top-bar {
   background-color: white;
   width: 100%;
-  min-height: 110px;
+  min-height: 100px;
   /* background-color: blue; */
   display: flex;
   flex-wrap: wrap;
@@ -99,13 +108,12 @@ body {
   background-color: #00488a;
   width: 100%;
   min-height: 110px;
-  /* background-color: blue; */
   display: flex;
   flex-wrap: wrap;
   justify-content: space-around;
   align-items: center;
   border-top: 4px solid #f78b1f;
-  /* position: -webkit-sticky; */
+  /* position: absolute; */
   bottom: 0;
 }
 
@@ -235,13 +243,12 @@ body {
   justify-content: center;
   align-items: center;
   /* flex-wrap: wrap; */
-  /* padding: 3mm; */
+  padding-top: 5mm;
+  padding-bottom: 5mm;
   background-color: white;
 }
 
 #fim {
-  margin-top: 10mm;
-  margin-bottom: 10mm;
   width: 60%;
   min-height: 300px;
   border-radius: 10px;
@@ -341,10 +348,7 @@ body {
   width: 300px;
   height: 425px;
   border-radius: 5mm;
-  margin-left: 15px;
-  margin-right: 15px;
-  margin-top: 25px;
-  margin-bottom: 25px;
+  margin: 5px;
   background-color: white;
   /* border-color: white; */
   /* border: 2px solid #f78b1f; */
@@ -447,16 +451,7 @@ body {
 }
 
 #scrollcard {
-  /* border-top: 4px solid #f78b1f;
   width: 100%;
-  height: 430px;
-  padding-top: 10px;
-  display: flex;
-  flex-direction: row;
-  overflow-x: scroll;
-  display: block; */
-  width: 100%;
-  /* padding: 20px; */
   display: flex;
   flex-direction: row;
   align-items: center;
