@@ -5,7 +5,6 @@ let tam_social = logos_redes.length;
 
 
 
-
 // *******************************************************************************************************************************************
 // TOP BAR
 
@@ -23,7 +22,7 @@ img_logo.setAttribute("class", "logo");
 
 a_logo.append(img_logo);
 
-let container_menu = document.createElement(`div`);
+let container_menu = document.createElement(`ul`);
 container_menu.setAttribute("class", "container-menu");
 
 barra_menu.append(a_logo);
@@ -42,17 +41,56 @@ let tam = botoes_menu.length;
 for (let i = 0; i < tam; i++) {
   let pagina = `${paginas_menu[i]}`;
 
+  let li = document.createElement(`li`)
+
   let botao = document.createElement(`a`);
+  botao.append(botoes_menu[i]);
   botao.setAttribute("href", pagina);
+  botao.setAttribute("class", "btn-menu");
 
-  let button = document.createElement(`button`);
-  button.append(botoes_menu[i]);
-  button.setAttribute("class", "btn-menu");
+  li.append(botao)
 
-  botao.append(button);
-  container_menu.append(botao);
+  // let button = document.createElement(`button`);
+  // button.append(botoes_menu[i]);
+  // button.setAttribute("class", "btn-menu");
+
+  // botao.append(button);
+  container_menu.append(li);
 }
 barra_menu.append(container_menu);
+
+
+
+
+
+/* <div id="top-bar">
+  <div class="mobile-menu">
+    <div class="line1"></div>
+    <div class="line2"></div>
+    <div class="line3"></div>
+  </div>
+</div> */
+
+let buttonBar = document.createElement(`div`);
+buttonBar.setAttribute("class", "mobile-menu");
+
+let line1 = document.createElement(`div`);
+line1.setAttribute("class", "line1");
+let line2 = document.createElement(`div`);
+line2.setAttribute("class", "line2");
+let line3 = document.createElement(`div`);
+line3.setAttribute("class", "line3");
+
+buttonBar.append(line1)
+buttonBar.append(line2)
+buttonBar.append(line3)
+
+barra_menu.append(buttonBar)
+
+
+
+
+
 
 let container_redes = document.createElement(`div`);
 container_redes.setAttribute('class', 'container-redes')
@@ -71,12 +109,70 @@ for (let i = 0; i < tam_social; i++) {
   btn_rede.append(img_social)
   rede.append(btn_rede)
   container_redes.append(rede)
-  
+
 }
 
 barra_menu.append(container_redes)
 
+
+
 top_bar.append(barra_menu)
+
+
+
+// *******************************************************************************************************************************************
+// Funcionalidade da responsividade
+
+class MobileNavbar {
+  constructor(mobileMenu, containerMenu, navLinks) {
+    this.mobileMenu = document.querySelector(mobileMenu);
+    this.containerMenu = document.querySelector(containerMenu);
+    this.navLinks = document.querySelectorAll(navLinks);
+    this.activeClass = "active";
+
+    this.handleClick = this.handleClick.bind(this);
+  }
+
+  animateLinks() {
+    this.navLinks.forEach((link, index) => {
+      // console.log("Hey 👀");
+      link.style.animation
+        ? (link.style.animation = "")
+        : (link.style.animation = `navLinkFade 0.5s ease forwards ${index / 7 + 0.3}s`)
+    });
+  }
+
+  handleClick() {
+    this.containerMenu.classList.toggle(this.activeClass);
+    this.mobileMenu.classList.toggle(this.activeClass);
+    this.animateLinks();
+  }
+
+  addClickEvent() {
+    this.mobileMenu.addEventListener("click", this.handleClick);
+  }
+
+  init() {
+    if (this.mobileMenu) {
+      this.addClickEvent();
+    }
+    return this;
+  }
+}
+
+const mobileNavbar = new MobileNavbar(
+  ".mobile-menu",
+  ".container-menu",
+  ".container-menu li",
+
+)
+
+mobileNavbar.init()
+
+
+
+
+
 
 
 
