@@ -60,7 +60,32 @@ for (let i = 0; i < tam; i++) {
 barra_menu.append(container_menu);
 
 
+let li_redes = document.createElement(`li`)
+let container_redes2 = document.createElement(`div`);
+container_redes2.setAttribute('class', 'container-rede2')
 
+for (let i = 0; i < tam_social; i++) {
+  let link_social = `${href_redes[i]}`
+  let img_rede = `${logos_redes[i]}`
+  let rede = document.createElement(`a`);
+  rede.setAttribute('href', link_social)
+  let btn_rede = document.createElement(`button`);
+  btn_rede.setAttribute("class", "btn-social");
+  let img_social = document.createElement(`img`);
+  img_social.setAttribute("class", "img-social");
+  img_social.setAttribute('src', img_rede)
+
+  btn_rede.append(img_social)
+  rede.append(btn_rede)
+  container_redes2.append(rede)
+
+}
+
+li_redes.append(container_redes2)
+
+container_menu.append(li_redes)
+
+barra_menu.append(container_menu)
 
 
 /* <div id="top-bar">
@@ -138,7 +163,7 @@ class MobileNavbar {
       // console.log("Hey 👀");
       link.style.animation
         ? (link.style.animation = "")
-        : (link.style.animation = `navLinkFade 0.5s ease forwards ${index / 7 + 0.3}s`)
+        : (link.style.animation = `navLinkFade 0.5s ease forwards ${index / 7 + 0.5}s`)
     });
   }
 

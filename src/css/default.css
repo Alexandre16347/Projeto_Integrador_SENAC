@@ -210,6 +210,11 @@ body {
   flex-direction: row;
 }
 
+.container-rede2{
+  display: none;
+  flex-direction: row;
+}
+
 #cont-categorias {
   padding: 20px;
   /* margin: 20px; */
@@ -502,6 +507,31 @@ body {
 
   .mobile-menu {
     display: block;
+    margin-right: 50px;
+  }
+
+  .container-redes{
+    display: none;
+  }
+
+  .container-rede2{
+    width: 50vw;
+    display: flex;
+    justify-content: space-around;
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+
+  .btn-social{
+    width: 40px;
+    height: 40px;
+    margin: 0;
+  }
+
+  .img-social {
+    height: 23px;
+    border-radius: 0 7px 7px 0;
+    width: 23px;
   }
 
 }
