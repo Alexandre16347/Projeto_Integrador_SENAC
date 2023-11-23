@@ -215,6 +215,8 @@ body {
   flex-direction: row;
 }
 
+
+
 #cont-categorias {
   padding: 20px;
   /* margin: 20px; */
@@ -236,12 +238,13 @@ body {
   width: 40%;
   margin-left: 3mm;
   /* margin-top: 5mm;
-  margin-left: 5mm;
-  margin-bottom: 5mm; */
+  margin-left: 5mm;*/
+  margin-bottom: 5mm; 
 }
 
 #resenha a {
   margin-bottom: 5mm;
+  margin-top: 5mm;
 }
 
 #senac {
@@ -532,6 +535,17 @@ body {
     height: 23px;
     border-radius: 0 7px 7px 0;
     width: 23px;
+  }
+
+  #bottom-bar .container-redes{
+    display: flex;
+  }
+
+  .btn-menu {
+    padding-top: 20px;
+    padding-bottom: 20px;
+    padding-left: 30px;
+    padding-right: 30px;
   }
 
 }
