@@ -3,7 +3,9 @@ let href_redes = ["https://www.facebook.com/SenacBrasil", "https://www.instagram
 
 let tam_social = logos_redes.length;
 
+const categorias = ["Salgados", "Doces", "Massas", "Bebidas", "Sobremesas", "Confeitaria", "Saladas", "Refeições", "Comidas Rápidas", "Sopas", "Farofas", "Drinks", "Sorvetes"]
 
+let tam_cat = categorias.length
 
 // *******************************************************************************************************************************************
 // TOP BAR
@@ -197,6 +199,31 @@ mobileNavbar.init()
 
 
 
+
+// *******************************************************************************************************************************************
+// Area Categorias
+
+
+let cont_cat = document.getElementById("cont-categorias")
+let area_cat = document.createDocumentFragment()
+
+// let container_cat = document.createElement(`div`)
+// container_cat.setAttribute('class', 'cont-categorias')
+
+for (let i = 0; i < tam_cat; i++) {
+
+  let cat = document.createElement(`a`)
+  // cat.setAttribute('href', '')
+
+  let btn_cat = document.createElement(`button`)
+  btn_cat.append(categorias[i])
+  btn_cat.setAttribute('class', 'btn-menu')
+
+  cat.append(btn_cat)
+  area_cat.append(cat)
+}
+
+cont_cat.append(area_cat)
 
 
 

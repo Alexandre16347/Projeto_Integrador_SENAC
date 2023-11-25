@@ -5,14 +5,14 @@
     background-size: cover;
 }
 
-.content{
+.content {
     /* height: auto;
     width:; */
     display: flex;
     align-items: center;
 }
 
-#chef-avatar{
+#chef-avatar {
     height: 400px;
     width: 400px;
     border-radius: 100%;
@@ -26,3 +26,57 @@
     background-color: aquamarine;
     margin-top: calc(-45px - 2mm);
 } */
+
+.nome {
+    font-size: 25pt;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 400px;
+    height: 50px;
+    background-color: 00488a;
+    color: aliceblue;
+    border-radius: 15px;
+}
+
+#historico {
+    display: flex;
+    flex-direction: column;
+    font-size: 25pt;
+    margin-top: 5mm;
+    width: 80%;
+    height: auto;
+    background-color: antiquewhite;
+    align-items: center;
+    border-radius: 10px;
+}
+
+#scrol-receitas {
+    width: 80%;
+    display: flex;
+    flex-direction: row;
+    overflow-x: scroll;
+    flex-shrink: 0;
+}
+
+.receitas {
+    align-items: center;
+    border-radius: 10px;
+    margin: 2mm;
+    width: 100px;
+    height: 200px;
+    background-color: rgb(231, 133, 14);
+    flex-shrink: 0;
+}
+
+#cont-categorias {
+    margin-top: 10mm;
+    width: 100%;
+}
+
+
+.receitas-recentes {
+    margin-top: 10mm;
+    font-size: 30pt;
+    display: flex;
+}

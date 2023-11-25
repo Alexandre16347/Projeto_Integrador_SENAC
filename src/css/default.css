@@ -31,6 +31,7 @@ body {
   /* padding: 15mm; */
   /* padding-bottom: calc(200px + 15mm);  */
   /*Considerando a altura do rodapé, para que ele não se sobreponha sobre o conteúdo e vice-versa*/
+  background-color: white;
 }
 
 
