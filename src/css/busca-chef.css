@@ -1,0 +1,25 @@
+.chef1 {
+    width: 150px;
+    height: 150px;
+    border-radius: 100%;
+    
+}
+
+.chef1 img{
+    width: 100%;
+    height: 100%;
+    border-radius: 100%;
+    border: 3px solid #666;
+}
+
+.chef-list{
+    display: flex;
+    flex-wrap: wrap;
+    padding: 5mm;
+    margin-top: 30px;
+}
+
+.chef-list .chef1{
+    margin: 2.5mm;
+}
+
