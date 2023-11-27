@@ -1,0 +1,43 @@
+ #content{
+    background-color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    width: 100%;
+ }
+
+ #quadrado{
+    width: 80%;
+    min-height: 60%;
+    background-color: 00488a;
+    
+    border-radius: 15px;
+    color: white;
+    border-color: white;
+ }
+
+ .txt{
+    margin-top: 5mm;
+    margin-left: 10mm;
+    margin-right: 2mm;
+    margin-bottom: 10mm;
+ }
+
+ #img{
+    margin-top: 5mm;
+    max-height: 400px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+ }
+
+ #texto{
+    margin-top: 10mm;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+ }
+
+
