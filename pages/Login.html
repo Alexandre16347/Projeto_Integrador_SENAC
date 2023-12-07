@@ -1,21 +1,50 @@
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="../src/css/default.css" />
-    <title>Document</title>
-  </head>
-  <body>
-    <div id="container">
-      <div id="top-bar"></div>
 
-      <div id="content">
-        <div>Pagina de Login</div>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="../src/css/default.css" />
+  <link rel="stylesheet" href="../src/css/login.css">
+  <title>Document</title>
+</head>
+
+<body>
+  <div id="container">
+    <div id="top-bar"></div>
+
+    <div id="content" class="recuperar-senha">
+      <div id="cont-recuperar">
+        <a href="https://www.senac.br/" class="logo">
+          <img src="../src/media/1200px-Senac_logo.svg.png" alt="" class="logo" />
+        </a>
+        <label for="" id="txt-box"> Faça Login na sua conta</label>
+        <div>
+          <label for="" id="txt-box"> Usuário </label>
+          <div id="pwd">
+            <input type="text" placeholder="   Usuario" />
+            <img src="" alt="" />
+          </div>
+        </div>
+        <div>
+          <label for="" id="txt-box"> Senha </label>
+
+          <div id="pwd">
+            <input type="password" placeholder="   *********" />
+            <img src="" alt="" />
+          </div>
+        </div>
+        <button class="btn-login"> Entrar</button>
+        <a href="../pages/Recuperar-Senha.html" id="txt-box">Esqueci minha senha</a>
+        <a href="" id="txt-box">Não possuo cadastro ainda</a>
       </div>
 
-      <div id="bottom-bar"></div>
     </div>
 
-    <script src="../src/js/script-ours-pages.js"></script>
-  </body>
+    <div id="bottom-bar"></div>
+
+  </div>
+
+  <script src="../src/js/script-ours-pages.js"></script>
+</body>
+
 </html>
