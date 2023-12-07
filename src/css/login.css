@@ -1,0 +1,22 @@
+#cont-recuperar {
+    display: flex;
+}
+
+.btn-login {
+    font-weight: bold;
+    width: 40%;
+    flex-wrap: wrap;
+    text-align: center;
+    font-size: larger;
+    max-height: 60px;
+    padding: 2mm;
+    background-color: #f78b1f;
+    border-radius: 3mm;
+    margin-top: 2mm;
+    border-color: white;
+    color: white;
+}
+
+.btn-login:hover{
+    background-color: #c06d1b;
+}
