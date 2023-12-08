@@ -54,12 +54,9 @@
 #scrol-receitas {
     width: 80%;
     display: flex;
-    flex-direction: row;
-    flex-shrink: 0;
+    overflow-x: scroll;
 
-
-
-    overflow-x: auto;
+    /* overflow-x: auto; */
     /* overflow-y: hidden;
     -webkit-overflow-scrolling: touch;
     white-space: nowrap; */
@@ -78,15 +75,29 @@
 #cont-categorias {
     margin-top: 10mm;
     width: 100%;
+    color: black
 }
 
+#recentes{
+    display: flex;
+    flex-direction: row;
+}
 
 .receitas-recentes {
+
     margin-top: 10mm;
     font-size: 30pt;
     display: flex;
 }
 
-::-webkit-scrollbar{
-    width: 0px;
+#recentess {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
 }
+
+
+
+/* ::-webkit-scrollbar{
+    width: 0px;
+} */
