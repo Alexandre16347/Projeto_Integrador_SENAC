@@ -38,7 +38,7 @@ const botoes_menu = ["O Senac", "Início", "Chefes", "Sobre", "Login"];
 const paginas_menu = [
   "https://www.senac.br/",
   "index.html",
-  "pages/Chefes.html",
+  "pages/Busca-Chef.html",
   "pages/Sobre.html",
   "pages/Login.html",
 ];

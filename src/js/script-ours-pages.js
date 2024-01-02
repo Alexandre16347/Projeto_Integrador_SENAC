@@ -33,7 +33,7 @@ const botoes_menu = ["O Senac", "Início", "Chefes", "Sobre", "Login"];
 const paginas_menu = [
   "https://www.senac.br/",
   "../index.html",
-  "Chefes.html",
+  "Busca-Chef.html",
   "Sobre.html",
   "Login.html",
 ];
@@ -204,26 +204,26 @@ mobileNavbar.init()
 // Area Categorias
 
 
-let cont_cat = document.getElementById("cont-categorias")
-let area_cat = document.createDocumentFragment()
+// let cont_cat = document.getElementById("cont-categorias")
+// let area_cat = document.createDocumentFragment()
 
-// let container_cat = document.createElement(`div`)
-// container_cat.setAttribute('class', 'cont-categorias')
+// // let container_cat = document.createElement(`div`)
+// // container_cat.setAttribute('class', 'cont-categorias')
 
-for (let i = 0; i < tam_cat; i++) {
+// for (let i = 0; i < tam_cat; i++) {
 
-  let cat = document.createElement(`a`)
-  // cat.setAttribute('href', '')
+//   let cat = document.createElement(`a`)
+//   // cat.setAttribute('href', '')
 
-  let btn_cat = document.createElement(`button`)
-  btn_cat.append(categorias[i])
-  btn_cat.setAttribute('class', 'btn-menu')
+//   let btn_cat = document.createElement(`button`)
+//   btn_cat.append(categorias[i])
+//   btn_cat.setAttribute('class', 'btn-menu')
 
-  cat.append(btn_cat)
-  area_cat.append(cat)
-}
+//   cat.append(btn_cat)
+//   area_cat.append(cat)
+// }
 
-cont_cat.append(area_cat)
+// cont_cat.append(area_cat)
 
 
 
