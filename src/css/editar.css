@@ -1,0 +1,51 @@
+.form-container {
+    padding: 10px 8px;
+    width: 100px;
+    height: 50px;
+    color: black;
+    background-color: white;
+    border: 2px solid;
+    border-radius: 10px;
+    text-align: center;
+    cursor: pointer;
+    
+}
+
+.form {
+    color: white;
+    display: flex;
+    flex-direction: column;
+    border-radius: 7px;
+    padding: 40px;
+    text-align: center;
+}
+
+.card-add-receita {
+    width: 35%;
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    background-color: aliceblue;
+    border-radius: 20px;
+    padding: 40px;
+    height: 35%;
+
+}
+
+.adicione {
+    color: white;
+    display: flex;
+    flex-direction: column;
+    border-radius: 7px;
+    padding: 40px;
+    text-align: center;
+}
+.quantidade {
+    color: white;
+    display: flex;
+    flex-direction: column;
+    border-radius: 7px;
+    padding: 40px;
+    text-align: center;
+}
