@@ -1,103 +1,120 @@
+<!DOCTYPE html>
 <html lang="en">
-
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link rel="stylesheet" href="src/css/default.css" />
-  <title>Document</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <link rel="stylesheet" href="style.css">
 </head>
-
 <body>
-  <div id="container">
-    <div id="top-bar"></div>
+    
+  <div class="conteudo">
+<h1 class="titulo-receita">Pudim de Leite Condensado</h1>
 
-    <div id="content">
-      <div id="areaSearch"></div>
-      <div id="cont-categorias"></div>
-      <div id="scrollcard"></div>
+<div class="card">
+<div class="banner">
+  <img src="../img.png" alt="">
+</div>
 
-      <div id="senac">
-        <div id="fim">
-          <div id="resenha">
-            <a href="https://www.senac.br/" class="logo">
-              <img src="src/media/senac_logo_branco.png" alt="" class="logo" />
-            </a>
-            <label for="" class="txt">
-              Desde 1946, o Serviço Nacional de Aprendizagem Comercial – Senac
-              é o principal agente de educação profissional voltado para o
-              Comércio de Bens, Serviços e Turismo do País. Hoje, está
-              presente em mais de 1.800 municípios, de Norte a Sul do Brasil,
-              onde mantém infraestrutura de ponta composta por mais de 600
-              unidades escolares, empresas pedagógicas e unidades móveis.
-            </label>
-          </div>
-          <div id="cozinheira">
-            <img src="src/media/chef.png" alt="" />
-          </div>
-        </div>
-      </div>
+<div class="lp">
+<h3>Uma sobremesa clássica brasileira foi apresentada no Mais Você por Ana Maria Braga: pudim de leite condensado. Simples de preparar, a receita leva apenas 4 ingredientes que você provavelmente  tem em casa: açúcar, leite condensado, leite e ovos.</h3>
+</div>
+
+<div class="mov">
+<ul class="avaliacao">
+  <li class="star-icon ativo" data-avaliacao="1"></li>
+  <li class="star-icon" data-avaliacao="2"></li>
+  <li class="star-icon" data-avaliacao="3"></li>
+  <li class="star-icon" data-avaliacao="4"></li>
+  <li class="star-icon" data-avaliacao="5"></li>
+</ul>
+</div>
+
+</div>
+
+  <div class="card">
+  
+  <div class="iup">
+    <h1>Ingredientes</h1>
+    <img src="./pic/peerfil.png" width="40" height="40">
+    <h4>8 pessoas</h4>
+    </div>
+  <ul>
+  <li>6 colheres de sopa de açucar</li>
+  <li>1 lata de leite condensado</li>
+  <li>1 lata de leite, use a mesma medida do leite condensado</li>
+  <li>3 ovos</li>
+
+</ul>
+
+</div>
+<div class="card">
+  <div class="iup">
+<h1>Modo de preparo</h1>
+<img src="./pic/relogio.png" width="40" height="40" alt="">
+<h4>30 mins</h4>
+</div>
+<div class="op">
+<ol>
+<li> Numa forma para pudim, de 20 centímetros de diâmetro, coloque 6 colheres de sopa de açúcar e leve ao fogo médio até virar uma calda caramelada, por mais ou menos 3 minutos.</li>
+<li> Retire do fogo e vá virando a fôrma, de modo que a calda forre todo o fundo e lateral da mesma. Reserve.</li>
+<li> Num liquidificador coloque uma lata de leite condensado, uma lata de leite, a mesma medida da lata de leite condensado, e 3 ovos e bata bem por mais ou menos 1 minuto.</li>
+<li> Desligue o liquidificador e deixe a mistura descansar por 15 minutos.
+    Com esta espera a espuma fica sobre a superfície, o pudim fica sem furinhos, mas macio.</li>
+    <li> Com a ajuda de uma colher segure a espuma que está na superfície e despeje o conteúdo do liquidificador, com cuidado, na fôrma caramelada reservada acima e leve ao forno médio, em banho-maria, a 180 graus Celsius por uma hora e meia.</li>
+    <li> Retire do forno, deixe esfriar e leve à geladeira por mais ou menos duas horas. Desenforme e sirva em seguida.</li>
+      </ol>
+    </div>
     </div>
 
-    <div id="bottom-bar"></div>
+    <div class="card">
+<h1>Comentários</h1>
+
+<div class="hd">
+<div class="id" style="margin-bottom: 4rem;">
+<div class="jd">
+  <div class="kd">
+    <div class="Id">
+      <h3>Ana Célia Farias</h3>
+      <span>14/06/2023</span>
+      <p style="margin-bottom: 0px; margin-right: 2rem;">Gostei muito, arrasou!</p>
+
+      <h3>Patrícia Lima</h3>
+      <span>23/06/2023</span>
+      <p style="margin-bottom: 0px; margin-right: 2rem;">Muito boa</p>
+
+      <h3>Lucas Macedo</h3>
+      <span>01/07/2023</span>
+      <p style="margin-bottom: 0px; margin-right: 2rem;">Aaffff, incrivel</p>
+
+      <h3>Letícia Silva Sousa</h3>
+      <span>17/08/2023</span>
+      <p style="margin-bottom: 0px; margin-right: 2rem;">Vou fazer outras vezes!!!</p>
+    </div>
   </div>
+</div>
+</div>
+<button class="recipe_button" type="button" data-componentname="button" data-componentview="button">
+  <span class="button_label">Ver mais comentários</span>
+</button>
+    </div>
+  </div>
+      </div>
 
-  <script src="src/js/script.js"></script>
+    <script>
+      var stars = document.querySelectorAll('.star-icon');
+
+      document.addEventListener('click',function(e){
+var classStar = e.target.classList;
+if(!classStar.contains('ativo')){
+  stars.forEach(function(star){
+    star.classList.remove('ativo');
+  });
+  classStar.add('ativo');
+  console.log(e.target.getAttribute('data-avaliacao'));
+}
+});
+    </script>
 </body>
-
 </html>
-
-<!-- <div id="top-bar">
-            <a href="https://www.senac.br/" class="logo">
-                <img src="src/media/1200px-Senac_logo.svg.png" alt="" class="logo">
-            </a>
-            
-
-            <a href="https://www.senac.br/">
-                <button class="btn-menu">
-                    O Senac
-                </button>
-            </a>
-
-            <a href="index.html">
-                <button class="btn-menu" id="select">
-                    Inicio
-                </button>
-            </a>
-
-            <a href="pages/Chefes.html">
-                <button class="btn-menu">
-                    Chefes
-                </button>
-            </a>
-
-            <a href="pages/Sobre.html">
-                <button class="btn-menu">
-                    Sobre
-                </button>
-            </a>
-
-
-            <a href="pages/Login.html">
-                <button class="btn-menu">
-                    Login
-                </button>
-            </a>
-
-            <a href="">
-                <button class="btn-social">
-                    <img src="src/media/facebook.png" alt="" id="img-social">
-                </button>
-            </a>
-        </div>
-
-        <div id="areaSearch">
-              <div id="divSearch">
-                <img src="src/media/search3.png" alt="Buscar..."/>
-                <input type="text" id="txtSearch" placeholder="Buscar..."/>
-                <button id="btnSearch">Buscar</button>
-              </div>
-        </div>
-
-        <div id="bottom-bar">
-
-        </div> -->
