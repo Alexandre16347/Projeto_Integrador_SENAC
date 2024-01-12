@@ -15,11 +15,11 @@
 .chef-list{
     display: flex;
     flex-wrap: wrap;
-    padding: 5mm;
+    padding: 10mm;
     margin-top: 30px;
 }
 
 .chef-list .chef1{
-    margin: 2.5mm;
+    margin: 5mm;
 }
 

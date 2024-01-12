@@ -1,0 +1,29 @@
+
+.card{
+    background-color: #F0F0F0;
+    width: 500px;
+    margin: auto;
+    padding: 20px;
+    margin-top: 50px;
+    border-radius: 5px;
+    font-weight: 300;
+}
+
+.h1{
+    text-align: center;
+    font-weight: 400;
+    font-size: 20px;
+    color: blue;
+    margin-bottom: 20px;
+}
+
+li{
+    list-style-position: inside;
+    line-height: 35px;
+}
+
+.titulo-receita{
+    font-weight: 700;
+    font-size: 30px;
+    margin-top: 30px;
+}
