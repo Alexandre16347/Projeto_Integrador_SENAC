@@ -4,7 +4,7 @@ body{
 
 .card{
     display: flex;
-align-content: flex-end;
+align-content: row;
 background-color: rgb(252, 251, 250);
 width: 1000px;
 margin: auto;
@@ -14,6 +14,11 @@ border-radius: 10px;
 font-weight: 300;
   }
   
+.str{
+    color: #ffe500;
+    margin-left: 600px;
+   
+}
 h1{
     text-align: center;
     font-family: Rubik,sans-serif;
@@ -22,6 +27,7 @@ h1{
     color: rgb(1, 1, 10);
     font-weight: bold;
     margin-bottom: 20px;
+    white-space: nowrap;
 }
 
 .lp{
@@ -42,6 +48,7 @@ li{
 }
 
 .titulo-receita{
+    color: #11527e;
     font-weight: 700;
     font-size: 30px;
     margin-top: 30px;
@@ -56,6 +63,7 @@ h4{
 color: #11527e;
 margin-top: 0;
 margin-left: -8px;
+white-space: nowrap;
 }
 
 .avaliacao{
@@ -66,10 +74,9 @@ align-items:center;
 list-style-type: none;
 cursor: pointer;
 color: #ffe500;
-margin: 0 5px;
-
+margin: 0 4px;
 }
-      
+ 
 .star-icon::before{
 content: "\2605"
 }
@@ -84,12 +91,46 @@ content: "\2606";
 }
       
 .op{
-    margin-left: 10px;
-    margin-right: 20px;
+    margin-left: 50px;
+    margin-right: 10px;
+}
+
+.ll{
+    margin-left: 60px;
+    margin-right: 10px;
 }
 
 .hd{
 margin-left: 20px;
+}
+
+.oia{
+    margin-top: 50px;
+    margin-left: -80px;
+}
+
+.pl{
+    margin-top: 50px;
+    margin-left: -110px;
+}
+
+.cl{
+ display: flex;
+ flex-direction: column;
+}
+
+.que{
+    display: flex;
+    flex-direction: column;
+border: none;
+border-radius: 5px;
+font-family: Arial, Helvetica, sans-serif;
+padding: 1.5rem;
+resize: none;
+}
+
+textarea{
+    border: none;
 }
 
 .id .jd{
@@ -116,10 +157,10 @@ p{
 
 .recipe_button{
     align-items: center;
-    background-color: #b6dc85;
+    background-color:#11527e;
     border: none;
     border-radius: 5px;
-    color: #363840;
+    color:white;
     cursor: pointer;
     display: inline-flex;
     font-size: 1.4rem;
@@ -136,6 +177,7 @@ p{
 
 .button_label{
     font-size: 15px;
+    margin-left: 70px;
 }
 
 .gz{
