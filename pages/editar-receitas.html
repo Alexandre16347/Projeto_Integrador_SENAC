@@ -11,43 +11,94 @@
 <body>
     <div id="container">
         <div id="top-bar"></div>
-
         <div id="content">
-
-            <h1>Editar receitas</h1>
-            <div id="form-container">
-
-                <form action="">
-                    <label for="">  </label>
-                    <div class="card-add-receita">
-                        <label for=""> Descrição:</label>
-                        <input type="text">
-                        <div class="quantidade"></div>
-                    <label for=""> tempo de preparo:</label>
-                    <input type="text"> 
-                    <div class=" adicione">
-                        <label for=" ">Numero de Porçoes:</label>
-                        <input type="text">
-                        <label for="">quantidade</label>
-                    </div>
-                    
-
-                    </div>
-                   
-                    
-                </form>
+            <div class="coro">
+                <h1 id="titulo1">edite suas receitas</h1>
+                <p id="sub-titulo1">.</p>
+                <br>
             </div>
 
+            <form>
+                <fieldset class="grupo">
+                    <div>
+                        <label for="receitas1">titulo:</label>
+                        <input type="text" name="titulo" id="titulo">
+                    </div>
+
+                    <div>
+                        <label for="porçoes1">descrição</label>
+                        <input type="text" name="descrição" id="descrição">
+                    </div>
+                </fieldset>
+
+                <div class="coro">
+                    <label for="text"> nome da receita</label>
+                    <input type="nome da receita" name="nome da receita" id="nome da receita">
+                </div>
+
+                <div class="coro">
+                    <label> <strong>quais o ingredientes </strong></label>
+                    <label>
+                        <input type="radio" name="receitas">
+                    </label>
+
+                    <label>
+                        <input type="radio" name="ingredientes">
+                    </label>
+                    <label>
+                        <input type="radio" name="usa">
+
+                    </label>
+                </div>
+                <div id="check">
+                    <labe><strong>numero de porçoes</strong></label>
+                        <select id="ingredientes">
+                            <option selected disabled value="">+5</option>
+                            <option>6</option>
+                            <option>7</option>
+                            <option>8</option>
+                            <option>9</option>
+                            <option>10</option>
+                            <select>
+                </div>
+                <fieldset class="grupo">
+                    <div >
+                        <label>tipos de refeições (p ex: refeições principais,sobremesas,bebidas.)</label><br>
+                        <input type="checkbox" id="igrediente" name="igrediente" value="Aperitivos">
+                        <label for="igrediente">Aperitivos</label>
+                        <input type="checkbox" id="igrediente2" name="igrediente2" value="sopas">
+                        <label for="igrediente2">sopas</label>
+                        <input type="checkbox" id="igrediente3" name="igrediente3" value=" Pratos principais">
+                        <label for="igrediente3">Pratos principaisS</label>
+                        <input type="checkbox" id="igrediente4" name="igrediente4" value="aconpanhamentos">
+                        <label for="igrediente4">aconpanhamentos</label>
+                    </div>
+                </fieldset>
 
 
-        </div>
 
-    </div>
 
-    <div id="bottom-bar"></div>
-    </div>
 
-    <script src="../src/js/script-ours-pages.js"></script>
+
+
+
+
+
+
+
+
+
+                
+                <div class="coro">
+                    <br>
+                    <label> mostre, fale sobre suas receitas</label>
+                    <textarea rows="6" style="width: 26mm;" id="receitas" name="receitas"></textarea>
+                </div>
+            </form>
+            <button class="botao" type="submit">concluido</button>
+            <button class="botoon" type="submit">salvar</button>
+
+            <script src="../src/js/script-ours-pages.js"></script>
 </body>
 
 </html>

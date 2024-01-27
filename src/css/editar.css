@@ -1,51 +1,95 @@
-.form-container {
-    padding: 10px 8px;
-    width: 100px;
-    height: 50px;
-    color: black;
-    background-color: white;
-    border: 2px solid;
-    border-radius: 10px;
-    text-align: center;
-    cursor: pointer;
+*{
+    padding: 0;
+    margin: 0;
+}
+#titulo1{
+    font-family: sans-serif;
+    color: #000;
+    margin-left: 7%;
+}
+#subtitulo1{
+     font-family: sans-serif;
+    color: #000;
+    margin-left: 10%;
+}
+fieldset{
+    border: 0;
+}
+body{
     
-}
+    font-family: sans-serif;
+    font-size: 1em;
+    justify-content: center;
 
-.form {
-    color: white;
-    display: flex;
-    flex-direction: column;
-    border-radius: 7px;
-    padding: 40px;
-    text-align: center;
-}
-
-.card-add-receita {
-    width: 35%;
-    background-color: white;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    background-color: aliceblue;
-    border-radius: 20px;
-    padding: 40px;
-    height: 35%;
 
 }
-
-.adicione {
-    color: white;
-    display: flex;
-    flex-direction: column;
-    border-radius: 7px;
-    padding: 40px;
-    text-align: center;
+input,select,textarea,button{
+    border-radius: 5px;
 }
-.quantidade {
-    color: white;
-    display: flex;
-    flex-direction: column;
-    border-radius: 7px;
-    padding: 40px;
-    text-align: center;
+.coro{
+    margin-bottom: 1em;
+}
+.coro label{
+    margin-bottom: 0,2em;
+    color: blue;
+    display: block;
+}
+fieldset.coro.grupo{
+    float: left;
+    margin-right: 1em;
+}
+    .coro input:nth-of-type(text), .coro input:nth-of-type(email), .coro select, .coro textarea{
+        padding: 0.2em;
+        border: 1px solid color(srgb red green blue);
+        box-shadow: 2px 2px 2px rgb(red, green, blue);
+        display: block;
+    }
+    .coro section option{
+        padding-right: 1em;
+    }
+    .coro input:focus, .coro select:focus, .coro textarea:focus {
+        background: #f8f2f2;
+    }
+    .botao{
+        font-size: 1.2em;
+        background: white;
+        border: 0;
+        margin-bottom: 1em;
+        color: #840b0b;
+        padding: 0.2em 0.6em;
+        box-shadow: 2px 2px 2px rgba(red, green, blue, alpha);
+        text-shadow: 1px 1px 1px ;
+        position: absolute;
+        top: 90%;
+        left: 50%;
+        margin-right: 50%;
+        transform: translate(-50%, -50%);
+    }
+    .botao:hover{
+        background: white;
+        box-shadow: inset 2px 2px 2px rgba(red, green, blue, alpha);
+        text-shadow: none;
+    }
+    .botoon{
+        font-size: 1.2em;
+        background: rgb(234, 227, 227);
+        border: 0;
+        margin-bottom: 1em;
+        color: #110b84;
+        padding: 0.2em 0.6em;
+        box-shadow: 2px 2px 2px rgba(rgb(68, 0, 255), rgb(0, 30, 128), blue, alpha);
+        text-shadow: 1px 1px 1px ;
+        position: fixed;
+        top: 90%;
+        left: 50%;
+        margin-right: 40%;
+        transform: translate(-50%, -40%);
+    }
+    .botoon:hover{
+        background: white;
+        box-shadow: inset 2px 2px 2px rgba(rgb(0, 47, 255), rgb(38, 0, 128), blue, alpha);
+        text-shadow: none;
+    }
+#check{
+    display: inline-block;
 }
