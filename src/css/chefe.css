@@ -90,11 +90,17 @@
     display: flex;
 }
 
-#recentess {
+#scrollcard{
+    padding-top: 100%;
+    width: 100%;
+    height: 100%;
+}
+/* #recentess {
     display: flex;
     flex-wrap: wrap;
     flex-direction: row;
-}
+} */
+
 
 
 
