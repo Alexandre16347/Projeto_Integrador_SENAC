@@ -22,9 +22,21 @@ const UserSchema = new Schema({
   },
   senha: {
     required: true,
-    match:/^[@a-zA-B0-9._-]{8,}$/,
+    match: /^[@a-zA-B0-9._-]{8,}$/,
     type: String,
   },
-});
+  imagem: String,
+  //   video: File,
+},
+  {
+    toJSON: {
+      virtuals: true,
+    },
+  },
+);
+
+UserSchema.virtual('ImagemUrl').get(function(){
+  return `http://localhost:3333/files/${this.imagem}`
+})
 
 export default new model('Usuario', UserSchema);

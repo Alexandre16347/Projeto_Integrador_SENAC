@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../src/css/default.css">
     <link rel="stylesheet" href="../src/css/cadastro.css">
-    <title>Formulario responsivo com html e css</title>
+    <title>Formulário responsivo com HTML e CSS</title>
 </head>
 
 <body>
@@ -22,50 +22,84 @@
                 </div>
                 <div class="form-box">
                     <h2>Criar Conta</h2>
-                    <p> Já possui cadastro?
+                    <p>Já possui cadastro?
                         <a href="Login.html"> Login </a>
                     </p>
-                    <form action="#">
+                    <form id="cadastroForm" enctype="multipart/form-data">
                         <div class="input-group">
-                            <label for="nome"> Nome Completo</label>
-                            <input type="text" id="nome" placeholder="Digite o seu nome completo" required>
+                            <label for="Nome"> Nome Completo</label>
+                            <input type="text" id="nome" name="Nome" placeholder="Digite o seu nome completo" required>
                         </div>
 
                         <div class="input-group">
                             <label for="email">E-mail</label>
-                            <input type="email" id="email" placeholder="Digite o seu email" required>
+                            <input type="email" id="email" name="email" placeholder="Digite o seu email" required>
                         </div>
 
                         <div class="input-group">
                             <label for="idade">Idade</label>
-                            <input type="number" id="idade" placeholder="Digite o sua idade" required>
+                            <input type="number" id="idade" name="idade" placeholder="Digite a sua idade" required>
                         </div>
 
-                        <div class="input-group w50">
+                        <div class="input-group">
                             <label for="senha">Senha</label>
-                            <input type="password" id="senha" placeholder="Digite sua senha" required>
+                            <input type="password" id="senha" name="senha" placeholder="Digite sua senha" required>
+                        </div>
+
+                        <div class="input-group">
+                            <label for="confirmarSenha">Confirmar Senha</label>
+                            <input type="password" id="confirmarSenha" name="confirmarSenha"
+                                placeholder="Confirme sua senha" required>
+                        </div>
+
+                        <div class="input-group">
+                            <label for="imagem">Imagem de Perfil</label>
+                            <input type="file" id="imagem" name="imagem" accept="image/*" required>
                         </div>
 
                         <div class="input-group w50">
-                            <label for="Confirmarsenha">Confirmar Senha</label>
-                            <input type="password" id="Confirmarsenha" placeholder="Confirme a senha" required>
+                            <button type="button" class="btn-login" onclick="enviarFormulario()">Finalizar
+                                Cadastro</button>
                         </div>
-
-                        <div class="input-group w50">
-                            <button class="btn-login">Finalizar Cadastro</button>
-                        </div>
-
                     </form>
                 </div>
             </div>
-
         </div>
 
         <div id="bottom-bar"></div>
     </div>
 
-    <script src="../src/js/script-ours-pages.js"></script>
+    <script>
+        function enviarFormulario() {
+            var senha = document.getElementById('senha').value;
+            var confirmarSenha = document.getElementById('confirmarSenha').value;
 
+            // Verificar se as senhas coincidem
+            if (senha !== confirmarSenha) {
+                alert('As senhas não coincidem!');
+                return;
+            }
+            var formulario = document.getElementById('cadastroForm');
+            var formData = new FormData(formulario);
+
+            var xhr = new XMLHttpRequest();
+            xhr.open('POST', 'http://localhost:3333/user', true);
+
+            xhr.onreadystatechange = function () {
+                if (xhr.readyState === 4) {
+                    if (xhr.status === 200) {
+                        console.log('Cadastro realizado com sucesso!');
+                    } else {
+                        console.error('Erro no cadastro:', xhr.responseText);
+                    }
+                }
+            };
+
+            xhr.send(formData);
+        }
+    </script>
+
+    <script src="../src/js/script-ours-pages.js"></script>
 </body>
 
 </html>

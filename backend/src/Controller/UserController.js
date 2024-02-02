@@ -1,15 +1,21 @@
+import fs from 'fs';
+import path from 'path';
 import User from '../Model/User';
 
 class cadastroUsuario {
   async store(req, res) {
     const { Nome, idade, email, senha } = req.body;
+    const { filename } = req.file;
 
     let usuarioCadastra = await User.findOne({ Nome, idade, email, senha });
 
     if (!usuarioCadastra) {
-      usuarioCadastra = await User.create({ Nome, idade, email, senha });
+      usuarioCadastra = await User.create({ Nome, idade, email, senha, imagem: filename });
+      return res.status(200).json({ Resposta: 'Usuario cadastrado com sucesso', usuarioCadastra });
+    } else {
+      return res.status(200).json({ Resposta: 'Usuario já cadastrado', usuarioCadastra });
     }
-    return res.json(usuarioCadastra);
+
   }
 
   async buscarTudo(req, res) {
@@ -19,7 +25,7 @@ class cadastroUsuario {
 
   async buscarUser(req, res) {
     const Id = req.query.id;
-    let usuario = await User.findOne({_id:String(Id)});
+    let usuario = await User.findOne({ _id: String(Id) });
     return res.json(usuario);
   }
 
@@ -34,7 +40,7 @@ class cadastroUsuario {
   async atualizarSenha(req, res) {
     const { id } = req.headers;
     const { senha } = req.body;
-    const usuario = await User.findOneAndUpdate({ _id: id }, {senha:senha});
+    const usuario = await User.findOneAndUpdate({ _id: id }, { senha: senha });
     return res.json(usuario);
   }
 }

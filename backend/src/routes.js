@@ -13,7 +13,7 @@ routes.get('/', (req, res) => {
 
 // USUARIO
 //Posts
-routes.post('/user', user.store);
+routes.post('/user', upload.single('imagem'), user.store);
 
 //Gets
 routes.get('/buscarUsuarios', user.buscarTudo);
