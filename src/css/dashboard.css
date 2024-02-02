@@ -84,63 +84,63 @@ body {
         margin: 10;
         padding: 0;
     }
-    
+
     header {
         background-color: #007BFF;
         padding: 50px;
     }
-    
+
     header h1 {
         color: #FFF;
         margin: 20;
     }
-    
+
     nav ul {
         list-style-type: none;
         margin: 10;
         padding: 10;
     }
-    
+
     nav li {
         display: inline;
         margin-right: 30px;
     }
-    
+
     nav a {
         color: #FFF;
         text-decoration: none;
     }
-    
+
     main {
         padding: 20px;
     }
-    
+
     .receitas {
         display: grid;
         grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
         gap: 20px;
     }
-    
+
     .receita {
         background-color: #FFF;
         padding: 20px;
         border-radius: 5px;
         box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
     }
-    
+
     .receita img {
         width: 100%;
         height: auto;
     }
-    
+
     .receita h3 {
         margin: 10px 0;
     }
-    
+
     .receita p {
         color: #6C757D;
     }
-    
+
     .receita button {
         background-color: #007BFF;
         color: #FFF;
