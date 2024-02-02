@@ -17,7 +17,7 @@ for (let i = 0; i < 50; i++) {
   let img_card = document.createElement(`img`);
   img_card.setAttribute(
     "src",
-    "src/media/bolo-de-cenoura-cobertura-chocolate.jpg"
+    "../src/media/bolo-de-cenoura-cobertura-chocolate.jpg"
   );
   img_card.setAttribute("class", "img-card");
 
@@ -29,7 +29,7 @@ for (let i = 0; i < 50; i++) {
   div_chef.setAttribute("class", "chef-avatar");
 
   let img_avatar = document.createElement(`img`);
-  img_avatar.setAttribute("src", "src/media/shumel.jpg");
+  img_avatar.setAttribute("src", "../src/media/shumel.jpg");
   img_avatar.setAttribute("class", "img-avatar");
 
   div_chef.append(img_avatar);
