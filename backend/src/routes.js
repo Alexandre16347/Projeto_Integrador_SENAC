@@ -3,13 +3,12 @@ import user from './Controller/UserController';
 import receita from './Controller/ReceitaController';
 import multer from 'multer';
 import Upload from './Config/Upload';
+import card from './Controller/CardController';
 
 const routes = new Router();
 const upload = new multer(Upload);
 
-routes.get('/', (req, res) => {
-  return res.json({ message: 'ok' });
-});
+routes.get('/', card.buscarCard);
 
 // USUARIO
 //Posts
