@@ -25,8 +25,9 @@ async function login() {
 
             if (data.authenticated) {
                 console.log('Login bem-sucedido:', data);
-                // Armazene o uuid no localStorage para uso futuro
-                localStorage.setItem('sessionUuid', data.session);
+
+                // Armazenar o token no cookie
+                definirCookie('token', data.token); // Aqui 'token' é o nome do cookie
                 // Redirecionar para a página principal
                 window.location.href = '../index.html';
             } else {
@@ -39,6 +40,25 @@ async function login() {
         console.error('Erro na solicitação:', error);
     }
 }
+
+function definirCookie(nome, valor) {
+    const dataDeExpiracao = new Date();
+    dataDeExpiracao.setTime(dataDeExpiracao.getTime() + (1 * 60 * 60 * 1000)); // 1 hora
+
+    const cookieString = `${nome}=${valor}; expires=${dataDeExpiracao.toUTCString()}; path=/`;
+    console.log(cookieString)
+
+
+    document.cookie = cookieString;
+}
+
+// Função para aguardar X segundos
+function esperarSegundos(segundos) {
+    return new Promise(resolve => {
+        setTimeout(resolve, segundos * 1000); // Multiplica por 1000 para converter segundos em milissegundos
+    });
+}
+
 
 
 
@@ -129,10 +149,40 @@ async function obterReceita() {
             const dadosReceita = await response.json();
 
             // Faça algo com os dados da receita, por exemplo, atualize a interface do usuário
-            console.log('Dados da Receita:', dadosReceita.Titulo);
 
             document.getElementsByClassName("titulo-receita")[0].textContent = dadosReceita.Titulo;
-            // document.getElementById(img)
+            document.getElementById("img").src = `../backend/src/Uploads/${dadosReceita.imagem}`;
+            document.getElementById("porcoes").textContent = `Serve ${dadosReceita.porcoes} \n porção(ões)`;
+            document.getElementsByClassName("lp")[0].textContent = dadosReceita.descricao
+
+            let lista_ingredientes = document.getElementById("ingredientes");
+
+            for (let i = 0; i < dadosReceita.ingredientes.length; i++) {
+                const ig = dadosReceita.ingredientes[i];
+
+                let ingrediente = document.createElement(`li`);
+                ingrediente.setAttribute("class", "ingrediente");
+                ingrediente.textContent = `* ${ig}`;
+
+                lista_ingredientes.append(ingrediente)
+            }
+
+            document.getElementById("tempo").textContent = `${dadosReceita.tempo ? dadosReceita.tempo : 0} min`
+
+
+            let lista_modo = document.getElementById("modo");
+
+            for (let i = 0; i < dadosReceita.modoDePreparo.length; i++) {
+                const mdf = dadosReceita.modoDePreparo[i];
+
+                let modo = document.createElement(`li`);
+                modo.setAttribute("class", "modoDeFazer");
+                modo.textContent = `* ${mdf}`;
+
+                lista_modo.append(modo)
+            }
+            // document.getElementById("modo").textContent = `* ${dadosReceita.modoDePreparo}`;
+
 
             // Adicione outras manipulações conforme necessário
         } else {
@@ -237,8 +287,153 @@ async function obterCards() {
 }
 
 
+async function verificarAutenticacao() {
+    // Verifica se o usuário está autenticado
+    const token = document.cookie.split('=')[1];
+
+    if (!token) {
+        // Se não houver token, redireciona para a página de login
+        window.location.href = '/pages/Login.html';
+        return;
+    }
+
+    try {
+        const response = await fetch('http://localhost:3333/verificar-token', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': token
+            },
+        });
+
+        if (response.ok) {
+            // Se o token for válido, o usuário está autenticado
+            console.log('Usuário autenticado');
+        } else {
+            // Se o token não for válido, redireciona para a página de login
+            window.location.href = '/pages/Login.html';
+        }
+    } catch (error) {
+        console.error('Erro na verificação de autenticação:', error);
+        // Trate o erro conforme necessário
+    }
+}
+
+async function buscaUser() {
+    // Verifica se o usuário está autenticado
+    const token = document.cookie.split('=')[1];
+
+    if (!token) {
+        // Se não houver token, redireciona para a página de login
+        window.location.href = '/pages/Login.html';
+        return {};
+    }
+
+
+    try {
+        const response = await fetch('http://localhost:3333/buscaUserToken', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': token
+            },
+        });
+
+        const id = await response.json();
+
+        if (response.ok) {
+            // Se o token for válido, o usuário está autenticado
+            console.log('Usuário Identificado');
+            console.log({user: id.id})
+            return {user: id.id};
+        } else {
+            // Se o token não for válido, redireciona para a página de login
+            window.location.href = '/pages/Login.html';
+            return;
+        }
+    } catch (error) {
+
+        console.error('Erro na verificação de autenticação:', error);
+        return {};
+        // Trate o erro conforme necessário
+    }
+}
+
+
+// var ingredientesString = formData.get('listaIngredientes');
+//     console.log(ingredientesString)
+//     formData.set('ingredientes', Array.from(ingredientesString.children).map(li => li.textContent));
+//     <div class="input-group">
+//                             <label for="ingredientes">Digite os ingredientes (separados por vírgula):</label>
+//                             <input type="text" id="ingredientes" name="ingredientes">
+//                             <button type="button" onclick="adicionarItem()">Adicionar</button>
+
+//                             <ul id="listaIngredientes"></ul>
+//                         </div>
+
+async function enviarFormularioReceita() {
+    var formulario = document.getElementById('receitaForm');
+    var formData = new FormData(formulario);
+
+    // Processar o campo 'ingredientes' como um array
+    const ingredientesTextArea = formData.get('ingredientes');
+    const ingredientesArray = ingredientesTextArea.split('\n').map(ingrediente => ingrediente.trim());
+    formData.set('ingredientes', JSON.stringify(ingredientesArray));
+
+    const {user} = await buscaUser()
+
+    try {
+        const response = await fetch('http://localhost:3333/receita', {
+            method: 'POST',
+            body: formData,
+            headers: {
+                "user": user
+            }
+        });
+
+        if (response.ok) {
+            console.log('Receita cadastrada com sucesso!');
+            // Redirecionar ou realizar ações necessárias após o cadastro
+        } else {
+            console.error('Erro no cadastro da receita:', response.statusText);
+        }
+    } catch (error) {
+        console.error('Erro na solicitação:', error);
+    }
+}
 
 
 
+
+
+
+
+
+
+
+function adicionarItem() {
+    const inputElement = document.getElementById('ingredientes');
+    const listaElement = document.getElementById('listaIngredientes');
+
+    // Divide os itens inseridos pelo usuário usando vírgula como separador
+    const novosItens = inputElement.value.split(',');
+
+    // Adiciona cada item à lista
+    novosItens.forEach(item => {
+        const listItem = document.createElement('li');
+        listItem.textContent = item.trim(); // Remove espaços em branco extras
+        listaElement.appendChild(listItem);
+    });
+
+    // Limpa o campo de texto
+    inputElement.value = '';
+}
+
+function obterItens() {
+    const listaElement = document.getElementById('listaIngredientes');
+    const itens = Array.from(listaElement.children).map(li => li.textContent);
+    console.log('Ingredientes:', itens);
+    return itens;
+}
 
 

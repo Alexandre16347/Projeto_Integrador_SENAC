@@ -4,10 +4,11 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
   <link rel="stylesheet" href="../src/css/default.css" />
   <link rel="stylesheet" href="../src/css/style.css">
   <script src="../src/js/funcoes.js"></script>
+  <script>verificarAutenticacao();</script>
+  <title>Receita</title>
 </head>
 
 <body>
@@ -30,18 +31,10 @@
           <span style="color: yellow;">&#9733;</span>
           <span style="color: yellow;">&#9733;</span>
           <span style="color: yellow;">&#9733;</span>
-          <h3 style="color: black; margin-top: 0px;">
-            (4)
-          </h3>
+          <h3 style="color: black; margin-top: 0px;">(4)</h3>
         </div>
 
-        <div class="lp">
-          Uma sobremesa clássica brasileira foi apresentada no Mais Você por: Ana Maria Braga:pudim de leite
-            condensado. 
-            Simples de preparar, a receita leva apenas 4 ingredientes que você provavelmente tem em casa: açúcar, leite
-            condensado, leite e ovos.
-           Autor: Fernanda Publicado: 1 hora atrás
-        </div>
+        <div class="lp"></div>
 
 
       </div>
@@ -52,17 +45,11 @@
           <h1>Ingredientes</h1>
         </div>
         <div class="oia">
-          <img src="../src/media/icone.png" width="50px" ">
-    <h4>8 pessoas</h4>
-  </div>
-  <div class=" ll">
-          <ul>
-            <li> • 6 colheres de sopa de açucar</li>
-            <li>• 1 lata de leite condensado</li>
-            <li>• 1 lata de leite, use a mesma medida do leite condensado</li>
-            <li>• 3 ovos</li>
-
-          </ul>
+          <img src="../src/media/icone.png" width="50px">
+          <h4 id="porcoes"></h4>
+        </div>
+        <div class=" ll">
+          <ul id="ingredientes"></ul>
         </div>
       </div>
       <div class="cardis">
@@ -71,29 +58,10 @@
         </div>
         <div class="pl">
           <img src="../src/media/relogio.png" width="60px">
-          <h4 style="margin-left: 5px;">30 mins</h4>
+          <h4 style="margin-left: 5px;" id="tempo"></h4>
         </div>
         <div class="op">
-          <ol>
-            <li> • Numa forma para pudim, de 20 centímetros de diâmetro, coloque 6 colheres de sopa de açúcar e leve ao
-              fogo
-              médio até virar uma calda caramelada, por mais ou menos 3 minutos.</li>
-            <li> •  Retire do fogo e vá virando a fôrma, de modo que a calda forre todo o fundo e lateral da mesma.
-              Reserve.
-            </li>
-            <li>• Num liquidificador coloque uma lata de leite condensado, uma lata de leite, a mesma medida da lata de
-              leite
-              condensado, e 3 ovos e bata bem por mais ou menos 1 minuto.</li>
-            <li>• Desligue o liquidificador e deixe a mistura descansar por 15 minutos.
-              Com esta espera a espuma fica sobre a superfície, o pudim fica sem furinhos, mas macio.</li>
-            <li>• Com a ajuda de uma colher segure a espuma que está na superfície e despeje o conteúdo do
-              liquidificador,
-              com cuidado, na fôrma caramelada reservada acima e leve ao forno médio, em banho-maria, a 180 graus
-              Celsius
-              por uma hora e meia.</li>
-            <li>• Retire do forno, deixe esfriar e leve à geladeira por mais ou menos duas horas. Desenforme e sirva em
-              seguida.</li>
-          </ol>
+          <ol id="modo"></ol>
         </div>
       </div>
 

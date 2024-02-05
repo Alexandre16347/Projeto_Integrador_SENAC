@@ -12,11 +12,12 @@ const ReceitaShema = new Schema(
       required: true,
     },
     modoDePreparo: {
-      type: String,
+      type: Array,
       required: true,
     },
     tempo: {
       type: Number,
+      required: true,
     },
     user: {
       type: Schema.Types.ObjectId,
@@ -26,6 +27,18 @@ const ReceitaShema = new Schema(
     nomeDoChef: String,
     imagem: String,
     //   video: File,
+    descricao: {
+      type: String,
+      required: true,
+    },
+    porcoes:{
+      type: Number,
+      required: true,
+    },
+    categorias:{
+      type: Array,
+      required: true,
+    },
   },
   {
     toJSON: {

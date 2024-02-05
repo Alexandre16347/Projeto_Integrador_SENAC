@@ -19,10 +19,13 @@ routes.get('/cards', card.buscarCards);
 //Posts
 routes.post('/user', upload.single('imagem'), user.store);
 routes.post('/login', user.login);
+routes.post('/verificar-token', user.verificarIdTemp);
+routes.post('/buscaUserToken', user.buscaPorToken);
 
 //Gets
 routes.get('/buscarUsuarios', user.buscarTudo);
 routes.get('/buscaUserId', user.buscarUser);
+
 
 //Puts
 routes.put('/novaSenha', user.atualizarSenha);

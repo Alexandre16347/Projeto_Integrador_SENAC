@@ -48,7 +48,7 @@ class cadastroUsuario {
       const usuario = await User.findOne({ email });
 
       if (!usuario) {
-        console.log(!usuario)
+        // console.log(!usuario)
         return res.status(401).json({ error: 'Credenciais inválidas' });
       }
 
@@ -59,11 +59,11 @@ class cadastroUsuario {
         usuario.senha = hashedPassword;
         await usuario.save();
       }
-      
+
       const senhaCorreta = await bcrypt.compare(senha, usuario.senha);
-      
+
       // testeasenha
-      
+
       if (!senhaCorreta) {
         return res.status(401).json({ error: 'Credenciais inválidas' });
 
@@ -73,7 +73,7 @@ class cadastroUsuario {
       usuario.idTemp = idTemp;
       await usuario.save();
 
-      return res.status(200).json({ authenticated: true, message: `Bem-vindo ${usuario.nome}!`, session: idTemp });
+      return res.status(200).json({ authenticated: true, message: `Bem-vindo ${usuario.Nome}!`, token: idTemp });
       // return res.status(200).json({ Message: `Bem vindo ${usuario.nome}!`, Session: idTemp });
     } catch (error) {
       console.error('Erro no login:', error);
@@ -85,6 +85,14 @@ class cadastroUsuario {
   async buscarTudo(req, res) {
     let lista = await User.find();
     return res.json(lista);
+  }
+  
+
+  async buscaPorToken(req, res) {
+    const idTemp = req.headers.authorization;
+    let usuario = await User.findOne({ idTemp });
+    console.log({id:usuario.id})
+    return res.json({id:usuario.id});
   }
 
   async buscarUser(req, res) {
@@ -107,6 +115,33 @@ class cadastroUsuario {
     const usuario = await User.findOneAndUpdate({ _id: id }, { senha: senha });
     return res.json(usuario);
   }
+
+  async verificarIdTemp(req, res) {
+
+    const idTemp = req.headers.authorization;
+
+
+    if (!idTemp) {
+      return res.status(401).json({ error: 'ID Temporário não fornecido' });
+    }
+
+    try {
+      // Verifique se há um usuário com o idTemp correspondente no banco de dados
+      const usuario = await User.findOne({ idTemp });
+
+      if (!usuario) {
+        return res.status(401).json({ error: 'Usuário não encontrado' });
+      }
+
+      // Aqui você pode adicionar lógica adicional de autorização, se necessário
+      return res.status(200).json({message: 'ID Temporário válido' });
+
+    } catch (error) {
+      console.error('Erro na verificação do ID Temporário:', error);
+      return res.status(500).json({ error: 'Erro interno no servidor' });
+    }
+  }
+
 }
 
 export default new cadastroUsuario();

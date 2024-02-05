@@ -3,8 +3,16 @@ import path from 'path';
 import Receita from '../Model/Receita';
 import User from '../Model/User';
 
+// Função para aguardar X segundos
+function esperarSegundos(segundos) {
+  return new Promise(resolve => {
+    setTimeout(resolve, segundos * 1000); // Multiplica por 1000 para converter segundos em milissegundos
+  });
+}
+
 class cadastroReceita {
   async store(req, res) {
+
     const { Titulo, ingredientes, modoDePreparo, tempo } = req.body;
     const { filename } = req.file;
     const { user } = req.headers;
@@ -14,8 +22,10 @@ class cadastroReceita {
 
     let receitaCadastra = await Receita.findOne({
       Titulo,
-      user,
+      user: id,
     });
+
+
 
     if (!receitaCadastra) {
       receitaCadastra = await Receita.create({
@@ -33,6 +43,17 @@ class cadastroReceita {
 
   async buscarTudo(req, res) {
     let lista = await Receita.find();
+
+    for (let i = 0; i < lista.length; i++) {
+      const receita = lista[i];
+      if (!receita.categorias || !receita.porcoes || !receita.descricao) {
+        receita.categorias = "gostosa";
+        receita.porcoes = 1;
+        receita.descricao = "Muito gostoso"
+        await receita.save();
+      }
+    }
+
     return res.json(lista);
   }
 

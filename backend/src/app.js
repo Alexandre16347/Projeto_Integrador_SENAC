@@ -1,5 +1,6 @@
 const express = require('express');
 const cors = require('cors');
+const cookieParser = require('cookie-parser');
 const routes = require('./routes');
 import mongoose from 'mongoose';
 import path from 'path'
@@ -15,6 +16,7 @@ class App{
     middlewares(){
         this.server.use('/files',express.static(path.resolve(__dirname,'Uploads')))
         this.server.use(express.json());
+        this.server.use(cookieParser());
         this.server.use(cors()); // Adicione essa linha para habilitar o CORS
 
     };

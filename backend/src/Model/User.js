@@ -27,7 +27,7 @@ const UserSchema = new Schema({
   },
   imagem: String,
   //   video: File,
-  idTemp:String,
+  idTemp: String,
 },
   {
     toJSON: {
@@ -36,7 +36,7 @@ const UserSchema = new Schema({
   },
 );
 
-UserSchema.virtual('ImagemUrl').get(function(){
+UserSchema.virtual('ImagemUrl').get(function () {
   return `http://localhost:3333/files/${this.imagem}`
 })
 

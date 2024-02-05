@@ -5,6 +5,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../src/css/default.css">
+    <script src="../src/js/funcoes.js"></script>
+    <script>verificarAutenticacao();</script>
     <title>Cadastro de Receitas</title>
 </head>
 
@@ -17,8 +19,8 @@
                     <h2>Cadastro de Receitas</h2>
                     <form id="receitaForm" enctype="multipart/form-data">
                         <div class="input-group">
-                            <label for="titulo"> Título</label>
-                            <input type="text" id="titulo" name="titulo" placeholder="Digite o título" required>
+                            <label for="Titulo"> Título</label>
+                            <input type="text" id="titulo" name="Titulo" placeholder="Digite o título" required>
                         </div>
 
                         <div class="input-group">
@@ -29,8 +31,8 @@
 
                         <div class="input-group">
                             <label for="modoDePreparo">Modo de Preparo</label>
-                            <textarea id="modoDePreparo" name="modoDePreparo"
-                                placeholder="Digite o modo de preparo" required></textarea>
+                            <textarea id="modoDePreparo" name="modoDePreparo" placeholder="Digite o modo de preparo"
+                                required></textarea>
                         </div>
 
                         <div class="input-group">
@@ -44,7 +46,8 @@
                         </div>
 
                         <div class="input-group w50">
-                            <button type="button" class="btn-login" onclick="enviarFormulario()">Cadastrar Receita</button>
+                            <button type="button" class="btn-login" onclick="enviarFormularioReceita()">Cadastrar
+                                Receita</button>
                         </div>
                     </form>
                 </div>
@@ -53,32 +56,9 @@
         <div id="bottom-bar"></div>
     </div>
 
-    <script>
-        async function enviarFormulario() {
-            var formulario = document.getElementById('receitaForm');
-            var formData = new FormData(formulario);
-
-            // Convertendo a string JSON para um array
-            var ingredientesString = formData.get('ingredientes');
-            formData.set('ingredientes', JSON.parse(ingredientesString));
-
-            try {
-                const response = await fetch('http://localhost:3333/receita', {
-                    method: 'POST',
-                    body: formData,
-                });
-
-                if (response.ok) {
-                    console.log('Receita cadastrada com sucesso!');
-                    // Redirecionar ou realizar ações necessárias após o cadastro
-                } else {
-                    console.error('Erro no cadastro da receita:', response.statusText);
-                }
-            } catch (error) {
-                console.error('Erro na solicitação:', error);
-            }
-        }
-    </script>
+    <!-- <script>
+        enviarFormularioReceita()
+    </script> -->
 
     <script src="../src/js/script-ours-pages.js"></script>
 </body>
