@@ -7,6 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../src/css/default.css">
     <link rel="stylesheet" href="../src/css/cadastro.css">
+    <script src="../src/js/funcoes.js"></script>
     <title>Formulário responsivo com HTML e CSS</title>
 </head>
 
@@ -27,7 +28,7 @@
                     </p>
                     <form id="cadastroForm" enctype="multipart/form-data">
                         <div class="input-group">
-                            <label for="Nome"> Nome Completo</label>
+                            <label for="nome"> Nome Completo</label>
                             <input type="text" id="nome" name="Nome" placeholder="Digite o seu nome completo" required>
                         </div>
 
@@ -41,15 +42,21 @@
                             <input type="number" id="idade" name="idade" placeholder="Digite a sua idade" required>
                         </div>
 
-                        <div class="input-group">
+                        <div class="input-group position-relative">
                             <label for="senha">Senha</label>
                             <input type="password" id="senha" name="senha" placeholder="Digite sua senha" required>
+                            <span class="password-toggle" onclick="togglePassword()">
+                                <img id="eyeIcon" src="../src/media/closed-eyes.png" alt="Toggle Password Visibility">
+                            </span>
                         </div>
 
-                        <div class="input-group">
+                        <div class="input-group position-relative">
                             <label for="confirmarSenha">Confirmar Senha</label>
                             <input type="password" id="confirmarSenha" name="confirmarSenha"
                                 placeholder="Confirme sua senha" required>
+                            <span class="password-toggle" onclick="toggleConfirmarSenha()">
+                                <img id="eyeIconConfirmarSenha" src="../src/media/closed-eyes.png" alt="Toggle Confirmar Senha Visibility">
+                            </span>
                         </div>
 
                         <div class="input-group">
@@ -58,8 +65,7 @@
                         </div>
 
                         <div class="input-group w50">
-                            <button type="button" class="btn-login" onclick="enviarFormulario()">Finalizar
-                                Cadastro</button>
+                            <button type="button" class="btn-login" onclick="enviarFormulario()">Finalizar Cadastro</button>
                         </div>
                     </form>
                 </div>
@@ -68,36 +74,6 @@
 
         <div id="bottom-bar"></div>
     </div>
-
-    <script>
-        function enviarFormulario() {
-            var senha = document.getElementById('senha').value;
-            var confirmarSenha = document.getElementById('confirmarSenha').value;
-
-            // Verificar se as senhas coincidem
-            if (senha !== confirmarSenha) {
-                alert('As senhas não coincidem!');
-                return;
-            }
-            var formulario = document.getElementById('cadastroForm');
-            var formData = new FormData(formulario);
-
-            var xhr = new XMLHttpRequest();
-            xhr.open('POST', 'http://localhost:3333/user', true);
-
-            xhr.onreadystatechange = function () {
-                if (xhr.readyState === 4) {
-                    if (xhr.status === 200) {
-                        console.log('Cadastro realizado com sucesso!');
-                    } else {
-                        console.error('Erro no cadastro:', xhr.responseText);
-                    }
-                }
-            };
-
-            xhr.send(formData);
-        }
-    </script>
 
     <script src="../src/js/script-ours-pages.js"></script>
 </body>

@@ -8,11 +8,17 @@ import card from './Controller/CardController';
 const routes = new Router();
 const upload = new multer(Upload);
 
-routes.get('/', card.buscarCard);
+routes.get('/', (req,res)=>{
+    return res.json({msg: "Certinho"})
+});
+
+//CARDS
+routes.get('/cards', card.buscarCards);
 
 // USUARIO
 //Posts
 routes.post('/user', upload.single('imagem'), user.store);
+routes.post('/login', user.login);
 
 //Gets
 routes.get('/buscarUsuarios', user.buscarTudo);

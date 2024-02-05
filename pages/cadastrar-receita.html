@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../src/css/default.css">
+    <title>Cadastro de Receitas</title>
+</head>
+
+<body>
+    <div id="container">
+        <div id="top-bar"></div>
+        <div id="content">
+            <div class="box">
+                <div class="form-box">
+                    <h2>Cadastro de Receitas</h2>
+                    <form id="receitaForm" enctype="multipart/form-data">
+                        <div class="input-group">
+                            <label for="titulo"> Título</label>
+                            <input type="text" id="titulo" name="titulo" placeholder="Digite o título" required>
+                        </div>
+
+                        <div class="input-group">
+                            <label for="ingredientes">Ingredientes</label>
+                            <textarea id="ingredientes" name="ingredientes" placeholder="Digite os ingredientes"
+                                required></textarea>
+                        </div>
+
+                        <div class="input-group">
+                            <label for="modoDePreparo">Modo de Preparo</label>
+                            <textarea id="modoDePreparo" name="modoDePreparo"
+                                placeholder="Digite o modo de preparo" required></textarea>
+                        </div>
+
+                        <div class="input-group">
+                            <label for="tempo">Tempo de Preparo (minutos)</label>
+                            <input type="number" id="tempo" name="tempo" placeholder="Digite o tempo de preparo">
+                        </div>
+
+                        <div class="input-group">
+                            <label for="imagem">Imagem de Perfil</label>
+                            <input type="file" id="imagem" name="imagem" accept="image/*" required>
+                        </div>
+
+                        <div class="input-group w50">
+                            <button type="button" class="btn-login" onclick="enviarFormulario()">Cadastrar Receita</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div id="bottom-bar"></div>
+    </div>
+
+    <script>
+        async function enviarFormulario() {
+            var formulario = document.getElementById('receitaForm');
+            var formData = new FormData(formulario);
+
+            // Convertendo a string JSON para um array
+            var ingredientesString = formData.get('ingredientes');
+            formData.set('ingredientes', JSON.parse(ingredientesString));
+
+            try {
+                const response = await fetch('http://localhost:3333/receita', {
+                    method: 'POST',
+                    body: formData,
+                });
+
+                if (response.ok) {
+                    console.log('Receita cadastrada com sucesso!');
+                    // Redirecionar ou realizar ações necessárias após o cadastro
+                } else {
+                    console.error('Erro no cadastro da receita:', response.statusText);
+                }
+            } catch (error) {
+                console.error('Erro na solicitação:', error);
+            }
+        }
+    </script>
+
+    <script src="../src/js/script-ours-pages.js"></script>
+</body>
+
+</html>

@@ -22,11 +22,12 @@ const UserSchema = new Schema({
   },
   senha: {
     required: true,
-    match: /^[@a-zA-B0-9._-]{8,}$/,
+    // match: /^[@a-zA-B0-9._-]{8,}$/,
     type: String,
   },
   imagem: String,
   //   video: File,
+  idTemp:String,
 },
   {
     toJSON: {

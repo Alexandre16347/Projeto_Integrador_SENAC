@@ -4,7 +4,9 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <link rel="stylesheet" href="src/css/default.css" />
-  <title>Document</title>
+  <script src="../src/js/funcoes.js"></script>
+
+  <title>Senac</title>
 </head>
 
 <body>
@@ -43,29 +45,11 @@
   </div>
 
   <script>
-    window.onload = function () {
-        realizarRequisicaoGET();
-    };
+    // Chame a função para obter dados do usuário quando necessário
+    obterCards();
+  </script>
 
-    function realizarRequisicaoGET() {
-        var xhr = new XMLHttpRequest();
-        xhr.open('GET', 'http://localhost:3333/', true);
-
-        xhr.onreadystatechange = function () {
-            if (xhr.readyState === 4) {
-                if (xhr.status === 200) {
-                    console.log('Resposta do servidor:', xhr.responseText);
-                    // Faça o que precisar com a resposta do servidor
-                } else {
-                    console.error('Erro na requisição:', xhr.status);
-                }
-            }
-        };
-
-        xhr.send();
-    }
-  </script> 
-  <!-- <script src="src/js/script.js"></script> -->
+  <script src="src/js/script.js"></script>
 </body>
 
 </html>

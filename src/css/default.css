@@ -579,3 +579,24 @@ body {
   transform: rotate(45deg) translate(-5px, -7px);
 
 }
+
+
+.input-group.position-relative {
+  position: relative;
+}
+
+.password-toggle {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  cursor: pointer;
+  width: 20px;
+  /* Ajuste a largura conforme necessário */
+  height: auto;
+}
+
+.password-toggle img {
+  width: 100%;
+  height: auto;
+}

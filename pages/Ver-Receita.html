@@ -7,6 +7,7 @@
   <title>Document</title>
   <link rel="stylesheet" href="../src/css/default.css" />
   <link rel="stylesheet" href="../src/css/style.css">
+  <script src="../src/js/funcoes.js"></script>
 </head>
 
 <body>
@@ -17,15 +18,13 @@
     <div id="content">
 
       <div class="conteudo">
-        <h1 class="titulo-receita"><br>Pudim de Leite Condensado</h1>
-
-
+        <h1 class="titulo-receita"><br></h1>
 
       </div>
 
       <div class="cardis">
         <div class="banner">
-          <img src="../src/media/img.png" alt="" style="height: 250px;">
+          <img src="" alt="" style="height: 250px;" id="img">
           <span style="color: yellow;">&#9733;</span>
           <span style="color: yellow;">&#9733;</span>
           <span style="color: yellow;">&#9733;</span>
@@ -158,44 +157,7 @@
 
       <h1 style="font-size: 25px;">- Você também pode gostar -</h1>
 
-      <div id="scrollcard">
-        <!-- <div class="carde">
-      <div class="div-img">
-        <img src="../src/media/churros.png" alt="">
-      </div>
-      <h1>Por Adriana Pereira</h1>
-      <button class="btn-card">Churros</button>
-      <label class="lb-avaliacao">❤20</label>
-    </div>
-
-    <div class="carde">
-      <div class="div-img">
-        <img src="../src/media/paodemel.png" alt="">
-      </div>
-      <h1>Por Franciny Elke</h1>
-      <button class="btn-card">Pão de mel</button>
-      <label class="lb-avaliacao">❤35</label>
-    </div>
-
-    <div class="carde">
-      <div class="div-img">
-        <img src="../src/media/cookies.png" alt="">
-      </div>
-      <h1>Por Flavia Charalo</h1>
-      <button class="btn-card">Cookies</button>
-      <label class="lb-avaliacao">❤50</label>
-    </div>
-
-    <div class="carde">
-      <div class="div-img">
-        <img src="../src/media/barba.png" alt="">
-      </div>
-      <h1>Por Isaac Rodrigues</h1>
-      <button class="btn-card">Barba de dragão</button>
-      <label class="lb-avaliacao">❤100</label>
-    </div> -->
-
-      </div>
+      <div id="scrollcard"></div>
 
     </div>
 
@@ -218,6 +180,7 @@
     });
   </script>
 
+  <script>obterReceita()</script>
   <script src="../src/js/script-ours-pages.js"></script>
 </body>
 
