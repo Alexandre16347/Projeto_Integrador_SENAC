@@ -259,7 +259,7 @@ async function obterCards() {
 
                 let txt_chef = document.createElement(`a`);
                 txt_chef.append(`Por ${cards.nomeDoChef}`);
-                txt_chef.setAttribute("href", "Chefes.html");
+                txt_chef.setAttribute("href", "/pages/Chefes.html");
                 txt_chef.setAttribute("class", "txt-chef");
 
                 card.append(txt_chef);
