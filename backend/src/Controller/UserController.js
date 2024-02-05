@@ -91,7 +91,6 @@ class cadastroUsuario {
   async buscaPorToken(req, res) {
     const idTemp = req.headers.authorization;
     let usuario = await User.findOne({ idTemp });
-    console.log({id:usuario.id})
     return res.json({id:usuario.id});
   }
 
