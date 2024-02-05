@@ -13,7 +13,7 @@ function esperarSegundos(segundos) {
 class cadastroReceita {
   async store(req, res) {
 
-    const { Titulo, ingredientes, modoDePreparo, tempo } = req.body;
+    const { Titulo, ingredientes, modoDePreparo, tempo, porcoes, categorias, descricao } = req.body;
     const { filename } = req.file;
     const { user } = req.headers;
     const id = String(user);
@@ -36,6 +36,9 @@ class cadastroReceita {
         nomeDoChef,
         user,
         imagem: filename,
+        porcoes, 
+        categorias, 
+        descricao
       });
     }
     return res.json(receitaCadastra);
@@ -46,6 +49,9 @@ class cadastroReceita {
 
     for (let i = 0; i < lista.length; i++) {
       const receita = lista[i];
+      if(receita.ingredientes[0][1] == "[" && ){
+
+      }
       if (!receita.categorias || !receita.porcoes || !receita.descricao) {
         receita.categorias = "gostosa";
         receita.porcoes = 1;
