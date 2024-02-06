@@ -43,6 +43,9 @@ for (let i = 0; i < tam; i++) {
 
   let botao = document.createElement(`a`);
   botao.append(botoes_menu[i]);
+  if(i==4){
+    botao.setAttribute("id", "botao-login");
+  }
   botao.setAttribute("href", pagina);
   botao.setAttribute("class", "btn-menu");
 

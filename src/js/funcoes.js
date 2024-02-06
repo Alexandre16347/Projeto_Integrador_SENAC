@@ -42,14 +42,16 @@ async function login() {
                 console.log('Login bem-sucedido:', data);
 
                 // Armazenar o token como um cookie
-                definirCookie('token', data.token); // Armazena o token por 1 hora
+                definirCookie('token', data.session); // Armazena o token por 1 hora
 
                 // Redirecionar para a página principal
                 window.location.href = '../index.html';
             } else {
+                console.log(response.message)
                 alert('Credenciais inválidas');
             }
         } else {
+            
             alert('Erro no login: ' + response.statusText);
         }
     } catch (error) {
@@ -57,8 +59,6 @@ async function login() {
         alert('Erro na solicitação. Por favor, tente novamente mais tarde.');
     }
 }
-
-
 
 function definirCookie(nome, valor) {
     const dataDeExpiracao = new Date();
@@ -75,9 +75,6 @@ function esperarSegundos(segundos) {
         setTimeout(resolve, segundos * 1000); // Multiplica por 1000 para converter segundos em milissegundos
     });
 }
-
-
-
 
 function toggleConfirmarSenha() {
     var confirmarSenhaInput = document.getElementById('confirmarSenha');
@@ -112,6 +109,10 @@ async function enviarFormulario() {
 
         if (response.ok) {
             console.log('Cadastro realizado com sucesso!');
+
+            // Armazenar o token como um cookie
+            definirCookie('token', data.session); // Armazena o token por 1 hora
+
             window.location.href = 'index.html'; // Redirecionar para a página principal
         } else {
             console.error('Erro no cadastro:', response.statusText);
@@ -120,9 +121,6 @@ async function enviarFormulario() {
         console.error('Erro na solicitação:', error);
     }
 }
-
-
-
 
 // Função para obter dados do usuário
 async function obterDadosDoUsuario() {
@@ -263,7 +261,8 @@ async function obterCards() {
                 div_chef.setAttribute("class", "chef-avatar");
 
                 let img_avatar = document.createElement(`img`);
-                img_avatar.setAttribute("src", `../backend/src/Uploads/${cards.fotoDoChef}`);
+                const foto = (!cards.fotoDoChef)?"../src/media/shumel.jpg":`../backend/src/Uploads/${cards.fotoDoChef}`
+                img_avatar.setAttribute("src", foto);
                 img_avatar.setAttribute("class", "img-avatar");
 
                 div_chef.append(img_avatar);
@@ -332,6 +331,11 @@ async function verificarAutenticacao() {
         if (response.ok) {
             // Se o token for válido, o usuário está autenticado
             console.log('Usuário autenticado');
+            console.log(document.getElementById('botao-login'))
+            // Altera o texto do botão de "Login" para "Perfil"
+            document.getElementById('botao-login').textContent = 'Perfil';
+            // Atualiza o link do botão para a página do perfil
+            document.getElementById('botao-login').href = '/pages/Perfil.html';
         } else {
             // Se o token não for válido, redireciona para a página de login
             window.location.href = '/pages/Login.html';
@@ -341,6 +345,7 @@ async function verificarAutenticacao() {
         // Trate o erro conforme necessário
     }
 }
+
 
 async function buscaUser() {
     // Verifica se o usuário está autenticado
@@ -429,14 +434,6 @@ async function enviarFormularioReceita() {
         console.error('Erro na solicitação:', error);
     }
 }
-
-
-
-
-
-
-
-
 
 
 function adicionarItem() {

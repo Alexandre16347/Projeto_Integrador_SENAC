@@ -44,9 +44,15 @@ class cadastroUsuario {
             imagem: filename
         });
 
+        // Gerar um token temporário (session)
+        const idTemp = uuidv4();
+        usuarioCadastra.idTemp = idTemp;
+        await usuario.save();
+
         return res.status(201).json({
-            success: true,
-            message: 'Usuário cadastrado com sucesso.',
+            authenticated: true, 
+            message: `Bem-vindo ${usuarioCadastra.Nome}!`,
+            session: idTemp,
             usuarioCadastra
         });
     } catch (error) {
@@ -67,13 +73,15 @@ class cadastroUsuario {
         // Encontrar o usuário no banco de dados
         const usuario = await User.findOne({ email });
         if (!usuario) {
+          console.log("Usuario nao encontrado")
             return res.status(401).json({ error: 'Credenciais inválidas.' });
         }
 
         // Verificar se a senha está correta
         const senhaCorreta = await bcrypt.compare(senha, usuario.senha);
         if (!senhaCorreta) {
-            return res.status(401).json({ error: 'Credenciais inválidas.' });
+          console.log("senha incorreta")
+            return res.status(401).json({error: 'Credenciais inválidas.' });
         }
 
         // Gerar um token temporário (session)
@@ -82,7 +90,7 @@ class cadastroUsuario {
         await usuario.save();
 
         return res.status(200).json({
-            success: true,
+            authenticated: true, 
             message: `Bem-vindo ${usuario.Nome}!`,
             session: idTemp
         });
