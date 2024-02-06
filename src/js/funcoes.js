@@ -259,7 +259,7 @@ async function obterCards() {
 
                 let txt_chef = document.createElement(`a`);
                 txt_chef.append(`Por ${cards.nomeDoChef}`);
-                txt_chef.setAttribute("href", "Chefes.html");
+                txt_chef.setAttribute("href", "/pages/Chefes.html");
                 txt_chef.setAttribute("class", "txt-chef");
 
                 card.append(txt_chef);
@@ -379,6 +379,11 @@ async function enviarFormularioReceita() {
     const ingredientesTextArea = formData.get('ingredientes');
     const ingredientesArray = ingredientesTextArea.split('\n').map(ingrediente => ingrediente.trim());
     formData.set('ingredientes', JSON.stringify(ingredientesArray));
+
+    // Processar o campo 'ingredientes' como um array
+    const categoriasTextArea = formData.get('categorias');
+    const categoriasArray = categoriasTextArea.split('\n').map(categoria => categoria.trim());
+    formData.set('categorias', JSON.stringify(categoriasArray));
 
     const {user} = await buscaUser()
 

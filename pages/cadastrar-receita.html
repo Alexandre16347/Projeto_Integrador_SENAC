@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../src/css/default.css">
+    <link rel="stylesheet" href="../src/css/cadastro-receita.css">
     <script src="../src/js/funcoes.js"></script>
     <script>verificarAutenticacao();</script>
     <title>Cadastro de Receitas</title>
@@ -16,40 +17,79 @@
         <div id="content">
             <div class="box">
                 <div class="form-box">
-                    <h2>Cadastro de Receitas</h2>
+                    <div id="cadastro">
+                        <h1><br>Cadastro de Receitas</h1>
+                    </div>
+
                     <form id="receitaForm" enctype="multipart/form-data">
-                        <div class="input-group">
-                            <label for="Titulo"> Título</label>
-                            <input type="text" id="titulo" name="Titulo" placeholder="Digite o título" required>
+
+                        <div id="quadrado1">
+                             
+                            <div class="input-group">
+                                <label for="Titulo"> Título:</label>
+                                <input type="text" id="titulo" name="Titulo" placeholder="Digite o título" required>
+                            </div>
+                            <br><br>
+                            <div class="input-group">
+                                <label for="tempo">Tempo de Preparo (minutos):</label>
+                                <input type="number" id="tempo" name="tempo" placeholder="Digite o tempo de preparo">
+                            </div>
+                          
+                            <br><br>
+                            <div class="input-group">
+                                <label for="porcoes">Numero de porções:</label>
+                                <input type="number" id="porcoes" name="porcoes"
+                                    placeholder="Digite o numero de porções">
+                            </div>
+                            <br><br>
+                            <div class="input-group">
+                                <label for="descricao">Descrição:</label>
+                                <textarea id="descricao" name="descricao"
+                                    placeholder="Digite uma descrição para sua receita" required></textarea>
+                            </div>
+                            <br><br>
+                            <div class="input-group">
+                                <label for="imagem">Imagem de Perfil:&nbsp; </label>
+                                <input type="file" id="imagem" name="imagem" accept="image/*" required>
+                            </div>
+                         
+
                         </div>
 
-                        <div class="input-group">
-                            <label for="ingredientes">Ingredientes</label>
-                            <textarea id="ingredientes" name="ingredientes" placeholder="Digite os ingredientes"
-                                required></textarea>
+                        <label class="txt">Tipos de refeição (p. ex.: refeições principais, sobremesas, bebidas): </label>
+
+                        <div id="categoria">
+                            <div class="input-group">
+                                <label for="categorias"><br>
+                                    Categorias:</label>
+                                <textarea id="categorias" name="categorias" placeholder="Digite as categorias"
+                                    required></textarea>
+                            </div>
                         </div>
 
-                        <div class="input-group">
-                            <label for="modoDePreparo">Modo de Preparo</label>
-                            <textarea id="modoDePreparo" name="modoDePreparo" placeholder="Digite o modo de preparo"
-                                required></textarea>
+                        <div id="quadIngre">
+                            <div class="input-group">
+                                <label for="ingredientes">Ingredientes: &nbsp;</label>
+                                <textarea id="ingredientes" name="ingredientes" placeholder="Digite os ingredientes"
+                                    required></textarea>
+                            </div>
                         </div>
 
-                        <div class="input-group">
-                            <label for="tempo">Tempo de Preparo (minutos)</label>
-                            <input type="number" id="tempo" name="tempo" placeholder="Digite o tempo de preparo">
+                        <div id="modoDePreparo">
+                            <div class="input-group">
+                                <label for="modoDePreparo">Modo de Preparo:</label>
+                                <textarea id="modoDePreparo" name="modoDePreparo" placeholder="Digite o modo de preparo"
+                                    required></textarea>
+                            </div>
                         </div>
 
-                        <div class="input-group">
-                            <label for="imagem">Imagem de Perfil</label>
-                            <input type="file" id="imagem" name="imagem" accept="image/*" required>
-                        </div>
 
                         <div class="input-group w50">
                             <button type="button" class="btn-login" onclick="enviarFormularioReceita()">Cadastrar
                                 Receita</button>
                         </div>
                     </form>
+
                 </div>
             </div>
         </div>
