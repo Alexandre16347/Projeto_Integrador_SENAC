@@ -11,6 +11,21 @@ async function login() {
     const email = document.getElementById('email').value;
     const senha = document.getElementById('senha').value;
 
+    // Verifica se os campos de e-mail e senha estão preenchidos
+    if (!email || !senha) {
+        alert('Por favor, preencha todos os campos.');
+        return;
+    }
+
+    // Expressão regular para validar o formato do e-mail
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+    // Verifica se o e-mail tem um formato válido
+    if (!emailRegex.test(email)) {
+        alert('Por favor, insira um e-mail válido.');
+        return;
+    }
+
     try {
         const response = await fetch('http://localhost:3333/login', {
             method: 'POST',
@@ -26,31 +41,33 @@ async function login() {
             if (data.authenticated) {
                 console.log('Login bem-sucedido:', data);
 
-                // Armazenar o token no cookie
-                definirCookie('token', data.token); // Aqui 'token' é o nome do cookie
+                // Armazenar o token como um cookie
+                definirCookie('token', data.token); // Armazena o token por 1 hora
+
                 // Redirecionar para a página principal
                 window.location.href = '../index.html';
             } else {
-                console.error('Credenciais inválidas');
+                alert('Credenciais inválidas');
             }
         } else {
-            console.error('Erro no login:', response.statusText);
+            alert('Erro no login: ' + response.statusText);
         }
     } catch (error) {
         console.error('Erro na solicitação:', error);
+        alert('Erro na solicitação. Por favor, tente novamente mais tarde.');
     }
 }
+
+
 
 function definirCookie(nome, valor) {
     const dataDeExpiracao = new Date();
     dataDeExpiracao.setTime(dataDeExpiracao.getTime() + (1 * 60 * 60 * 1000)); // 1 hora
 
     const cookieString = `${nome}=${valor}; expires=${dataDeExpiracao.toUTCString()}; path=/`;
-    console.log(cookieString)
-
-
     document.cookie = cookieString;
 }
+
 
 // Função para aguardar X segundos
 function esperarSegundos(segundos) {
@@ -73,6 +90,11 @@ function toggleConfirmarSenha() {
 async function enviarFormulario() {
     var senha = document.getElementById('senha').value;
     var confirmarSenha = document.getElementById('confirmarSenha').value;
+
+    if (senha.length < 8) {
+        alert('A senha deve ter pelo menos 8 caracteres!');
+        return;
+    }
 
     if (senha !== confirmarSenha) {
         alert('As senhas não coincidem!');
@@ -98,6 +120,7 @@ async function enviarFormulario() {
         console.error('Erro na solicitação:', error);
     }
 }
+
 
 
 

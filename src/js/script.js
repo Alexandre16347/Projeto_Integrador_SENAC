@@ -3,11 +3,6 @@ let href_redes = ["https://www.facebook.com/SenacBrasil", "https://www.instagram
 
 let tam_social = logos_redes.length;
 
-
-const categorias = ["Salgados", "Doces", "Massas", "Bebidas", "Sobremesas", "Confeitaria", "Saladas", "Refeições", "Comidas Rápidas", "Sopas", "Farofas", "Drinks", "Sorvetes"]
-
-let tam_cat = categorias.length
-
 // *******************************************************************************************************************************************
 // TOP BAR
 
@@ -254,6 +249,10 @@ areaSearch.append(area)
 
 // *******************************************************************************************************************************************
 // Area Categorias
+
+const categorias = ["Salgados", "Doces", "Massas", "Bebidas", "Sobremesas", "Confeitaria", "Saladas", "Refeições", "Comidas Rápidas", "Sopas", "Farofas", "Drinks", "Sorvetes"]
+
+let tam_cat = categorias.length
 
 
 let cont_cat = document.getElementById("cont-categorias")
