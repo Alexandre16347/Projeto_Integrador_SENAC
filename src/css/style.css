@@ -10,6 +10,11 @@
     font-weight: 300;
 }
 
+.descricao{
+    display: flex;
+    flex-direction: column;
+}
+
 #content{
     background-color: rgb(236, 219, 204);
 }
