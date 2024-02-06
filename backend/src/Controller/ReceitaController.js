@@ -49,9 +49,7 @@ class cadastroReceita {
 
     for (let i = 0; i < lista.length; i++) {
       const receita = lista[i];
-      if(receita.ingredientes[0][1] == "[" && ){
-
-      }
+      
       if (!receita.categorias || !receita.porcoes || !receita.descricao) {
         receita.categorias = "gostosa";
         receita.porcoes = 1;
