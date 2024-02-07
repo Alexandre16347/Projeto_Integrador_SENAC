@@ -14,47 +14,52 @@ async function login() {
   const email = document.getElementById('email').value;
   const senha = document.getElementById('senha').value;
 
-  // Verifica se os campos de e-mail e senha estão preenchidos
-  if (!email || !senha) {
-    alert('Por favor, preencha todos os campos.');
-    return;
-  }
+    // Verifica se os campos de e-mail e senha estão preenchidos
+    if (!email || !senha) {
+        alert('Por favor, preencha todos os campos.');
+        return;
+    }
 
-  // Expressão regular para validar o formato do e-mail
-  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    // Expressão regular para validar o formato do e-mail
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
-  // Verifica se o e-mail tem um formato válido
-  if (!emailRegex.test(email)) {
-    alert('Por favor, insira um e-mail válido.');
-    return;
-  }
+    // Verifica se o e-mail tem um formato válido
+    if (!emailRegex.test(email)) {
+        alert('Por favor, insira um e-mail válido.');
+        return;
+    }
 
-  try {
-    const response = await fetch('http://localhost:3333/login', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({ email, senha }),
-    });
+    try {
+        const response = await fetch('http://localhost:3333/login', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ email, senha }),
+        });
 
-    if (response.ok) {
-      const data = await response.json();
+        if (response.ok) {
+            const data = await response.json();
 
-      if (data.authenticated) {
-        console.log('Login bem-sucedido:', data);
+            if (data.authenticated) {
+                console.log('Login bem-sucedido:', data);
 
-        // Armazenar o token como um cookie
-        definirCookie('token', data.session); // Armazena o token por 1 hora
+                // Armazenar o token como um cookie
+                definirCookie('token', data.session); // Armazena o token por 1 hora
 
-        // Redirecionar para a página principal
-        window.location.href = '../index.html';
-      } else {
-        console.log(response.message);
-        alert('Credenciais inválidas');
-      }
-    } else {
-      alert('Erro no login: ' + response.statusText);
+                // Redirecionar para a página principal
+                window.location.href = '../index.html';
+            } else {
+                console.log(response.message)
+                alert('Credenciais inválidas');
+            }
+        } else {
+
+            alert('Erro no login: ' + response.statusText);
+        }
+    } catch (error) {
+        console.error('Erro na solicitação:', error);
+        alert('Erro na solicitação. Por favor, tente novamente mais tarde.');
     }
   } catch (error) {
     console.error('Erro na solicitação:', error);
@@ -226,6 +231,165 @@ async function obterReceita() {
   }
 }
 
+async function obterListaDeCardsReceitaUsuario() {
+    // Verifica se o usuário está autenticado
+    const token = document.cookie.split('=')[1];
+
+    const { usuario } = await buscaUser();
+
+    const response = await fetch('http://localhost:3333/buscarReceitaUser', {
+        method: 'GET',
+        headers: {
+            'Content-Type': 'application/json',
+            user: usuario.id
+            // Adicione cabeçalhos adicionais, se necessário
+        },
+    });
+
+    if (response.ok) {
+        // Se a resposta estiver OK, obtenha os dados do usuário
+        const dadosReceitas = await response.json();
+
+        // Area Cards
+
+        let scrollcards = document.getElementById("scrollcard-recente")
+        let area_cardss = document.createDocumentFragment()
+
+        const tam = dadosReceitas.length;
+
+        for (let i = 1; i < 5; i++) {
+            if (tam >= 5 || (tam - i) >= 0) {
+
+                const cards = dadosReceitas[tam - i];
+
+                let card = document.createElement(`div`);
+                card.setAttribute("class", "card");
+
+                let div_img = document.createElement("div");
+                div_img.setAttribute("class", "div-img");
+
+                let img_card = document.createElement(`img`);
+                img_card.setAttribute(
+                    "src",
+                    `../backend/src/Uploads/${cards.imagem}`
+                );
+                img_card.setAttribute("class", "img-card");
+
+                div_img.append(img_card);
+
+                card.append(div_img);
+
+                let div_chef = document.createElement("div");
+                div_chef.setAttribute("class", "chef-avatar");
+
+                let img_avatar = document.createElement(`img`);
+                const foto = (!cards.fotoDoChef) ? "../src/media/shumel.jpg" : `../backend/src/Uploads/${cards.fotoDoChef}`
+                img_avatar.setAttribute("src", foto);
+                img_avatar.setAttribute("class", "img-avatar");
+
+                div_chef.append(img_avatar);
+
+                card.append(div_chef);
+
+                let txt_card = document.createElement(`button`);
+                txt_card.append(`${cards.Titulo}`);
+                txt_card.setAttribute("class", "btn-card");
+                txt_card.addEventListener("click", function () {
+                    window.location.href = `/pages/Ver-Receita.html?id=${cards.idReceita}`;
+                });
+
+
+                card.append(txt_card);
+
+                let txt_chef = document.createElement(`a`);
+                txt_chef.append(`Por ${cards.nomeDoChef}`);
+                txt_chef.setAttribute("href", "/pages/Chefes.html");
+                txt_chef.setAttribute("class", "txt-chef");
+
+                card.append(txt_chef);
+
+                area_cardss.append(card);
+            }
+        }
+        // shmebulock
+
+        scrollcards.append(area_cardss)
+
+
+        let scrollcard = document.getElementById("scrollcard")
+        let area_cards = document.createDocumentFragment()
+
+        // let cards = document.createElement(`div`);
+        // cards.setAttribute("class", "scrollcard");
+
+        for (let i = 0; i < dadosReceitas.length; i++) {
+            const cards = dadosReceitas[i];
+
+            let card = document.createElement(`div`);
+            card.setAttribute("class", "card");
+
+            let div_img = document.createElement("div");
+            div_img.setAttribute("class", "div-img");
+
+            let img_card = document.createElement(`img`);
+            img_card.setAttribute(
+                "src",
+                `../backend/src/Uploads/${cards.imagem}`
+            );
+            img_card.setAttribute("class", "img-card");
+
+            div_img.append(img_card);
+
+            card.append(div_img);
+
+            let div_chef = document.createElement("div");
+            div_chef.setAttribute("class", "chef-avatar");
+
+            let img_avatar = document.createElement(`img`);
+            const foto = (!cards.fotoDoChef) ? "../src/media/shumel.jpg" : `../backend/src/Uploads/${cards.fotoDoChef}`
+            img_avatar.setAttribute("src", foto);
+            img_avatar.setAttribute("class", "img-avatar");
+
+            div_chef.append(img_avatar);
+
+            card.append(div_chef);
+
+            let txt_card = document.createElement(`button`);
+            txt_card.append(`${cards.Titulo}`);
+            txt_card.setAttribute("class", "btn-card");
+            txt_card.addEventListener("click", function () {
+                window.location.href = `/pages/Ver-Receita.html?id=${cards.idReceita}`;
+            });
+
+
+            card.append(txt_card);
+
+            let txt_chef = document.createElement(`a`);
+            txt_chef.append(`Por ${cards.nomeDoChef}`);
+            txt_chef.setAttribute("href", "/pages/Chefes.html");
+            txt_chef.setAttribute("class", "txt-chef");
+
+            card.append(txt_chef);
+
+            area_cards.append(card);
+        }
+
+        scrollcard.append(area_cards)
+
+
+        // for (let i = 0; i < dadosReceitas.length; i++) {
+        //     const receita = dadosReceitas[i];
+        //     // Faça algo com os dados do usuário, por exemplo, atualize a interface do usuário
+        //     document.getElementById('imagem').textContent = receita.imagem;
+        //     document.getElementById('Titulo').textContent = receita.Titulo;
+        //     document.getElementById('nomeDoChef').textContent = receita.nomeDoChef;
+        //     // Adicione outras manipulações conforme necessário
+        // }
+    } else {
+        console.error('Erro ao obter dados das Receitas:', response.statusText);
+    }
+}
+
 // Função para obter dados do usuário
 async function obterCards() {
   try {
@@ -302,16 +466,71 @@ async function obterCards() {
 
       scrollcard.append(area_cards);
 
-      // for (let i = 0; i < dadosReceitas.length; i++) {
-      //     const receita = dadosReceitas[i];
-      //     // Faça algo com os dados do usuário, por exemplo, atualize a interface do usuário
-      //     document.getElementById('imagem').textContent = receita.imagem;
-      //     document.getElementById('Titulo').textContent = receita.Titulo;
-      //     document.getElementById('nomeDoChef').textContent = receita.nomeDoChef;
-      //     // Adicione outras manipulações conforme necessário
-      // }
-    } else {
-      console.error('Erro ao obter dados das Receitas:', response.statusText);
+                let card = document.createElement(`div`);
+                card.setAttribute("class", "card");
+
+                let div_img = document.createElement("div");
+                div_img.setAttribute("class", "div-img");
+
+                let img_card = document.createElement(`img`);
+                img_card.setAttribute(
+                    "src",
+                    `../backend/src/Uploads/${cards.imagem}`
+                );
+                img_card.setAttribute("class", "img-card");
+
+                div_img.append(img_card);
+
+                card.append(div_img);
+
+                let div_chef = document.createElement("div");
+                div_chef.setAttribute("class", "chef-avatar");
+
+                let img_avatar = document.createElement(`img`);
+                const foto = (!cards.fotoDoChef) ? "../src/media/shumel.jpg" : `../backend/src/Uploads/${cards.fotoDoChef}`
+                img_avatar.setAttribute("src", foto);
+                img_avatar.setAttribute("class", "img-avatar");
+
+                div_chef.append(img_avatar);
+
+                card.append(div_chef);
+
+                let txt_card = document.createElement(`button`);
+                txt_card.append(`${cards.Titulo}`);
+                txt_card.setAttribute("class", "btn-card");
+                txt_card.addEventListener("click", function () {
+                    window.location.href = `/pages/Ver-Receita.html?id=${cards.idReceita}`;
+                });
+
+
+                card.append(txt_card);
+
+                let txt_chef = document.createElement(`a`);
+                txt_chef.append(`Por ${cards.nomeDoChef}`);
+                txt_chef.setAttribute("href", "/pages/Chefes.html");
+                txt_chef.setAttribute("class", "txt-chef");
+
+                card.append(txt_chef);
+
+                area_cards.append(card);
+            }
+            // shmebulock
+
+            scrollcard.append(area_cards)
+
+            // for (let i = 0; i < dadosReceitas.length; i++) {
+            //     const receita = dadosReceitas[i];
+            //     // Faça algo com os dados do usuário, por exemplo, atualize a interface do usuário
+            //     document.getElementById('imagem').textContent = receita.imagem;
+            //     document.getElementById('Titulo').textContent = receita.Titulo;
+            //     document.getElementById('nomeDoChef').textContent = receita.nomeDoChef;
+            //     // Adicione outras manipulações conforme necessário
+            // }
+        } else {
+            console.error('Erro ao obter dados das Receitas:', response.statusText);
+        }
+    } catch (error) {
+        console.error('Erro na solicitação:', error);
     }
   } catch (error) {
     console.error('Erro na solicitação:', error);
@@ -322,32 +541,36 @@ async function verificarAutenticacao() {
   // Verifica se o usuário está autenticado
   const token = document.cookie.split('=')[1];
 
-  if (!token) {
-    // Se não houver token, redireciona para a página de login
-    window.location.href = '/pages/Login.html';
-    return;
-  }
+    if (!token) {
+        // Se não houver token, redireciona para a página de login
+        window.location.href = '/pages/Login.html';
+        return;
+    }
 
-  try {
-    const response = await fetch('http://localhost:3333/verificar-token', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        Authorization: token,
-      },
-    });
+    try {
+        const response = await fetch('http://localhost:3333/verificar-token', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': token
+            },
+        });
 
-    if (response.ok) {
-      // Se o token for válido, o usuário está autenticado
-      console.log('Usuário autenticado');
-      console.log(document.getElementById('botao-login'));
-      // Altera o texto do botão de "Login" para "Perfil"
-      document.getElementById('botao-login').textContent = 'Perfil';
-      // Atualiza o link do botão para a página do perfil
-      document.getElementById('botao-login').href = '/pages/Perfil.html';
-    } else {
-      // Se o token não for válido, redireciona para a página de login
-      window.location.href = '/pages/Login.html';
+        if (response.ok) {
+            // Se o token for válido, o usuário está autenticado
+            console.log('Usuário autenticado');
+            // console.log(document.getElementById('botao-login'))
+            // Altera o texto do botão de "Login" para "Perfil"
+            document.getElementById('botao-login').textContent = 'Perfil';
+            // Atualiza o link do botão para a página do perfil
+            document.getElementById('botao-login').href = '/pages/Perfil.html';
+        } else {
+            // Se o token não for válido, redireciona para a página de login
+            window.location.href = '/pages/Login.html';
+        }
+    } catch (error) {
+        console.error('Erro na verificação de autenticação:', error);
+        // Trate o erro conforme necessário
     }
   } catch (error) {
     console.error('Erro na verificação de autenticação:', error);
@@ -359,32 +582,38 @@ async function buscaUser() {
   // Verifica se o usuário está autenticado
   const token = document.cookie.split('=')[1];
 
-  if (!token) {
-    // Se não houver token, redireciona para a página de login
-    window.location.href = '/pages/Login.html';
-    return {};
-  }
+    if (!token) {
+        // Se não houver token, redireciona para a página de login
+        window.location.href = '/pages/Login.html';
+        return {};
+    }
 
-  try {
-    const response = await fetch('http://localhost:3333/buscaUserToken', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        Authorization: token,
-      },
-    });
 
-    const id = await response.json();
+    try {
+        const response = await fetch('http://localhost:3333/buscaUserToken', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': token
+            },
+        });
 
-    if (response.ok) {
-      // Se o token for válido, o usuário está autenticado
-      console.log('Usuário Identificado');
-      console.log({ user: id.id });
-      return { user: id.id };
-    } else {
-      // Se o token não for válido, redireciona para a página de login
-      window.location.href = '/pages/Login.html';
-      return;
+        const { usuario } = await response.json();
+
+        if (response.ok) {
+            // Se o token for válido, o usuário está autenticado
+            console.log('Usuário Identificado');
+            return { usuario };
+        } else {
+            // Se o token não for válido, redireciona para a página de login
+            window.location.href = '/pages/Login.html';
+            return;
+        }
+    } catch (error) {
+
+        console.error('Erro na verificação de autenticação:', error);
+        return {};
+        // Trate o erro conforme necessário
     }
   } catch (error) {
     console.error('Erro na verificação de autenticação:', error);
@@ -422,15 +651,41 @@ async function enviarFormularioReceita() {
     .map((categoria) => categoria.trim());
   formData.set('categorias', JSON.stringify(categoriasArray));
 
-  const { user } = await buscaUser();
+    const { usuario } = await buscaUser()
 
-  try {
-    const response = await fetch('http://localhost:3333/receita', {
-      method: 'POST',
-      body: formData,
-      headers: {
-        user: user,
-      },
+    try {
+        const response = await fetch('http://localhost:3333/receita', {
+            method: 'POST',
+            body: formData,
+            headers: {
+                "user": usuario.id
+            }
+        });
+
+        if (response.ok) {
+            console.log('Receita cadastrada com sucesso!');
+            // Redirecionar ou realizar ações necessárias após o cadastro
+        } else {
+            console.error('Erro no cadastro da receita:', response.statusText);
+        }
+    } catch (error) {
+        console.error('Erro na solicitação:', error);
+    }
+}
+
+
+function adicionarItem() {
+    const inputElement = document.getElementById('ingredientes');
+    const listaElement = document.getElementById('listaIngredientes');
+
+    // Divide os itens inseridos pelo usuário usando vírgula como separador
+    const novosItens = inputElement.value.split(',');
+
+    // Adiciona cada item à lista
+    novosItens.forEach(item => {
+        const listItem = document.createElement('li');
+        listItem.textContent = item.trim(); // Remove espaços em branco extras
+        listaElement.appendChild(listItem);
     });
 
     if (response.ok) {
