@@ -31,11 +31,11 @@ const ReceitaShema = new Schema(
       type: String,
       required: true,
     },
-    porcoes:{
+    porcoes: {
       type: Number,
       required: true,
     },
-    categorias:{
+    categorias: {
       type: Array,
       required: true,
     },
@@ -47,7 +47,7 @@ const ReceitaShema = new Schema(
   },
 );
 
-ReceitaShema.virtual('ImagemUrl').get(function(){
-  return `http://localhost:3333/files/${this.imagem}`
-})
+ReceitaShema.virtual('ImagemUrl').get(function () {
+  return `http://localhost:3333/files/${this.imagem}`;
+});
 export default new model('Receita', ReceitaShema);

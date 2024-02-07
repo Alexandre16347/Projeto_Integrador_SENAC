@@ -8,7 +8,7 @@ class cards {
     // let receita = await Receita.findOne({ _id: String(id) });
     // let usuario = await User.findOne({ _id: String(user) });
 
-    let cards = []
+    let cards = [];
 
     const lista = await Receita.find();
 
@@ -26,14 +26,12 @@ class cards {
         idUsuario: id,
         nomeDoChef: receita.nomeDoChef,
         fotoDoChef: usuario.imagem,
-      }
+      };
 
-      cards.push(card)
-
+      cards.push(card);
     }
 
-    return res.json(cards)
-
+    return res.json(cards);
   }
 }
 
