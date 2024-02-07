@@ -360,12 +360,12 @@ body {
   height: 425px;
   border-radius: 5mm;
   margin: 5px;
-  background-color: white;
+  background-color: rgb(241, 224, 172);
   /* border-color: white; */
   /* border: 2px solid #f78b1f; */
-  box-shadow: rgba(0, 0, 0, 0.25) 0px 44px 45px,
+  /* box-shadow: rgba(0, 0, 0, 0.25) 0px 44px 45px,
     rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px,
-    rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+    rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px; */
 
   display: flex;
   flex-direction: column;
@@ -451,10 +451,17 @@ body {
   color: white;
 }
 
+.btn-card:hover{
+  background-color: #fcfcfc;
+  color: rgb(198, 62, 21);
+}
+
 .txt-chef {
   margin-top: 3mm;
   font-weight: normal;
   text-decoration: none;
+  color: black;
+  font-weight: bold;
 }
 
 .card:hover .txt-chef {

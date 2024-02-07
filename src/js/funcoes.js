@@ -182,16 +182,11 @@ async function obterReceita() {
 
       // Faça algo com os dados da receita, por exemplo, atualize a interface do usuário
 
-      document.getElementsByClassName('titulo-receita')[0].textContent =
-        dadosReceita.Titulo;
-      document.getElementById(
-        'img',
-      ).src = `../backend/src/Uploads/${dadosReceita.imagem}`;
-      document.getElementById(
-        'porcoes',
-      ).textContent = `Serve ${dadosReceita.porcoes} \n porção(ões)`;
-      document.getElementsByClassName('lp')[0].textContent =
-        dadosReceita.descricao;
+            document.getElementsByClassName("titulo-receita")[0].textContent = dadosReceita.Titulo;
+            document.getElementById("img").src = `../backend/src/Uploads/${dadosReceita.imagem}`;
+            document.getElementById("porcoes").textContent = `Serve ${dadosReceita.porcoes} \n porção(ões)`;
+            document.getElementsByClassName("lp")[0].textContent = dadosReceita.descricao
+            document.getElementsByClassName("chef")[0].textContent = dadosReceita.nomeDoChef;
 
       let lista_ingredientes = document.getElementById('ingredientes');
 
