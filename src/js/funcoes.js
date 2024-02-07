@@ -51,7 +51,7 @@ async function login() {
                 alert('Credenciais inválidas');
             }
         } else {
-            
+
             alert('Erro no login: ' + response.statusText);
         }
     } catch (error) {
@@ -214,6 +214,165 @@ async function obterReceita() {
     }
 }
 
+async function obterListaDeCardsReceitaUsuario() {
+    // Verifica se o usuário está autenticado
+    const token = document.cookie.split('=')[1];
+
+    const { usuario } = await buscaUser();
+
+    const response = await fetch('http://localhost:3333/buscarReceitaUser', {
+        method: 'GET',
+        headers: {
+            'Content-Type': 'application/json',
+            user: usuario.id
+            // Adicione cabeçalhos adicionais, se necessário
+        },
+    });
+
+    if (response.ok) {
+        // Se a resposta estiver OK, obtenha os dados do usuário
+        const dadosReceitas = await response.json();
+
+        // Area Cards
+
+        let scrollcards = document.getElementById("scrollcard-recente")
+        let area_cardss = document.createDocumentFragment()
+
+        const tam = dadosReceitas.length;
+
+        for (let i = 1; i < 5; i++) {
+            if (tam >= 5 || (tam - i) >= 0) {
+
+                const cards = dadosReceitas[tam - i];
+
+                let card = document.createElement(`div`);
+                card.setAttribute("class", "card");
+
+                let div_img = document.createElement("div");
+                div_img.setAttribute("class", "div-img");
+
+                let img_card = document.createElement(`img`);
+                img_card.setAttribute(
+                    "src",
+                    `../backend/src/Uploads/${cards.imagem}`
+                );
+                img_card.setAttribute("class", "img-card");
+
+                div_img.append(img_card);
+
+                card.append(div_img);
+
+                let div_chef = document.createElement("div");
+                div_chef.setAttribute("class", "chef-avatar");
+
+                let img_avatar = document.createElement(`img`);
+                const foto = (!cards.fotoDoChef) ? "../src/media/shumel.jpg" : `../backend/src/Uploads/${cards.fotoDoChef}`
+                img_avatar.setAttribute("src", foto);
+                img_avatar.setAttribute("class", "img-avatar");
+
+                div_chef.append(img_avatar);
+
+                card.append(div_chef);
+
+                let txt_card = document.createElement(`button`);
+                txt_card.append(`${cards.Titulo}`);
+                txt_card.setAttribute("class", "btn-card");
+                txt_card.addEventListener("click", function () {
+                    window.location.href = `/pages/Ver-Receita.html?id=${cards.idReceita}`;
+                });
+
+
+                card.append(txt_card);
+
+                let txt_chef = document.createElement(`a`);
+                txt_chef.append(`Por ${cards.nomeDoChef}`);
+                txt_chef.setAttribute("href", "/pages/Chefes.html");
+                txt_chef.setAttribute("class", "txt-chef");
+
+                card.append(txt_chef);
+
+                area_cardss.append(card);
+            }
+        }
+        // shmebulock
+
+        scrollcards.append(area_cardss)
+
+
+        let scrollcard = document.getElementById("scrollcard")
+        let area_cards = document.createDocumentFragment()
+
+        // let cards = document.createElement(`div`);
+        // cards.setAttribute("class", "scrollcard");
+
+        for (let i = 0; i < dadosReceitas.length; i++) {
+            const cards = dadosReceitas[i];
+
+            let card = document.createElement(`div`);
+            card.setAttribute("class", "card");
+
+            let div_img = document.createElement("div");
+            div_img.setAttribute("class", "div-img");
+
+            let img_card = document.createElement(`img`);
+            img_card.setAttribute(
+                "src",
+                `../backend/src/Uploads/${cards.imagem}`
+            );
+            img_card.setAttribute("class", "img-card");
+
+            div_img.append(img_card);
+
+            card.append(div_img);
+
+            let div_chef = document.createElement("div");
+            div_chef.setAttribute("class", "chef-avatar");
+
+            let img_avatar = document.createElement(`img`);
+            const foto = (!cards.fotoDoChef) ? "../src/media/shumel.jpg" : `../backend/src/Uploads/${cards.fotoDoChef}`
+            img_avatar.setAttribute("src", foto);
+            img_avatar.setAttribute("class", "img-avatar");
+
+            div_chef.append(img_avatar);
+
+            card.append(div_chef);
+
+            let txt_card = document.createElement(`button`);
+            txt_card.append(`${cards.Titulo}`);
+            txt_card.setAttribute("class", "btn-card");
+            txt_card.addEventListener("click", function () {
+                window.location.href = `/pages/Ver-Receita.html?id=${cards.idReceita}`;
+            });
+
+
+            card.append(txt_card);
+
+            let txt_chef = document.createElement(`a`);
+            txt_chef.append(`Por ${cards.nomeDoChef}`);
+            txt_chef.setAttribute("href", "/pages/Chefes.html");
+            txt_chef.setAttribute("class", "txt-chef");
+
+            card.append(txt_chef);
+
+            area_cards.append(card);
+        }
+
+        scrollcard.append(area_cards)
+
+
+        // for (let i = 0; i < dadosReceitas.length; i++) {
+        //     const receita = dadosReceitas[i];
+        //     // Faça algo com os dados do usuário, por exemplo, atualize a interface do usuário
+        //     document.getElementById('imagem').textContent = receita.imagem;
+        //     document.getElementById('Titulo').textContent = receita.Titulo;
+        //     document.getElementById('nomeDoChef').textContent = receita.nomeDoChef;
+        //     // Adicione outras manipulações conforme necessário
+        // }
+    } else {
+        console.error('Erro ao obter dados das Receitas:', response.statusText);
+    }
+}
+
 // Função para obter dados do usuário
 async function obterCards() {
     try {
@@ -261,7 +420,7 @@ async function obterCards() {
                 div_chef.setAttribute("class", "chef-avatar");
 
                 let img_avatar = document.createElement(`img`);
-                const foto = (!cards.fotoDoChef)?"../src/media/shumel.jpg":`../backend/src/Uploads/${cards.fotoDoChef}`
+                const foto = (!cards.fotoDoChef) ? "../src/media/shumel.jpg" : `../backend/src/Uploads/${cards.fotoDoChef}`
                 img_avatar.setAttribute("src", foto);
                 img_avatar.setAttribute("class", "img-avatar");
 
@@ -331,7 +490,7 @@ async function verificarAutenticacao() {
         if (response.ok) {
             // Se o token for válido, o usuário está autenticado
             console.log('Usuário autenticado');
-            console.log(document.getElementById('botao-login'))
+            // console.log(document.getElementById('botao-login'))
             // Altera o texto do botão de "Login" para "Perfil"
             document.getElementById('botao-login').textContent = 'Perfil';
             // Atualiza o link do botão para a página do perfil
@@ -367,13 +526,12 @@ async function buscaUser() {
             },
         });
 
-        const id = await response.json();
+        const { usuario } = await response.json();
 
         if (response.ok) {
             // Se o token for válido, o usuário está autenticado
             console.log('Usuário Identificado');
-            console.log({user: id.id})
-            return {user: id.id};
+            return { usuario };
         } else {
             // Se o token não for válido, redireciona para a página de login
             window.location.href = '/pages/Login.html';
@@ -413,14 +571,14 @@ async function enviarFormularioReceita() {
     const categoriasArray = categoriasTextArea.split('\n').map(categoria => categoria.trim());
     formData.set('categorias', JSON.stringify(categoriasArray));
 
-    const {user} = await buscaUser()
+    const { usuario } = await buscaUser()
 
     try {
         const response = await fetch('http://localhost:3333/receita', {
             method: 'POST',
             body: formData,
             headers: {
-                "user": user
+                "user": usuario.id
             }
         });
 

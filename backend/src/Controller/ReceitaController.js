@@ -115,7 +115,6 @@ class CadastroReceita {
 
     try {
       const lista = await Receita.find({ user });
-
       return res.json(lista);
     } catch (error) {
       console.error('Erro ao buscar receitas por usuário:', error);
