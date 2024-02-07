@@ -1,106 +1,104 @@
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="../src/css/default.css" />
-    <link rel="stylesheet" href="../src/css/editar.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../src/css/default.css">
+    <link rel="stylesheet" href="../src/css/cadastro-receita.css">
     <script src="../src/js/funcoes.js"></script>
     <script>verificarAutenticacao();</script>
-    <title>Editar Receita</title>
+    <title>Editar Receitas</title>
 </head>
 
 <body>
     <div id="container">
         <div id="top-bar"></div>
         <div id="content">
-            <div class="coro">
-                <h1 id="titulo1">edite suas receitas</h1>
-                <p id="sub-titulo1">.</p>
-                <br>
+            <div class="box">
+                <div class="form-box">
+                    <div id="cadastro">
+                        <h1><br> Editar Receitas </h1>
+                    </div>
+
+                    <form id="receitaForm" enctype="multipart/form-data">
+
+                        <div id="quadrado1">
+                             
+                            <div class="input-group">
+                                <label for="Titulo"> Título:</label>
+                                <input type="text" id="titulo" name="Titulo" placeholder="Digite o título" required>
+                            </div>
+                            <br><br>
+                            <div class="input-group">
+                                <label for="tempo">Tempo de Preparo (minutos):</label>
+                                <input type="number" id="tempo" name="tempo" placeholder="Digite o tempo de preparo">
+                            </div>
+                          
+                            <br><br>
+                            <div class="input-group">
+                                <label for="porcoes">Numero de porções:</label>
+                                <input type="number" id="porcoes" name="porcoes"
+                                    placeholder="Digite o numero de porções">
+                            </div>
+                            <br><br>
+                            <div class="input-group">
+                                <label for="descricao">Descrição:</label>
+                                <textarea id="descricao" name="descricao"
+                                    placeholder="Digite uma descrição para sua receita" required></textarea>
+                            </div>
+                            <br><br>
+                            <div class="input-group">
+                                <label for="imagem">Imagem de Perfil:&nbsp; </label>
+                                <input type="file" id="imagem" name="imagem" accept="image/*" required>
+                            </div>
+                         
+                        </div>
+
+                        <label class="txt">Tipos de refeição (p. ex.: refeições principais, sobremesas, bebidas): </label>
+
+                        <div id="categoria">
+                            <div class="input-group">
+                                <label for="categorias"><br>
+                                    Categorias:</label>
+                                <textarea id="categorias" name="categorias" placeholder="Digite as categorias"
+                                    required></textarea>
+                            </div>
+                        </div>
+
+                        <div id="quadIngre">
+                            <div class="input-group">
+                                <label for="ingredientes">Ingredientes: &nbsp;</label>
+                                <textarea id="ingredientes" name="ingredientes" placeholder="Digite os ingredientes"
+                                    required></textarea>
+                            </div>
+                        </div>
+
+                        <div id="modoDePreparo">
+                            <div class="input-group">
+                                <label for="modoDePreparo">Modo de Preparo:</label>
+                                <textarea id="modoDePreparo" name="modoDePreparo" placeholder="Digite o modo de preparo"
+                                    required></textarea>
+                            </div>
+                        </div>
+
+                        <div class="input-group w50">
+                            <button type="button" class="btn-login" onclick="enviarFormularioReceita()">Cadastrar
+                                Receita</button>
+                        </div>
+                    </form>
+
+                </div>
             </div>
+        </div>
+        <div id="bottom-bar"></div>
+    </div>
 
-            <form>
-                <fieldset class="grupo">
-                    <div>
-                        <label for="receitas1">titulo:</label>
-                        <input type="text" name="titulo" id="titulo">
-                    </div>
+    <!-- <script>
+        enviarFormularioReceita()
+    </script> -->
 
-                    <div>
-                        <label for="porçoes1">descrição</label>
-                        <input type="text" name="descrição" id="descrição">
-                    </div>
-                </fieldset>
-
-                <div class="coro">
-                    <label for="text"> nome da receita</label>
-                    <input type="nome da receita" name="nome da receita" id="nome da receita">
-                </div>
-
-                <div class="coro">
-                    <label> <strong>quais o ingredientes </strong></label>
-                    <label>
-                        <input type="radio" name="receitas">
-                    </label>
-
-                    <label>
-                        <input type="radio" name="ingredientes">
-                    </label>
-                    <label>
-                        <input type="radio" name="usa">
-
-                    </label>
-                </div>
-                <div id="check">
-                    <labe><strong>numero de porçoes</strong></label>
-                        <select id="ingredientes">
-                            <option selected disabled value="">+5</option>
-                            <option>6</option>
-                            <option>7</option>
-                            <option>8</option>
-                            <option>9</option>
-                            <option>10</option>
-                            <select>
-                </div>
-                <fieldset class="grupo">
-                    <div >
-                        <label>tipos de refeições (p ex: refeições principais,sobremesas,bebidas.)</label><br>
-                        <input type="checkbox" id="igrediente" name="igrediente" value="Aperitivos">
-                        <label for="igrediente">Aperitivos</label>
-                        <input type="checkbox" id="igrediente2" name="igrediente2" value="sopas">
-                        <label for="igrediente2">sopas</label>
-                        <input type="checkbox" id="igrediente3" name="igrediente3" value=" Pratos principais">
-                        <label for="igrediente3">Pratos principaisS</label>
-                        <input type="checkbox" id="igrediente4" name="igrediente4" value="aconpanhamentos">
-                        <label for="igrediente4">aconpanhamentos</label>
-                    </div>
-                </fieldset>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-                
-                <div class="coro">
-                    <br>
-                    <label> mostre, fale sobre suas receitas</label>
-                    <textarea rows="6" style="width: 26mm;" id="receitas" name="receitas"></textarea>
-                </div>
-            </form>
-            <button class="botao" type="submit">concluido</button>
-            <button class="botoon" type="submit">salvar</button>
-
-            <script src="../src/js/script-ours-pages.js"></script>
+    <script src="../src/js/script-ours-pages.js"></script>
 </body>
 
 </html>
