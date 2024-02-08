@@ -1,1 +1,27 @@
- 
+#content {
+    background-color: #f2f2f2;
+    display: flex;
+    align-items: center;
+}
+
+#quadrado1{
+    margin-top: 10mm;
+    height: 700px;
+    width: 70%;
+    background-color: rgb(255, 255, 255);
+    border-radius: 10px;
+    -webkit-box-shadow: 0px 0px 17px 9px rgba(0, 0, 0, 0.45);
+    box-shadow: 0px 0px 17px 9px rgba(0, 0, 0, 0.45);
+ }
+#infor{
+    display: flex;
+    justify-content: flex-start;
+    margin-top: 3mm;
+    margin-left: 3mm;
+
+}
+
+.txt{
+    margin-left: 3mm;
+    color: black;
+}
