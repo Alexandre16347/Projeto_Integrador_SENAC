@@ -25,7 +25,7 @@ class cards {
         idReceita: String(receita._id),
         idUsuario: id,
         nomeDoChef: receita.nomeDoChef,
-        fotoDoChef: usuario.imagem,
+        fotoDoChef: (usuario && usuario.imagem) ? usuario.imagem : null,
       };
 
       cards.push(card);

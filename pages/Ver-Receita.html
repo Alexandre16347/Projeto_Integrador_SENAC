@@ -1,120 +1,182 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="../src/css/default.css" />
+    <link rel="stylesheet" href="../src/css/style.css" />
+    <script src="../src/js/funcoes.js"></script>
 
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="../src/css/default.css" />
-  <link rel="stylesheet" href="../src/css/style.css">
-  <script src="../src/js/funcoes.js"></script>
-  <!-- <script>verificarAutenticacao();</script> -->
-  <title>Receita</title>
-</head>
+    <title>Receita</title>
+  </head>
 
-<body>
+  <body>
+    <div id="container">
+      <div id="top-bar"></div>
 
-  <div id="container">
-    <div id="top-bar"></div>
-
-    <div id="content">
-
-      <div class="conteudo">
-        <h1 class="titulo-receita"><br></h1>
-
-      </div>
-
-      <div class="cardis">
-        <div class="banner">
-          <img src="" alt="" style="height: 250px;" id="img">
-          <span style="color: yellow;">&#9733;</span>
-          <span style="color: yellow;">&#9733;</span>
-          <span style="color: yellow;">&#9733;</span>
-          <span style="color: yellow;">&#9733;</span>
-          <span style="color: yellow;">&#9733;</span>
-          <h3 style="color: black; margin-top: 0px;">(4)</h3>
+      <div id="content">
+        <div class="conteudo">
+          <h1 class="titulo-receita"><br /></h1>
         </div>
 
-        <div class="descricao">
-          <div class="lp">
-
+        <div class="cardis">
+          <div class="banner">
+            <img src="" alt="" style="height: 250px" id="img" />
+            <span style="color: yellow">&#9733;</span>
+            <span style="color: yellow">&#9733;</span>
+            <span style="color: yellow">&#9733;</span>
+            <span style="color: yellow">&#9733;</span>
+            <span style="color: yellow">&#9733;</span>
+            <h3 style="color: black; margin-top: 0px">(4)</h3>
           </div>
-          <!-- <p>A lasanha tradicional é um prato clássico da culinária italiana que conquista paladares com suas camadas de
+
+          <div class="descricao">
+            <div class="lp"></div>
+            <!-- <p>A lasanha tradicional é um prato clássico da culinária italiana que conquista paladares com suas camadas de
             massa intercaladas com molho de carne, queijo, presunto e molho de tomate. Essa receita é um verdadeiro de</p> -->
-          <a target="_blank" href="./Chefes.html" class="chef"
-            onclick="ga('send', 'event', 'author', 'clic-author',)"></a>
+            <a
+              target="_blank"
+              href="./Chefes.html"
+              class="chef"
+              onclick="ga('send', 'event', 'author', 'clic-author',)"
+            ></a>
+          </div>
         </div>
 
+        <div class="cardis">
+          <div class="iup">
+            <h1>Ingredientes</h1>
+          </div>
+          <div class="oia">
+            <img alt="" src="../src/media/icone.png" width="50px" />
+            <h4 id="porcoes"></h4>
+          </div>
+          <div class="ll">
+            <ul id="ingredientes"></ul>
+          </div>
+        </div>
+        <div class="cardis">
+          <div class="iup">
+            <h1>Modo de preparo</h1>
+          </div>
+          <div class="pl">
+            <img alt="" src="../src/media/relogio.png" width="60px" />
+            <h4 style="margin-left: 5px" id="tempo"></h4>
+          </div>
+          <div class="op">
+            <ol id="modo"></ol>
+          </div>
+        </div>
+        <section class="cate-section">
+          <header>
+            <h1>Categorias Relacionadas</h1>
+          </header>
+          <ol class="listas">
+            <li>
+              <a
+                href="Chefes.html"
+                class="button-categorias"
+                onclick="ga('send', 'event', 'seo-tagcloud', 'clic-tags',  'Bolos e tortas doces' + this.href)"
+                >Bolos e tortas doces</a
+              >
+            </li>
 
-      </div>
-
-      <div class="cardis">
-
-        <div class="iup">
-          <h1>Ingredientes</h1>
-        </div>
-        <div class="oia">
-          <img src="../src/media/icone.png" width="50px">
-          <h4 id="porcoes"></h4>
-        </div>
-        <div class=" ll">
-          <ul id="ingredientes"></ul>
-        </div>
-      </div>
-      <div class="cardis">
-        <div class="iup">
-          <h1>Modo de preparo</h1>
-        </div>
-        <div class="pl">
-          <img src="../src/media/relogio.png" width="60px">
-          <h4 style="margin-left: 5px;" id="tempo"></h4>
-        </div>
-        <div class="op">
-          <ol id="modo"></ol>
-        </div>
-      </div>
-      <section class="cate-section">
-        <header>
-          <h1>Categorias Relacionadas</h1>
-        </header>
-        <ol class="listas">
-          <li>
-            <a href="Chefes.html" class="button-categorias"
-              onclick="ga('send', 'event', 'seo-tagcloud', 'clic-tags',  'Bolos e tortas doces' + this.href)">Bolos e tortas doces</a>
-          <li>
-            <a href="Chefes.html" class="button-categorias"
-              onclick="ga('send', 'event', 'seo-tagcloud', 'clic-tags', 'Bolos de liquidificador ; ' + this.href)">
-              Bolos de Liquidificador </a>
-            <a href="Chefes.html" class="button-categorias"
-              onclick="ga('send', 'event', 'seo-tagcloud', 'clic-tags', 'Salgados ; ' + this.href)"> Salgados </a>
-            <a href="Chefes.html" class="button-categorias"
-              onclick="ga('send', 'event', 'seo-tagcloud', 'clic-tags', 'Aperitivos ; ' + this.href)"> Aperitivos </a>
-            <a href="Chefes.html" class="button-categorias"
-              onclick="ga('send', 'event', 'seo-tagcloud', 'clic-tags', 'Aperitivos ; ' + this.href)"> Cupcake </a>
-            <a href="Chefes.html" class="button-categorias"
-              onclick="ga('send', 'event', 'seo-tagcloud', 'clic-tags', 'Aperitivos ; ' + this.href)"> Bolo sem Glúten
-            </a>
-            <a href="Chefes.html" class="button-categorias"
-              onclick="ga('send', 'event', 'seo-tagcloud', 'clic-tags', 'Bolos de liquidificador ; ' + this.href)">
-              Bolos de Liquidificador </a>
-            <a href="Chefes.html" class="button-categorias"
-              onclick="ga('send', 'event', 'seo-tagcloud', 'clic-tags', 'Salgados ; ' + this.href)"> Salgados </a>
-            <a href="Chefes.html" class="button-categorias"
-              onclick="ga('send', 'event', 'seo-tagcloud', 'clic-tags', 'Aperitivos ; ' + this.href)"> Aperitivos </a>
-            <a href="Chefes.html" class="button-categorias"
-              onclick="ga('send', 'event', 'seo-tagcloud', 'clic-tags', 'Aperitivos ; ' + this.href)"> Cupcake </a>
-            <a href="Chefes.html" class="button-categorias"
-              onclick="ga('send', 'event', 'seo-tagcloud', 'clic-tags', 'Aperitivos ; ' + this.href)"> Bolo sem Glúten
-            </a>
-            <a href="Chefes.html" class="button-categorias"
-              onclick="ga('send', 'event', 'seo-tagcloud', 'clic-tags', 'Aperitivos ; ' + this.href)"> Aperitivos </a>
-            <a href="Chefes.html" class="button-categorias"
-              onclick="ga('send', 'event', 'seo-tagcloud', 'clic-tags', 'Aperitivos ; ' + this.href)"> Cupcake </a>
-            <a href="Chefes.html" class="button-categorias"
-              onclick="ga('send', 'event', 'seo-tagcloud', 'clic-tags', 'Aperitivos ; ' + this.href)"> Bolo sem Glúten
-            </a>
-        </ol>
-      </section>
-      <!-- <div class="cardis">
+            <li>
+              <a
+                href="Chefes.html"
+                class="button-categorias"
+                onclick="ga('send', 'event', 'seo-tagcloud', 'clic-tags', 'Bolos de liquidificador ; ' + this.href)"
+              >
+                Bolos de Liquidificador
+              </a>
+              <a
+                href="Chefes.html"
+                class="button-categorias"
+                onclick="ga('send', 'event', 'seo-tagcloud', 'clic-tags', 'Salgados ; ' + this.href)"
+              >
+                Salgados
+              </a>
+              <a
+                href="Chefes.html"
+                class="button-categorias"
+                onclick="ga('send', 'event', 'seo-tagcloud', 'clic-tags', 'Aperitivos ; ' + this.href)"
+              >
+                Aperitivos
+              </a>
+              <a
+                href="Chefes.html"
+                class="button-categorias"
+                onclick="ga('send', 'event', 'seo-tagcloud', 'clic-tags', 'Aperitivos ; ' + this.href)"
+              >
+                Cupcake
+              </a>
+              <a
+                href="Chefes.html"
+                class="button-categorias"
+                onclick="ga('send', 'event', 'seo-tagcloud', 'clic-tags', 'Aperitivos ; ' + this.href)"
+              >
+                Bolo sem Glúten
+              </a>
+              <a
+                href="Chefes.html"
+                class="button-categorias"
+                onclick="ga('send', 'event', 'seo-tagcloud', 'clic-tags', 'Bolos de liquidificador ; ' + this.href)"
+              >
+                Bolos de Liquidificador
+              </a>
+              <a
+                href="Chefes.html"
+                class="button-categorias"
+                onclick="ga('send', 'event', 'seo-tagcloud', 'clic-tags', 'Salgados ; ' + this.href)"
+              >
+                Salgados
+              </a>
+              <a
+                href="Chefes.html"
+                class="button-categorias"
+                onclick="ga('send', 'event', 'seo-tagcloud', 'clic-tags', 'Aperitivos ; ' + this.href)"
+              >
+                Aperitivos
+              </a>
+              <a
+                href="Chefes.html"
+                class="button-categorias"
+                onclick="ga('send', 'event', 'seo-tagcloud', 'clic-tags', 'Aperitivos ; ' + this.href)"
+              >
+                Cupcake
+              </a>
+              <a
+                href="Chefes.html"
+                class="button-categorias"
+                onclick="ga('send', 'event', 'seo-tagcloud', 'clic-tags', 'Aperitivos ; ' + this.href)"
+              >
+                Bolo sem Glúten
+              </a>
+              <a
+                href="Chefes.html"
+                class="button-categorias"
+                onclick="ga('send', 'event', 'seo-tagcloud', 'clic-tags', 'Aperitivos ; ' + this.href)"
+              >
+                Aperitivos
+              </a>
+              <a
+                href="Chefes.html"
+                class="button-categorias"
+                onclick="ga('send', 'event', 'seo-tagcloud', 'clic-tags', 'Aperitivos ; ' + this.href)"
+              >
+                Cupcake
+              </a>
+              <a
+                href="Chefes.html"
+                class="button-categorias"
+                onclick="ga('send', 'event', 'seo-tagcloud', 'clic-tags', 'Aperitivos ; ' + this.href)"
+              >
+                Bolo sem Glúten
+              </a>
+            </li>
+          </ol>
+        </section>
+        <!-- <div class="cardis">
 
         <div class="cl">
           <h1>Comentários e avaliações</h1>
@@ -171,36 +233,35 @@
         </div>
       </div> -->
 
+        <h1 style="font-size: 25px">- Você também pode gostar -</h1>
 
-      <h1 style="font-size: 25px;">- Você também pode gostar -</h1>
+        <div id="scrollcard"></div>
+      </div>
 
-      <div id="scrollcard"></div>
-
+      <div id="bottom-bar"></div>
     </div>
 
-    <div id="bottom-bar"></div>
+    <script>
+      var stars = document.querySelectorAll('.star-icon');
 
-  </div>
+      document.addEventListener('click', function (e) {
+        var classStar = e.target.classList;
+        if (!classStar.contains('ativo')) {
+          stars.forEach(function (star) {
+            star.classList.remove('ativo');
+          });
+          classStar.add('ativo');
+          console.log(e.target.getAttribute('data-avaliacao'));
+        }
+      });
+    </script>
 
-  <script>
-    var stars = document.querySelectorAll('.star-icon');
+    <script src="../src/js/script-ours-pages.js"></script>
 
-    document.addEventListener('click', function (e) {
-      var classStar = e.target.classList;
-      if (!classStar.contains('ativo')) {
-        stars.forEach(function (star) {
-          star.classList.remove('ativo');
-        });
-        classStar.add('ativo');
-        console.log(e.target.getAttribute('data-avaliacao'));
-      }
-    });
-  </script>
-
-  <script>obterReceita();
-  obterCards()
-  </script>
-  <script src="../src/js/script-ours-pages.js"></script>
-</body>
-
+    <script defer>
+      verificarAutenticacaoOffline();
+      obterReceita();
+      obterCards();
+    </script>
+  </body>
 </html>

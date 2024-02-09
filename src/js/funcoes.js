@@ -456,12 +456,27 @@ async function obterCards() {
 
         area_cards.append(card);
       }
+      scrollcard.append(area_cards);
       // shmebulock
     } else {
       console.error('Erro ao obter dados das Receitas:', response.statusText);
     }
   } catch (error) {
     console.error('Erro na solicitação:', error);
+  }
+}
+
+async function verificarAutenticacaoOffline() {
+  // Verifica se o usuário está autenticado
+  const token = document.cookie.split('=')[1];
+
+  if (token) {
+    // Altera o texto do botão de "Login" para "Perfil"
+    document.getElementById('botao-login').textContent = 'Perfil';
+    // Atualiza o link do botão para a página do perfil
+    document.getElementById('botao-login').href = '/pages/Chefes.html';
+    addLogout('token');
+    return;
   }
 }
 
@@ -488,18 +503,49 @@ async function verificarAutenticacao() {
       // Se o token for válido, o usuário está autenticado
       console.log('Usuário autenticado');
       // console.log(document.getElementById('botao-login'))
+
       // Altera o texto do botão de "Login" para "Perfil"
       document.getElementById('botao-login').textContent = 'Perfil';
       // Atualiza o link do botão para a página do perfil
-      document.getElementById('botao-login').href = '/pages/Perfil.html';
+      document.getElementById('botao-login').href = './Chefes.html';
+
+      addLogout('token');
     } else {
       // Se o token não for válido, redireciona para a página de login
-      window.location.href = '/pages/Login.html';
+      window.location.href = './Login.html';
     }
   } catch (error) {
     console.error('Erro na verificação de autenticação:', error);
     // Trate o erro conforme necessário
   }
+}
+
+function addLogout(nomeDoCookie) {
+  console.log('Criei');
+
+  let barra_menu = document.getElementById('top-bar');
+
+  let a_perfil = document.createElement(`a`);
+  a_perfil.setAttribute('class', 'btn-logout');
+  a_perfil.setAttribute('addClickEvent', './pages/Chefes.html');
+
+  // Adiciona um evento de clique para chamar a função apagarCookie com o nome do cookie
+  a_perfil.addEventListener('click', function () {
+    apagarCookie(nomeDoCookie);
+  });
+
+  let img_user = document.createElement(`img`);
+  img_user.setAttribute('class', 'img-logout');
+  img_user.setAttribute('src', '/src/media/logout.png');
+
+  a_perfil.appendChild(img_user);
+  barra_menu.append(a_perfil);
+}
+
+function apagarCookie(nome) {
+  document.cookie = `${nome}=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;`;
+  // Recarrega a página atual
+  location.reload();
 }
 
 async function buscaUser() {

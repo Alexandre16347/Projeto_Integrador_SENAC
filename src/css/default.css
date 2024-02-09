@@ -53,6 +53,26 @@ body {
   padding-right: 20px;
 }
 
+
+.btn-logout {
+  margin-right: 20px;
+  flex-wrap: wrap;
+  /* margin: 10px; */
+  border-radius: 6px;
+  /* box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px; */
+  border: none;
+
+  background-color: #a7a8aa;
+
+  width: 32px;
+  height: 32px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  margin-left: 10px;
+}
+
 .btn-social {
   flex-wrap: wrap;
   /* margin: 10px; */
@@ -78,6 +98,13 @@ body {
   filter: invert(1);
 }
 
+.img-logout {
+  height: 35px;
+  border-radius: 0 7px 7px 0;
+  width: 35px;
+  filter: invert(1);
+}
+
 #bottom-bar .img-social {
   height: 17px;
   border-radius: 0 7px 7px 0;
@@ -86,7 +113,8 @@ body {
 }
 
 .btn-menu:hover,
-.btn-social:hover {
+.btn-social:hover,
+.btn-logout:hover {
   background: rgb(0, 72, 138);
   background: linear-gradient(0deg,
       rgba(0, 72, 138, 1) 0%,
@@ -94,6 +122,8 @@ body {
 
   color: white;
 }
+
+
 
 #top-bar {
   background-color: white;
