@@ -202,7 +202,7 @@ mobileNavbar.init()
 // *******************************************************************************************************************************************
 // BOTTOM BAR
 
-let bottom_bar = document.getElementById("bottom-bar")
+const bottom_bar = document.getElementById("bottom-bar")
 let barra_bottom = document.createDocumentFragment();
 
 let a_logo_b = document.createElement(`a`);
@@ -222,7 +222,7 @@ txt_direitos.append("© Todos os Direitos Reservados - 2017.");
 txt_direitos.setAttribute('class', 'txt')
 
 barra_bottom.append(txt_direitos)
-
+console.log(barra_bottom)
 let container_redes_b = document.createElement(`div`)
 container_redes_b.setAttribute('class', 'container-redes')
 
@@ -248,7 +248,9 @@ for (let i = 0; i < tam_social; i++) {
   //   bottom_bar.append(container_redes_b)
 }
 
-
+console.log('251   ', barra_bottom)
+console.log(container_redes_b)
 barra_bottom.append(container_redes_b);
 
 bottom_bar.append(barra_bottom);
+console.log(bottom_bar)
