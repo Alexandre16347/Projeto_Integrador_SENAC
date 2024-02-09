@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../src/css/default.css">
     <link rel="stylesheet" href="../src/css/cadastro.css">
-    <script src="../src/js/funcoes.js"></script>
+    <script src="../src/js/funcoes.js" defer></script>
     <title>Formulário de cadastro de usuario</title>
 </head>
 
@@ -18,14 +18,14 @@
         <div id="content">
             <div class="box">
                 <div class="img-box">
-                    <img src="../src/media/1200px-Senac_logo.svg.png">
+                    <img alt="logo" src="../src/media/1200px-Senac_logo.svg.png">
                 </div>
                 <div class="form-box">
                     <h2>Criar Conta</h2>
                     <p>Já possui cadastro?
                         <a href="Login.html"> Login </a>
                     </p>
-                    <form id="cadastroForm" enctype="multipart/form-data">
+                    <form id="cadastroForm" enctype="multipart/form-data" method="post">
                         <div class="input-group">
                             <label for="nome"> Nome Completo</label>
                             <input type="text" id="nome" name="Nome" placeholder="Digite o seu nome completo" required>
@@ -76,7 +76,7 @@
         <div id="bottom-bar"></div>
     </div>
 
-    <script src="../src/js/script-ours-pages.js"></script>
+    <script src="../src/js/script-ours-pages.js" defer></script>
 </body>
 
 </html>

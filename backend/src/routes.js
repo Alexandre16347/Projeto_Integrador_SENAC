@@ -1,12 +1,14 @@
+import multer from 'multer';
+import Upload from './Config/Upload';
 import { Router } from 'express';
 import user from './Controller/UserController';
 import receita from './Controller/ReceitaController';
-import multer from 'multer';
-import Upload from './Config/Upload';
 import card from './Controller/CardController';
+import path from 'path';
 
-const routes = new Router();
 const upload = new multer(Upload);
+const routes = new Router();
+
 
 routes.get('/', (req,res)=>{
     return res.json({msg: "Certinho"})
@@ -18,6 +20,8 @@ routes.get('/cards', card.buscarCards);
 // Rotas relacionadas aos usuários
 // Cadastro de usuários
 routes.post('/user', upload.single('imagem'), user.store);
+
+
 // Login de usuários
 routes.post('/login', user.login);
 // Verificar token de autorização

@@ -6,7 +6,9 @@ import User from '../Model/User';
 
 class cadastroUsuario {
   async store(req, res) {
+    console.log(req.headers)
     const { Nome, idade, email, senha } = req.body;
+    console.log(req.body)
     const { filename } = req.file;
 
     try {
@@ -39,6 +41,10 @@ class cadastroUsuario {
       // Gerar um hash para a senha usando bcrypt
       const hashedSenha = await bcrypt.hash(senha, 10); // O número 10 é o custo do hash
 
+      // Gerar um token temporário (session)
+      const idTemp = uuidv4();
+      
+
       // Salvar o usuário no banco de dados com a senha criptografada
       usuarioCadastra = await User.create({
         Nome,
@@ -46,18 +52,16 @@ class cadastroUsuario {
         email,
         senha: hashedSenha,
         imagem: filename,
+        idTemp
       });
 
-      // Gerar um token temporário (session)
-      const idTemp = uuidv4();
-      usuarioCadastra.idTemp = idTemp;
-      await usuario.save();
+      
+      
 
       return res.status(201).json({
         authenticated: true,
         message: `Bem-vindo ${usuarioCadastra.Nome}!`,
         session: idTemp,
-        usuarioCadastra,
       });
     } catch (error) {
       console.error('Erro no cadastro:', error);
@@ -167,7 +171,7 @@ class cadastroUsuario {
       const usuario = await User.findOneAndDelete({ _id: id });
 
       if (usuario) {
-        UserController.deleteImageInUploadsFolder(usuario.imagem);
+        cadastroUsuario.deleteImageInUploadsFolder(usuario.imagem);
       }
 
       return res.json(usuario);

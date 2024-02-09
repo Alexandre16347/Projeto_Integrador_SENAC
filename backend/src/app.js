@@ -28,11 +28,15 @@ class App {
         // Habilita o uso de JSON para lidar com dados de requisição
         this.server.use(express.json());
         
+        this.server.use(express.urlencoded({extended:true}))
+
         // Habilita o uso de cookies
         this.server.use(cookieParser());
         
         // Habilita o CORS para permitir requisições de diferentes origens
         this.server.use(cors());
+
+
     };
 
     // Configuração das rotas
