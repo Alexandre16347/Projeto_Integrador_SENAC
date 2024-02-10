@@ -25,11 +25,16 @@
         Felipe
       </div>
 
-      <div id="butao">
+      <div id="addreceita">
+        <button class="add" type="button">
+          <a id="txtAdd" href="../pages/cadastrar-receita.html">Adicionar receita</a>
+        </button>
+      </div>
+      <!-- <div id="butao">
         <button class="bt" onclick="">Seguir</button>
         <button class="bt" onclick="">Curtir</button>
         <button class="bt" onclick="">Compartilhar</button>
-      </div>
+      </div> -->
 
       <div id="historico">
         <label class="texto" for=""> Ultimas Receitas</label>
@@ -48,7 +53,11 @@
       <div id="linha"></div>
       <label class="receitas-recentes" for="">Todas Receitas</label>
 
+
       <div id="scrollcard"></div>
+      <div id="deletar">
+        <button class="btt" type="button" onclick=" deletarUsuario()">Deletar conta</button>
+      </div>
 
     </div>
 
@@ -56,6 +65,7 @@
   </div>
 
   <script>
+    deletarUsuario()
     verificarAutenticacao()
   obterListaDeCardsReceitaUsuario()
   </script>
