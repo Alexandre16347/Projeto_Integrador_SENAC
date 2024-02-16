@@ -10,7 +10,7 @@
   font-family: "Poppins", sans-serif;
 }
 :root {
-  --main-color: #f54744;
+  --main-color: tomato;
   --text-color: #2f2f2f;
   --bg-color: #fff;
  
@@ -265,4 +265,13 @@ textarea {
   textarea {
     width: auto;
   }
+}
+
+
+::-webkit-scrollbar{
+width: 10px;
+}
+
+::-webkit-scrollbar-thumb{
+  background-color: tomato;
 }
