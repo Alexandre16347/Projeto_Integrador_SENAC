@@ -1,5 +1,4 @@
 // Declarações de Variáveis Globais
-
 let logos_redes = [
   'media/icon-facebook.png',
   'media/instagram.png',
@@ -14,7 +13,6 @@ let href_redes = [
   'https://www.linkedin.com/company/2655383',
   'https://www.youtube.com/user/SenacNacional',
 ];
-
 let tam_social = logos_redes.length;
 
 // Declarações de Funções

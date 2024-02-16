@@ -48,6 +48,11 @@ routes.get('/Cadastro', (req,res)=>{
     return res.sendFile(caminho);
 });
 
+routes.get('/PerfilEditar', (req,res)=>{
+    const caminho = path.resolve(__dirname, "View", "Editar-Perfil.html")
+    return res.sendFile(caminho);
+});
+
 
 // Rotas para manipulação de cards
 routes.get('/cards', card.buscarCards);
