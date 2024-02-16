@@ -146,16 +146,13 @@ async function enviarFormulario() {
 // Função para obter dados do usuário
 async function obterDadosDoUsuario() {
   try {
-    const response = await fetch(
-      '/buscaUserId',
-      {
-        method: 'GET',
-        headers: {
-          'Content-Type': 'application/json',
-          // Adicione cabeçalhos adicionais, se necessário
-        },
+    const response = await fetch('/buscaUserId', {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+        // Adicione cabeçalhos adicionais, se necessário
       },
-    );
+    });
 
     if (response.ok) {
       // Se a resposta estiver OK, obtenha os dados do usuário
@@ -175,22 +172,18 @@ async function obterDadosDoUsuario() {
 }
 
 async function obterUsuario() {
-
   // Extrai o ID da receita da query da URL
   const urlParams = new URLSearchParams(window.location.search);
   const idDoUser = urlParams.get('id');
 
   try {
-    const response = await fetch(
-      `/buscaUserId?id=${idDoUser}`,
-      {
-        method: 'GET',
-        headers: {
-          'Content-Type': 'application/json',
-          // Adicione cabeçalhos adicionais, se necessário
-        },
+    const response = await fetch(`/buscaUserId?id=${idDoUser}`, {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+        // Adicione cabeçalhos adicionais, se necessário
       },
-    );
+    });
 
     if (response.ok) {
       // Se a resposta estiver OK, obtenha os dados do usuário
@@ -198,33 +191,63 @@ async function obterUsuario() {
       // console.log('Dados do usuário:', dadosUsuario);
 
       // Faça algo com os dados do usuário, por exemplo, atualize a interface do usuário
-      document.getElementsByClassName('img-avatar')[0].src = `${dadosUsuario.imagem}`;
-      document.getElementsByClassName('Nome')[0].textContent = `${dadosUsuario.Nome}`;
+      document.getElementsByClassName(
+        'img-avatar',
+      )[0].src = `${dadosUsuario.imagem}`;
+      document.getElementsByClassName(
+        'Nome',
+      )[0].textContent = `${dadosUsuario.Nome}`;
 
       // Verifica se o usuário está autenticado
       const token = document.cookie.split('=')[1];
 
       if (token && token == dadosUsuario.idTemp) {
-
         // console.log("Esse é o meu perfil")
 
-        let botaoDel = document.createElement('button')
-        botaoDel.setAttribute("class", "btt")
-        botaoDel.setAttribute("type", "button")
-        botaoDel.textContent = "Deletar Conta"
-        
+        let botaoDel = document.createElement('button');
+        botaoDel.setAttribute('class', 'btt');
+        botaoDel.setAttribute('type', 'button');
+        botaoDel.textContent = 'Deletar Conta';
 
-        document.getElementById("deletar").append(botaoDel)
+        // Adicionar evento de clique ao botão "Deletar Conta"
+        botaoDel.addEventListener('click', async function () {
+          try {
+            // Fazer a solicitação para deletar o usuário
+            const response = await fetch('/deletarUser', {
+              method: 'DELETE',
+              headers: {
+                'Content-Type': 'application/json',
+                // Adicione o token de autenticação, se necessário
+                'id': `${dadosUsuario.id}`
+              },
+            });
+
+            if (response.ok) {
+              // Limpar o token do cookie
+              document.cookie =
+                'token=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;';
+
+              // Redirecionar para a rota desejada
+              window.location.href = '/';
+
+              console.log('Usuário deletado com sucesso.');
+            } else {
+              console.error('Erro ao deletar usuário:', response.statusText);
+            }
+          } catch (error) {
+            console.error('Erro na solicitação:', error);
+          }
+        });
+
+        document.getElementById('deletar').append(botaoDel);
 
         // <button class="btt" type="button" onclick=" deletarUsuario()">
         //     Deletar conta
         //   </button>
-
       }
 
       // Adicione outras manipulações conforme necessário
     } else {
-      
       console.error('Erro ao obter dados do usuário:', response.statusText);
     }
   } catch (error) {
@@ -265,8 +288,9 @@ async function obterReceita() {
       document.getElementsByClassName('chef')[0].textContent =
         dadosReceita.nomeDoChef;
 
-      document.getElementsByClassName('chef')[0].href =
-        `/Chef?id=${dadosReceita.user}`;
+      document.getElementsByClassName(
+        'chef',
+      )[0].href = `/Chef?id=${dadosReceita.user}`;
 
       let lista_ingredientes = document.getElementById('ingredientes');
 
@@ -280,8 +304,9 @@ async function obterReceita() {
         lista_ingredientes.append(ingrediente);
       }
 
-      document.getElementById('tempo').textContent = `${dadosReceita.tempo ? dadosReceita.tempo : 0
-        } min`;
+      document.getElementById('tempo').textContent = `${
+        dadosReceita.tempo ? dadosReceita.tempo : 0
+      } min`;
 
       let lista_modo = document.getElementById('modo');
 
@@ -547,7 +572,6 @@ async function verificarAutenticacaoOffline() {
   const token = document.cookie.split('=')[1];
 
   if (token) {
-
     const response = await fetch('/verificar-token', {
       method: 'POST',
       headers: {
@@ -922,7 +946,8 @@ function botaoResponsivo() {
         // console.log("Hey 👀");
         link.style.animation
           ? (link.style.animation = '')
-          : (link.style.animation = `navLinkFade 0.5s ease forwards ${index / 7 + 0.5
+          : (link.style.animation = `navLinkFade 0.5s ease forwards ${
+              index / 7 + 0.5
             }s`);
       });
     }
