@@ -1,91 +1,86 @@
+ 
+
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="../src/css/default.css" />
-  <link rel="stylesheet" href="../src/css/dashboard.css">
-  <script src="../src/js/funcoes.js"></script>
-  <script>verificarAutenticacao();</script>
-  <title>Atualizar Perfil</title>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../src/css/default.css">
+    <link rel="stylesheet" href="../src/css/cadastro.css">
+    <script src="../src/js/funcoes.js" ></script>
+    <script>verificarAutenticacao();</script>
+    <title>Formulário de cadastro de usuario</title>
 </head>
 
 <body>
-  <div id="container">
 
-    <div id="top-bar"></div>
+    <div id="container">
+        <div id="top-bar"></div>
+        <div id="content">
+            <div class="box">
+                <div class="img-box">
+                    <img alt="logo" src="../src/media/ANA MARIA BRAGA.jpg">
+                </div>
+                <div class="form-box">
+                    <h2>Atualizar Dados Pessoais</h2>
+                    <p>Já possui cadastro?
+                        <a href="Login.html"> Login </a>
+                    </p>
+                    <form id="cadastroForm" enctype="multipart/form-data" method="post">
+                        <div class="input-group">
+                            <label for="nome"> Nome Completo</label>
+                            <input type="text" id="nome" name="Nome" placeholder="Digite o seu nome completo" required>
+                        </div>
 
-    <div id="content">
+                        <div class="input-group">
+                            <label for="email">E-mail</label>
+                            <input type="email" id="email" name="email" placeholder="Digite o seu email" required>
+                        </div>
 
-      <!-- Form-->
-      <div class="form">
-        <div class="form-toggle"></div>
-        <div class="form-panel one">
-          <div class="form-header">
-            <h1>Atualizar Dados Pessoais</h1>
-          </div>
-          <label for = "figure"></label>
-          <div class="personal-image">
-            <label class="label">
-              <input type="file" />
-              <figure class="personal-figure">
-                <img src="../src/media/ANA MARIA BRAGA.jpg" class="personal-avatar" alt="avatar">
-                <figcaption class="personal-figcaption">
-                  <img alt="" src="https://raw.githubusercontent.com/ThiagoLuizNunes/angular-boilerplate/master/src/assets/imgs/camera-white.png">
-                </figcaption>
-              </figure>
-            </label>
-          </div>
-<!-- form 2 -->
-          <div class="form-content">
-            <form>
-              <div class="form-group">
-                <label for="username"> Nome</label>
-                <input id="username" type="text" name="username" required="required" />
-              </div>
-              <div class="form-group">
-                <label for="username">E-mail</label>
-                <input id="username" type="text" name="username" required="required" />
-              </div>
-              <div class="form-group">
-                <label for="username">Idade</label>
-                <input id="username" type="text" name="username" required="required" />
-              </div>
-              <div class="form-group">
-                <label for="password">Senha</label>
-                <input id="password" type="password" name="password" required="required" />
-              </div>
-              <div class="form-group">
-                <label for="password">Nova senha</label>
-                <input id="password" type="password" name="password" required="required" />
-              </div>
-              
-              <div class="form-group">
-                <button type="submit">Salvar</button>
-              </div>
-            </form>
-          </div>
+                        <div class="input-group">
+                            <label for="idade">Idade</label>
+                            <input type="number" id="idade" name="idade" placeholder="Digite a sua idade" required>
+                        </div>
+
+                        <div class="input-group position-relative">
+                            <label for="senha">Senha</label>
+                            <input type="password" id="senha" name="senha" placeholder="Digite sua senha" required>
+                            <span class="password-toggle" onclick="togglePassword()">
+                                <img id="eyeIcon" src="../src/media/closed-eyes.png" alt="Toggle Password Visibility">
+                            </span>
+                        </div>
+
+                        <div class="input-group position-relative">
+                            <label for="confirmarSenha">Confirmar Senha</label>
+                            <input type="password" id="confirmarSenha" name="confirmarSenha"
+                                placeholder="Confirme sua senha" required>
+                            <span class="password-toggle" onclick="toggleConfirmarSenha()">
+                                <img id="eyeIconConfirmarSenha" src="../src/media/closed-eyes.png"
+                                    alt="Toggle Confirmar Senha Visibility">
+                            </span>
+
+                        </div>
+
+                        <div class="input-group">
+                            <label for="imagem">Imagem de Perfil</label>
+                            <input type="file" id="imagem" name="imagem" accept="image/*" required>
+                        </div>
+
+                        <div class="input-group w50">
+                            <button type="button" class="btn-login" onclick="enviarFormulario()">Finalizar
+                                Cadastro</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
         </div>
-        <!-- form panel -->
 
-      </div>
-      <div class="pen-footer">
-        <a href="https://www.behance.net/gallery/30478397/Login-Form-UI-Library"
-          target="_blank">
-          <i class="material-icons">arrow_backward</i>View on Behance</a>
-          <a href="https://github.com/andyhqtran/UI-Library/tree/master/Login%20Form" target="_blank">View on Github<i
-            class="material-icons">arrow_forward</i></a></div>
+        <div id="bottom-bar"></div>
+    </div>
 
-
-            <div id="bottom-bar"></div>
-  </div>
-    
-
- 
-
-  
+    <script src="../src/js/script-ours-pages.js"></script>
 </body>
-<script src="../src/js/script-ours-pages.js" ></script>
 
 </html>
