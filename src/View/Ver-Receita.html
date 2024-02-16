@@ -3,9 +3,9 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="../src/css/default.css" />
-    <link rel="stylesheet" href="../src/css/style.css" />
-    <script src="../src/js/funcoes.js"></script>
+    <link rel="stylesheet" href="css/default.css" />
+    <link rel="stylesheet" href="css/style.css" />
+    <script src="js/funcoes.js"></script>
 
     <title>Receita</title>
   </head>
@@ -36,7 +36,6 @@
             massa intercaladas com molho de carne, queijo, presunto e molho de tomate. Essa receita é um verdadeiro de</p> -->
             <a
               target="_blank"
-              href="./Chefes.html"
               class="chef"
               onclick="ga('send', 'event', 'author', 'clic-author',)"
             ></a>
@@ -48,7 +47,7 @@
             <h1>Ingredientes</h1>
           </div>
           <div class="oia">
-            <img alt="" src="../src/media/icone.png" width="50px" />
+            <img alt="" src="media/icone.png" width="50px" />
             <h4 id="porcoes"></h4>
           </div>
           <div class="ll">
@@ -60,7 +59,7 @@
             <h1>Modo de preparo</h1>
           </div>
           <div class="pl">
-            <img alt="" src="../src/media/relogio.png" width="60px" />
+            <img alt="" src="media/relogio.png" width="60px" />
             <h4 style="margin-left: 5px" id="tempo"></h4>
           </div>
           <div class="op">
@@ -256,9 +255,12 @@
       });
     </script>
 
-    <script src="../src/js/script-ours-pages.js"></script>
+    <!-- <script src="../src/js/script-ours-pages.js"></script> -->
 
     <script defer>
+      topBar();
+      botaoResponsivo();
+      bottomBar();
       verificarAutenticacaoOffline();
       obterReceita();
       obterCards();

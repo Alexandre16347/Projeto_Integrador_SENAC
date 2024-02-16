@@ -6,9 +6,7 @@ import User from '../Model/User';
 
 class cadastroUsuario {
   async store(req, res) {
-    console.log(req.headers)
     const { Nome, idade, email, senha } = req.body;
-    console.log(req.body)
     const { filename } = req.file;
 
     try {
@@ -43,7 +41,6 @@ class cadastroUsuario {
 
       // Gerar um token temporário (session)
       const idTemp = uuidv4();
-      
 
       // Salvar o usuário no banco de dados com a senha criptografada
       usuarioCadastra = await User.create({
@@ -52,11 +49,8 @@ class cadastroUsuario {
         email,
         senha: hashedSenha,
         imagem: filename,
-        idTemp
+        idTemp,
       });
-
-      
-      
 
       return res.status(201).json({
         authenticated: true,
@@ -71,6 +65,7 @@ class cadastroUsuario {
 
   async login(req, res) {
     const { email, senha } = req.body;
+    console.log(req.body);
 
     try {
       // Verificar se o e-mail e a senha foram fornecidos
@@ -88,6 +83,7 @@ class cadastroUsuario {
       }
 
       // Verificar se a senha está correta
+      console.log(senha);
       const senhaCorreta = await bcrypt.compare(senha, usuario.senha);
       if (!senhaCorreta) {
         console.log('senha incorreta');
@@ -127,18 +123,20 @@ class cadastroUsuario {
       if (!usuario) {
         return res.status(404).json({ error: 'Usuário não encontrado' });
       }
-      return res.json({  usuario});
-  } catch (error) {
+      return res.json({ usuario });
+    } catch (error) {
       console.error('Erro ao buscar usuário por token:', error);
       return res.status(500).json({ error: 'Erro interno no servidor' });
     }
   }
 
   async buscarUser(req, res) {
+    const { id } = req.query;
+    console.log(req.query);
     try {
-      const id = req.query.id;
       const usuario = await User.findOne({ _id: id });
       if (!usuario) {
+        console.log('Usuário não encontrado')
         return res.status(404).json({ error: 'Usuário não encontrado' });
       }
       return res.json(usuario);
@@ -284,7 +282,7 @@ class cadastroUsuario {
       if (!usuario) {
         return res.status(404).json({ error: 'Usuário não encontrado' });
       }
-      return res.json({ message: 'ID Temporário válido' });
+      return res.json({ message: 'ID Temporário válido', idUser: usuario.id });
     } catch (error) {
       console.error('Erro na verificação do ID Temporário:', error);
       return res.status(500).json({ error: 'Erro interno no servidor' });

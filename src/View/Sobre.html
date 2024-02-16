@@ -3,10 +3,10 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="../src/css/default.css">
-  <link rel="stylesheet" href="../src/css/sobre.css">
-  <script src="../src/js/funcoes.js"></script>
-    <script>verificarAutenticacao();</script>
+  <link rel="stylesheet" href="css/default.css">
+  <link rel="stylesheet" href="css/sobre.css">
+  <script src="js/funcoes.js"></script>
+  <!-- <script>verificarAutenticacao();</script> -->
   <title>Sobre</title>
 </head>
 
@@ -21,8 +21,8 @@
       <div id="quadrado">
 
         <div id="img">
-          <img src="../src/media/senac_logo_branco.png" alt="">
-          
+          <img src="media/senac_logo_branco.png" alt="">
+
         </div>
 
         <div id="texto">
@@ -71,7 +71,13 @@
     <div id="bottom-bar"></div>
   </div>
 
-  <script src="../src/js/script-ours-pages.js"></script>
+  <!-- <script src="js/script-ours-pages.js"></script> -->
+  <script>
+    topBar();
+    botaoResponsivo();
+    bottomBar();
+    verificarAutenticacaoOffline();
+  </script>
 
 </body>
 

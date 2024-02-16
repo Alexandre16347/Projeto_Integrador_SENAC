@@ -1,56 +1,66 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="css/default.css" />
+    <link rel="stylesheet" href="css/login.css" />
+    <script src="js/funcoes.js"></script>
 
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link rel="stylesheet" href="../src/css/default.css" />
-  <link rel="stylesheet" href="../src/css/login.css">
-  <title>Login</title>
-</head>
+    <title>Login</title>
+  </head>
 
-<body>
-  <div id="container">
-    <div id="top-bar"></div>
+  <body>
+    <div id="container">
+      <div id="top-bar"></div>
 
-    <div id="content" class="recuperar-senha">
-      <div id="cont-recuperar">
-        <a href="https://www.senac.br/" class="logo">
-          <img src="../src/media/1200px-Senac_logo.svg.png" alt="" class="logo" />
-        </a>
-        <label for="email" id="txt-box">Faça Login na sua conta</label>
-        <div>
-          <label for="email" id="txt-box">Email</label>
-          <div id="pwd">
-            <input type="text" id="email" placeholder="Email" />
-            <img src="" alt="" />
+      <div id="content" class="recuperar-senha">
+        <div id="cont-recuperar">
+          <a href="https://www.senac.br/" class="logo">
+            <img src="media/1200px-Senac_logo.svg.png" alt="" class="logo" />
+          </a>
+          <label for="email" id="txt-box">Faça Login na sua conta</label>
+          <div>
+            <label for="email" id="txt-box">Email</label>
+            <div id="pwd">
+              <input type="text" id="email" placeholder="Email" />
+              <img src="" alt="" />
+            </div>
           </div>
-        </div>
 
-        <div class="input-group position-relative">
-          <label for="password" id="txt-box">Senha</label>
-          <div id="pwd">
-
-            <input type="password" id="senha" name="senha" placeholder="Digite sua senha" required>
-            <span class="password-toggle" onclick="togglePassword()">
-              <img id="eyeIcon" src="../src/media/closed-eyes.png"
-              alt="Toggle Password Visibility">
-            </span>
+          <div class="input-group position-relative">
+            <label for="password" id="txt-box">Senha</label>
+            <div id="pwd">
+              <input
+                type="password"
+                id="senha"
+                name="senha"
+                placeholder="Digite sua senha"
+                required
+              />
+              <span class="password-toggle" onclick="togglePassword()">
+                <img
+                  id="eyeIcon"
+                  src="media/closed-eyes.png"
+                  alt="Toggle Password Visibility"
+                />
+              </span>
+            </div>
           </div>
+          <button class="btn-login" onclick="login()">Entrar</button>
+          <a href="Recuperar-Senha.html" id="txt-box">Esqueci minha senha</a>
+          <a href="Cadastro" id="txt-box">Não possuo cadastro ainda</a>
         </div>
-        <button class="btn-login" onclick="login()">Entrar</button>
-        <a href="../pages/Recuperar-Senha.html" id="txt-box">Esqueci minha senha</a>
-        <a href="Cadastro.html" id="txt-box">Não possuo cadastro ainda</a>
       </div>
+
+      <div id="bottom-bar"></div>
     </div>
 
-    <div id="bottom-bar"></div>
-
-  </div>
-
-  <script src="../src/js/funcoes.js"></script>
-  <script src="../src/js/script-ours-pages.js"></script>
-  
-</body>
-
+    <script>
+      topBar();
+      botaoResponsivo();
+      bottomBar();
+    </script>
+    <!-- <script src="../src/js/script-ours-pages.js"></script> -->
+  </body>
 </html>

@@ -42,6 +42,7 @@ class App {
         );
 
         this.server.use(express.static(path.resolve(__dirname, '.', 'Public')));
+        this.server.use(express.static(path.resolve(__dirname, '.', 'Uploads')));
 
         // Habilita o uso de JSON para lidar com dados de requisição
         this.server.use(express.urlencoded({ extended: true }));

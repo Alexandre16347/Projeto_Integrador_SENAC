@@ -11,8 +11,43 @@ const routes = new Router();
 
 
 routes.get('/', (req,res)=>{
-    return res.json({msg: "Certinho"})
+    const caminho = path.resolve(__dirname, "View", "index.html")
+    return res.sendFile(caminho);
 });
+
+// Login de usuários
+routes.get('/Sobre', (req,res)=>{
+    const caminho = path.resolve(__dirname, "View", "Sobre.html")
+    return res.sendFile(caminho);
+});
+
+// Login de usuários
+routes.get('/Chefs', (req,res)=>{
+    const caminho = path.resolve(__dirname, "View", "Busca-Chef.html")
+    return res.sendFile(caminho);
+});
+
+// Login de usuários
+routes.get('/login', (req,res)=>{
+    const caminho = path.resolve(__dirname, "View", "Login.html")
+    return res.sendFile(caminho);
+});
+
+routes.get('/VerReceita', (req,res)=>{
+    const caminho = path.resolve(__dirname, "View", "Ver-Receita.html")
+    return res.sendFile(caminho);
+});
+
+routes.get('/Chef', (req,res)=>{
+    const caminho = path.resolve(__dirname, "View", "Chefes.html")
+    return res.sendFile(caminho);
+});
+
+routes.get('/Cadastro', (req,res)=>{
+    const caminho = path.resolve(__dirname, "View", "Cadastro.html")
+    return res.sendFile(caminho);
+});
+
 
 // Rotas para manipulação de cards
 routes.get('/cards', card.buscarCards);

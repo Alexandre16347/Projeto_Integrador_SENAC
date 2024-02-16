@@ -1,77 +1,60 @@
 <html lang="pt-Br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="css/default.css" />
+    <link rel="stylesheet" href="css/chefe.css" />
+    <script src="js/funcoes.js"></script>
+    <!-- <script>verificarAutenticacao();</script> -->
+    <title>Perfil do Chef</title>
+  </head>
 
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link rel="stylesheet" href="../src/css/default.css" />
-  <link rel="stylesheet" href="../src/css/chefe.css">
-  <script src="../src/js/funcoes.js"></script>
-  <!-- <script>verificarAutenticacao();</script> -->
-  <title>Perfil do Chef</title>
-</head>
+  <body>
+    <div id="container">
+      <div id="top-bar"></div>
 
-<body>
-  <div id="container">
-    <div id="top-bar"></div>
+      <div id="content" class="content">
+        <!-- <div id="area-chef"> -->
+        <div class="chefe"></div>
+        <div class="chef-avatar" id="chef-avatar">
+          <img src="media/user-image.jpg" alt="" class="img-avatar" />
+        </div>
+        <!-- </div> -->
+        <div class="nome"></div>
 
-    <div id="content" class="content">
-      <!-- <div id="area-chef"> -->
-      <div class="chefe"></div>
-      <div class="chef-avatar" id="chef-avatar">
-        <img src="../src/media/shumel.jpg" alt="" class="img-avatar">
-      </div>
-      <!-- </div> -->
-      <div class="nome">
-        Felipe
-      </div>
-
-      <div id="addreceita">
-        <button class="add" type="button">
-          <a id="txtAdd" href="../pages/cadastrar-receita.html">Adicionar receita</a>
-        </button>
-      </div>
-      <!-- <div id="butao">
+        <div id="addreceita"></div>
+        <!-- <div id="butao">
         <button class="bt" onclick="">Seguir</button>
         <button class="bt" onclick="">Curtir</button>
         <button class="bt" onclick="">Compartilhar</button>
       </div> -->
 
-      <div id="historico">
-        <label class="texto" for=""> Ultimas Receitas</label>
+        <div id="historico">
+          <label class="texto" for=""> Ultimas Receitas</label>
 
-        <div id="scrol-receitas">
-          <div id="recentes">
-
-            <div id="scrollcard-recente"></div>
-            
-
+          <div id="scrol-receitas">
+            <div id="recentes">
+              <div id="scrollcard-recente"></div>
+            </div>
           </div>
-
         </div>
+        <div id="linha"></div>
+        <label class="receitas-recentes" for="">Todas Receitas</label>
 
-      </div>
-      <div id="linha"></div>
-      <label class="receitas-recentes" for="">Todas Receitas</label>
-
-
-      <div id="scrollcard"></div>
-      <div id="deletar">
-        <button class="btt" type="button" onclick=" deletarUsuario()">Deletar conta</button>
+        <div id="scrollcard"></div>
+        <div id="deletar"></div>
       </div>
 
+      <div id="bottom-bar"></div>
     </div>
 
-    <div id="bottom-bar"></div>
-  </div>
-
-  <script>
-    deletarUsuario()
-    verificarAutenticacao()
-  obterListaDeCardsReceitaUsuario()
-  </script>
-  <script src="../src/js/script-ours-pages.js"></script>
-  <!-- <script src="../src/js/card.js"></script> -->
-  <!-- <script src="../src/js/script.js"></script> -->
-</body>
-
+    <script>
+      topBar();
+      botaoResponsivo();
+      bottomBar();
+      verificarAutenticacao();
+      obterUsuario();
+      obterListaDeCardsReceitaUsuario();
+    </script>
+  </body>
 </html>

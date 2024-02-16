@@ -1,3 +1,24 @@
+// Declarações de Variáveis Globais
+
+let logos_redes = [
+  'media/icon-facebook.png',
+  'media/instagram.png',
+  'media/twitter.png',
+  'media/linkedin.svg',
+  'media/youtube.png',
+];
+let href_redes = [
+  'https://www.facebook.com/SenacBrasil',
+  'https://www.instagram.com/senacbrasil/',
+  'https://twitter.com/SenacBrasil',
+  'https://www.linkedin.com/company/2655383',
+  'https://www.youtube.com/user/SenacNacional',
+];
+
+let tam_social = logos_redes.length;
+
+// Declarações de Funções
+
 // login.js
 function togglePassword() {
   var senhaInput = document.getElementById('senha');
@@ -5,9 +26,7 @@ function togglePassword() {
 
   senhaInput.type = senhaInput.type === 'password' ? 'text' : 'password';
   eyeIcon.src =
-    senhaInput.type === 'password'
-      ? '../src/media/closed-eyes.png'
-      : '../src/media/eye.png';
+    senhaInput.type === 'password' ? 'media/closed-eyes.png' : 'media/eye.png';
 }
 
 async function login() {
@@ -30,7 +49,7 @@ async function login() {
   }
 
   try {
-    const response = await fetch('http://localhost:3333/login', {
+    const response = await fetch('/login', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -48,7 +67,7 @@ async function login() {
         definirCookie('token', data.session); // Armazena o token por 1 hora
 
         // Redirecionar para a página principal
-        window.location.href = '../index.html';
+        window.location.href = '/';
       } else {
         console.log(response.message);
         alert('Credenciais inválidas');
@@ -109,7 +128,7 @@ async function enviarFormulario() {
   console.log(formData);
 
   try {
-    const response = await fetch('http://localhost:3333/user', {
+    const response = await fetch('/user', {
       method: 'POST',
       body: formData,
     });
@@ -117,7 +136,7 @@ async function enviarFormulario() {
     if (response.ok) {
       console.log('Cadastro realizado com sucesso!');
 
-      window.location.href = 'Login.html'; // Redirecionar para a página principal
+      window.location.href = 'Login'; // Redirecionar para a página principal
     } else {
       console.error('Erro no cadastro:', response.statusText);
     }
@@ -130,7 +149,7 @@ async function enviarFormulario() {
 async function obterDadosDoUsuario() {
   try {
     const response = await fetch(
-      'http://localhost:3333/buscaUserId?id=65b04f41f6ba41959921ee8e',
+      '/buscaUserId',
       {
         method: 'GET',
         headers: {
@@ -157,15 +176,15 @@ async function obterDadosDoUsuario() {
   }
 }
 
-async function obterReceita() {
+async function obterUsuario() {
+
   // Extrai o ID da receita da query da URL
   const urlParams = new URLSearchParams(window.location.search);
-  const idDaReceita = urlParams.get('id');
+  const idDoUser = urlParams.get('id');
 
   try {
-    // Faz uma solicitação GET para a rota no backend
     const response = await fetch(
-      `http://localhost:3333/receita?id=${idDaReceita}`,
+      `/buscaUserId?id=${idDoUser}`,
       {
         method: 'GET',
         headers: {
@@ -176,6 +195,62 @@ async function obterReceita() {
     );
 
     if (response.ok) {
+      // Se a resposta estiver OK, obtenha os dados do usuário
+      const dadosUsuario = await response.json();
+      // console.log('Dados do usuário:', dadosUsuario);
+
+      // Faça algo com os dados do usuário, por exemplo, atualize a interface do usuário
+      document.getElementsByClassName('img-avatar')[0].src = `${dadosUsuario.imagem}`;
+      document.getElementsByClassName('Nome')[0].textContent = `${dadosUsuario.Nome}`;
+
+      // Verifica se o usuário está autenticado
+      const token = document.cookie.split('=')[1];
+
+      if (token && token == dadosUsuario.idTemp) {
+
+        // console.log("Esse é o meu perfil")
+
+        let botaoDel = document.createElement('button')
+        botaoDel.setAttribute("class", "btt")
+        botaoDel.setAttribute("type", "button")
+        botaoDel.textContent = "Deletar Conta"
+        
+
+        document.getElementById("deletar").append(botaoDel)
+
+        // <button class="btt" type="button" onclick=" deletarUsuario()">
+        //     Deletar conta
+        //   </button>
+
+      }
+
+      // Adicione outras manipulações conforme necessário
+    } else {
+      
+      console.error('Erro ao obter dados do usuário:', response.statusText);
+    }
+  } catch (error) {
+    // location.window("/")
+    console.error('Erro na solicitação:', error);
+  }
+}
+
+async function obterReceita() {
+  // Extrai o ID da receita da query da URL
+  const urlParams = new URLSearchParams(window.location.search);
+  const idDaReceita = urlParams.get('id');
+
+  try {
+    // Faz uma solicitação GET para a rota no backend
+    const response = await fetch(`/receita?id=${idDaReceita}`, {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+        // Adicione cabeçalhos adicionais, se necessário
+      },
+    });
+
+    if (response.ok) {
       // Se a resposta estiver OK, obtenha os dados da receita
       const dadosReceita = await response.json();
 
@@ -183,9 +258,7 @@ async function obterReceita() {
 
       document.getElementsByClassName('titulo-receita')[0].textContent =
         dadosReceita.Titulo;
-      document.getElementById(
-        'img',
-      ).src = `../backend/src/Uploads/${dadosReceita.imagem}`;
+      document.getElementById('img').src = `${dadosReceita.imagem}`;
       document.getElementById(
         'porcoes',
       ).textContent = `Serve ${dadosReceita.porcoes} \n porção(ões)`;
@@ -193,6 +266,9 @@ async function obterReceita() {
         dadosReceita.descricao;
       document.getElementsByClassName('chef')[0].textContent =
         dadosReceita.nomeDoChef;
+
+      document.getElementsByClassName('chef')[0].href =
+        `/Chef?id=${dadosReceita.user}`;
 
       let lista_ingredientes = document.getElementById('ingredientes');
 
@@ -206,9 +282,8 @@ async function obterReceita() {
         lista_ingredientes.append(ingrediente);
       }
 
-      document.getElementById('tempo').textContent = `${
-        dadosReceita.tempo ? dadosReceita.tempo : 0
-      } min`;
+      document.getElementById('tempo').textContent = `${dadosReceita.tempo ? dadosReceita.tempo : 0
+        } min`;
 
       let lista_modo = document.getElementById('modo');
 
@@ -269,7 +344,7 @@ async function obterListaDeCardsReceitaUsuario() {
         div_img.setAttribute('class', 'div-img');
 
         let img_card = document.createElement(`img`);
-        img_card.setAttribute('src', `../backend/src/Uploads/${cards.imagem}`);
+        img_card.setAttribute('src', `Uploads/${cards.imagem}`);
         img_card.setAttribute('class', 'img-card');
 
         div_img.append(img_card);
@@ -281,8 +356,8 @@ async function obterListaDeCardsReceitaUsuario() {
 
         let img_avatar = document.createElement(`img`);
         const foto = !cards.fotoDoChef
-          ? '../src/media/shumel.jpg'
-          : `../backend/src/Uploads/${cards.fotoDoChef}`;
+          ? 'media/shumel.jpg'
+          : `Uploads/${cards.fotoDoChef}`;
         img_avatar.setAttribute('src', foto);
         img_avatar.setAttribute('class', 'img-avatar');
 
@@ -294,14 +369,14 @@ async function obterListaDeCardsReceitaUsuario() {
         txt_card.append(`${cards.Titulo}`);
         txt_card.setAttribute('class', 'btn-card');
         txt_card.addEventListener('click', function () {
-          window.location.href = `/pages/Ver-Receita.html?id=${cards.idReceita}`;
+          window.location.href = `VerReceita?id=${cards.idReceita}`;
         });
 
         card.append(txt_card);
 
         let txt_chef = document.createElement(`a`);
         txt_chef.append(`Por ${cards.nomeDoChef}`);
-        txt_chef.setAttribute('href', '/pages/Chefes.html');
+        txt_chef.setAttribute('href', `Chef?id=${cards.idReceita}`);
         txt_chef.setAttribute('class', 'txt-chef');
 
         card.append(txt_chef);
@@ -329,7 +404,7 @@ async function obterListaDeCardsReceitaUsuario() {
       div_img.setAttribute('class', 'div-img');
 
       let img_card = document.createElement(`img`);
-      img_card.setAttribute('src', `../backend/src/Uploads/${cards.imagem}`);
+      img_card.setAttribute('src', `Uploads/${cards.imagem}`);
       img_card.setAttribute('class', 'img-card');
 
       div_img.append(img_card);
@@ -341,8 +416,8 @@ async function obterListaDeCardsReceitaUsuario() {
 
       let img_avatar = document.createElement(`img`);
       const foto = !cards.fotoDoChef
-        ? '../src/media/shumel.jpg'
-        : `../backend/src/Uploads/${cards.fotoDoChef}`;
+        ? 'media/shumel.jpg'
+        : `Uploads/${cards.fotoDoChef}`;
       img_avatar.setAttribute('src', foto);
       img_avatar.setAttribute('class', 'img-avatar');
 
@@ -354,14 +429,14 @@ async function obterListaDeCardsReceitaUsuario() {
       txt_card.append(`${cards.Titulo}`);
       txt_card.setAttribute('class', 'btn-card');
       txt_card.addEventListener('click', function () {
-        window.location.href = `/pages/Ver-Receita.html?id=${cards.idReceita}`;
+        window.location.href = `VerReceita?id=${cards.idReceita}`;
       });
 
       card.append(txt_card);
 
       let txt_chef = document.createElement(`a`);
       txt_chef.append(`Por ${cards.nomeDoChef}`);
-      txt_chef.setAttribute('href', '/pages/Chefes.html');
+      txt_chef.setAttribute('href', 'Chefes.html');
       txt_chef.setAttribute('class', 'txt-chef');
 
       card.append(txt_chef);
@@ -387,7 +462,7 @@ async function obterListaDeCardsReceitaUsuario() {
 // Função para obter dados do usuário
 async function obterCards() {
   try {
-    const response = await fetch('http://localhost:3333/cards', {
+    const response = await fetch('/cards', {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json',
@@ -417,7 +492,7 @@ async function obterCards() {
         div_img.setAttribute('class', 'div-img');
 
         let img_card = document.createElement(`img`);
-        img_card.setAttribute('src', `../backend/src/Uploads/${cards.imagem}`);
+        img_card.setAttribute('src', `${cards.imagem}`);
         img_card.setAttribute('class', 'img-card');
 
         div_img.append(img_card);
@@ -429,8 +504,8 @@ async function obterCards() {
 
         let img_avatar = document.createElement(`img`);
         const foto = !cards.fotoDoChef
-          ? '../src/media/user-image.jpg'
-          : `../backend/src/Uploads/${cards.fotoDoChef}`;
+          ? 'media/user-image.jpg'
+          : `${cards.fotoDoChef}`;
         img_avatar.setAttribute('src', foto);
         img_avatar.setAttribute('class', 'img-avatar');
 
@@ -442,14 +517,17 @@ async function obterCards() {
         txt_card.append(`${cards.Titulo}`);
         txt_card.setAttribute('class', 'btn-card');
         txt_card.addEventListener('click', function () {
-          window.location.href = `/pages/Ver-Receita.html?id=${cards.idReceita}`;
+          window.location.href = `/VerReceita?id=${cards.idReceita}`;
         });
 
         card.append(txt_card);
 
         let txt_chef = document.createElement(`a`);
         txt_chef.append(`Por ${cards.nomeDoChef}`);
-        txt_chef.setAttribute('href', '/pages/Chefes.html');
+        // txt_card.addEventListener('click', function () {
+        //   window.location.href = `/Chef?id=${cards.idUsuario}`;
+        // });
+        txt_chef.setAttribute('href', `/Chef?id=${cards.idUsuario}`);
         txt_chef.setAttribute('class', 'txt-chef');
 
         card.append(txt_chef);
@@ -471,10 +549,21 @@ async function verificarAutenticacaoOffline() {
   const token = document.cookie.split('=')[1];
 
   if (token) {
+
+    const response = await fetch('/verificar-token', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: token,
+      },
+    });
+
+    const dados = await response.json();
+
     // Altera o texto do botão de "Login" para "Perfil"
     document.getElementById('botao-login').textContent = 'Perfil';
     // Atualiza o link do botão para a página do perfil
-    document.getElementById('botao-login').href = '/pages/Chefes.html';
+    document.getElementById('botao-login').href = `Chef?id=${dados.idUser}`;
     addLogout('token');
     return;
   }
@@ -486,12 +575,12 @@ async function verificarAutenticacao() {
 
   if (!token) {
     // Se não houver token, redireciona para a página de login
-    window.location.href = '/pages/Login.html';
+    window.location.href = 'Login';
     return;
   }
 
   try {
-    const response = await fetch('http://localhost:3333/verificar-token', {
+    const response = await fetch('/verificar-token', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -501,18 +590,19 @@ async function verificarAutenticacao() {
 
     if (response.ok) {
       // Se o token for válido, o usuário está autenticado
-      console.log('Usuário autenticado');
+      // console.log('Usuário autenticado');
+      const dados = await response.json();
       // console.log(document.getElementById('botao-login'))
 
       // Altera o texto do botão de "Login" para "Perfil"
       document.getElementById('botao-login').textContent = 'Perfil';
       // Atualiza o link do botão para a página do perfil
-      document.getElementById('botao-login').href = './Chefes.html';
+      document.getElementById('botao-login').href = `Chef?id=${dados.idUser}`;
 
       addLogout('token');
     } else {
       // Se o token não for válido, redireciona para a página de login
-      window.location.href = './Login.html';
+      window.location.href = 'Login';
     }
   } catch (error) {
     console.error('Erro na verificação de autenticação:', error);
@@ -521,13 +611,13 @@ async function verificarAutenticacao() {
 }
 
 function addLogout(nomeDoCookie) {
-  console.log('Criei');
+  // console.log('Criei');
 
   let barra_menu = document.getElementById('top-bar');
 
   let a_perfil = document.createElement(`a`);
   a_perfil.setAttribute('class', 'btn-logout');
-  a_perfil.setAttribute('addClickEvent', './pages/Chefes.html');
+  a_perfil.setAttribute('addClickEvent', 'Chef');
 
   // Adiciona um evento de clique para chamar a função apagarCookie com o nome do cookie
   a_perfil.addEventListener('click', function () {
@@ -536,7 +626,7 @@ function addLogout(nomeDoCookie) {
 
   let img_user = document.createElement(`img`);
   img_user.setAttribute('class', 'img-logout');
-  img_user.setAttribute('src', '/src/media/logout.png');
+  img_user.setAttribute('src', 'media/logout.png');
 
   a_perfil.appendChild(img_user);
   barra_menu.append(a_perfil);
@@ -554,12 +644,12 @@ async function buscaUser() {
 
   if (!token) {
     // Se não houver token, redireciona para a página de login
-    window.location.href = '/pages/Login.html';
+    window.location.href = 'Login';
     return {};
   }
 
   try {
-    const response = await fetch('http://localhost:3333/buscaUserToken', {
+    const response = await fetch('/buscaUserToken', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -571,11 +661,11 @@ async function buscaUser() {
 
     if (response.ok) {
       // Se o token for válido, o usuário está autenticado
-      console.log('Usuário Identificado');
+      // console.log('Usuário Identificado');
       return { usuario };
     } else {
       // Se o token não for válido, redireciona para a página de login
-      window.location.href = '/pages/Login.html';
+      window.location.href = 'Login';
       return;
     }
   } catch (error) {
@@ -681,4 +771,329 @@ function obterItens() {
   const itens = Array.from(listaElement.children).map((li) => li.textContent);
   console.log('Ingredientes:', itens);
   return itens;
+}
+
+function topBar() {
+  // *******************************************************************************************************************************************
+  // TOP BAR
+
+  let top_bar = document.getElementById('top-bar');
+  let barra_menu = document.createDocumentFragment();
+
+  let a_logo = document.createElement(`a`);
+  a_logo.setAttribute('class', 'logo');
+  a_logo.setAttribute('href', 'https://www.senac.br/');
+
+  let img_logo = document.createElement(`img`);
+  img_logo.setAttribute('src', 'media/1200px-Senac_logo.svg.png');
+  img_logo.setAttribute('class', 'logo');
+
+  a_logo.append(img_logo);
+
+  let container_menu = document.createElement(`ul`);
+  container_menu.setAttribute('class', 'container-menu');
+
+  barra_menu.append(a_logo);
+
+  const botoes_menu = ['O Senac', 'Início', 'Chefes', 'Sobre', 'Login'];
+  const paginas_menu = [
+    'https://www.senac.br/',
+    '/',
+    'Chefs',
+    'Sobre',
+    'Login',
+  ];
+
+  let tam = botoes_menu.length;
+
+  for (let i = 0; i < tam; i++) {
+    let pagina = `${paginas_menu[i]}`;
+
+    let li = document.createElement(`li`);
+
+    let botao = document.createElement(`a`);
+    botao.append(botoes_menu[i]);
+    if (i == 4) {
+      botao.setAttribute('id', 'botao-login');
+    }
+    botao.setAttribute('href', pagina);
+    botao.setAttribute('class', 'btn-menu');
+
+    li.append(botao);
+
+    // let button = document.createElement(`button`);
+    // button.append(botoes_menu[i]);
+    // button.setAttribute("class", "btn-menu");
+
+    // botao.append(button);
+    container_menu.append(li);
+  }
+
+  barra_menu.append(container_menu);
+
+  let li_redes = document.createElement(`li`);
+  let container_redes2 = document.createElement(`div`);
+  container_redes2.setAttribute('class', 'container-rede2');
+
+  for (let i = 0; i < tam_social; i++) {
+    let link_social = `${href_redes[i]}`;
+    let img_rede = `${logos_redes[i]}`;
+    let rede = document.createElement(`a`);
+    rede.setAttribute('href', link_social);
+    let btn_rede = document.createElement(`button`);
+    btn_rede.setAttribute('class', 'btn-social');
+    let img_social = document.createElement(`img`);
+    img_social.setAttribute('class', 'img-social');
+    img_social.setAttribute('src', img_rede);
+
+    btn_rede.append(img_social);
+    rede.append(btn_rede);
+    container_redes2.append(rede);
+  }
+
+  li_redes.append(container_redes2);
+
+  container_menu.append(li_redes);
+
+  barra_menu.append(container_menu);
+
+  /* <div id="top-bar">
+  <div class="mobile-menu">
+    <div class="line1"></div>
+    <div class="line2"></div>
+    <div class="line3"></div>
+  </div>
+</div> */
+
+  let buttonBar = document.createElement(`div`);
+  buttonBar.setAttribute('class', 'mobile-menu');
+
+  let line1 = document.createElement(`div`);
+  line1.setAttribute('class', 'line1');
+  let line2 = document.createElement(`div`);
+  line2.setAttribute('class', 'line2');
+  let line3 = document.createElement(`div`);
+  line3.setAttribute('class', 'line3');
+
+  buttonBar.append(line1);
+  buttonBar.append(line2);
+  buttonBar.append(line3);
+
+  barra_menu.append(buttonBar);
+
+  let container_redes = document.createElement(`div`);
+  container_redes.setAttribute('class', 'container-redes');
+
+  for (let i = 0; i < tam_social; i++) {
+    let link_social = `${href_redes[i]}`;
+    let img_rede = `${logos_redes[i]}`;
+    let rede = document.createElement(`a`);
+    rede.setAttribute('href', link_social);
+    let btn_rede = document.createElement(`button`);
+    btn_rede.setAttribute('class', 'btn-social');
+    let img_social = document.createElement(`img`);
+    img_social.setAttribute('class', 'img-social');
+    img_social.setAttribute('src', img_rede);
+
+    btn_rede.append(img_social);
+    rede.append(btn_rede);
+    container_redes.append(rede);
+  }
+
+  barra_menu.append(container_redes);
+
+  top_bar.append(barra_menu);
+}
+
+function botaoResponsivo() {
+  // *******************************************************************************************************************************************
+  // Funcionalidade da responsividade
+
+  class MobileNavbar {
+    constructor(mobileMenu, containerMenu, navLinks) {
+      this.mobileMenu = document.querySelector(mobileMenu);
+      this.containerMenu = document.querySelector(containerMenu);
+      this.navLinks = document.querySelectorAll(navLinks);
+      this.activeClass = 'active';
+
+      this.handleClick = this.handleClick.bind(this);
+    }
+
+    animateLinks() {
+      this.navLinks.forEach((link, index) => {
+        // console.log("Hey 👀");
+        link.style.animation
+          ? (link.style.animation = '')
+          : (link.style.animation = `navLinkFade 0.5s ease forwards ${index / 7 + 0.5
+            }s`);
+      });
+    }
+
+    handleClick() {
+      this.containerMenu.classList.toggle(this.activeClass);
+      this.mobileMenu.classList.toggle(this.activeClass);
+      this.animateLinks();
+    }
+
+    addClickEvent() {
+      this.mobileMenu.addEventListener('click', this.handleClick);
+    }
+
+    init() {
+      if (this.mobileMenu) {
+        this.addClickEvent();
+      }
+      return this;
+    }
+  }
+
+  const mobileNavbar = new MobileNavbar(
+    '.mobile-menu',
+    '.container-menu',
+    '.container-menu li',
+  );
+
+  mobileNavbar.init();
+}
+
+function bottomBar() {
+  // *******************************************************************************************************************************************
+  // BOTTOM BAR
+
+  let bottom_bar = document.getElementById('bottom-bar');
+  let barra_bottom = document.createDocumentFragment();
+
+  let a_logo_b = document.createElement(`a`);
+  a_logo_b.setAttribute('class', 'logo');
+  a_logo_b.setAttribute('href', 'https://www.senac.br/');
+
+  let img_logo_b = document.createElement(`img`);
+  img_logo_b.setAttribute('src', 'media/senac_logo_branco.png');
+  img_logo_b.setAttribute('class', 'logo');
+
+  a_logo_b.append(img_logo_b);
+
+  barra_bottom.append(a_logo_b);
+
+  let txt_direitos = document.createElement(`label`);
+  txt_direitos.append('© Todos os Direitos Reservados - 2017.');
+  txt_direitos.setAttribute('class', 'txt');
+
+  barra_bottom.append(txt_direitos);
+
+  let container_redes_b = document.createElement(`div`);
+  container_redes_b.setAttribute('class', 'container-redes');
+
+  // let logos_redes = ["src/media/icon-facebook.png", "src/media/instagram.png", "src/media/twitter.png", "src/media/linkedin.svg", "src/media/youtube.png"];
+  // let href_redes = ["https://www.facebook.com/SenacBrasil", "https://www.instagram.com/senacbrasil/", "https://twitter.com/SenacBrasil", "https://www.linkedin.com/company/2655383", "https://www.youtube.com/user/SenacNacional"]
+
+  // let tam_social = logos_redes.length;
+
+  for (let i = 0; i < tam_social; i++) {
+    let link_social = `${href_redes[i]}`;
+    let img_rede = `${logos_redes[i]}`;
+    let rede = document.createElement(`a`);
+    rede.setAttribute('href', link_social);
+    let btn_rede = document.createElement(`button`);
+    btn_rede.setAttribute('class', 'btn-social');
+    let img_social = document.createElement(`img`);
+    img_social.setAttribute('class', 'img-social');
+    img_social.setAttribute('src', img_rede);
+
+    btn_rede.append(img_social);
+    rede.append(btn_rede);
+    container_redes_b.append(rede);
+    //   bottom_bar.append(container_redes_b)
+  }
+
+  barra_bottom.append(container_redes_b);
+
+  bottom_bar.append(barra_bottom);
+}
+
+function areaSearch() {
+  // *******************************************************************************************************************************************
+  // Area Search
+
+  let areaSearch = document.getElementById('areaSearch');
+
+  let area = document.createDocumentFragment();
+
+  // <div id="areaSearch">
+  //     <div id="divSearch">
+  //     <img src="src/media/search3.png" alt="Buscar..."/>
+  //     <input type="text" id="txtSearch" placeholder="Buscar..."/>
+  //     <button id="btnSearch">Buscar</button>
+  //     </div>
+  // </div>
+
+  // let areaSearch = document.createElement(`div`);
+  // areaSearch.setAttribute("id", "areaSearch");
+
+  let divSearch = document.createElement(`div`);
+  divSearch.setAttribute('id', 'divSearch');
+
+  let imgSearch = document.createElement(`img`);
+  imgSearch.setAttribute('alt', 'Buscar...');
+  imgSearch.setAttribute('src', 'media/search3.png');
+
+  let txtSearch = document.createElement(`input`);
+  txtSearch.setAttribute('id', 'txtSearch');
+  txtSearch.setAttribute('type', 'text');
+  txtSearch.setAttribute('placeholder', 'Buscar...');
+
+  let btnSearch = document.createElement(`button`);
+  btnSearch.append('Buscar');
+  btnSearch.setAttribute('id', 'btnSearch');
+
+  divSearch.append(imgSearch);
+  divSearch.append(txtSearch);
+  divSearch.append(btnSearch);
+
+  area.append(divSearch);
+
+  areaSearch.append(area);
+}
+
+function areaCategorias() {
+  // *******************************************************************************************************************************************
+  // Area Categorias
+
+  const categorias = [
+    'Salgados',
+    'Doces',
+    'Massas',
+    'Bebidas',
+    'Sobremesas',
+    'Confeitaria',
+    'Saladas',
+    'Refeições',
+    'Comidas Rápidas',
+    'Sopas',
+    'Farofas',
+    'Drinks',
+    'Sorvetes',
+  ];
+
+  let tam_cat = categorias.length;
+
+  let cont_cat = document.getElementById('cont-categorias');
+  let area_cat = document.createDocumentFragment();
+
+  // let container_cat = document.createElement(`div`)
+  // container_cat.setAttribute('class', 'cont-categorias')
+
+  for (let i = 0; i < tam_cat; i++) {
+    let cat = document.createElement(`a`);
+    // cat.setAttribute('href', '')
+
+    let btn_cat = document.createElement(`button`);
+    btn_cat.append(categorias[i]);
+    btn_cat.setAttribute('class', 'btn-menu');
+
+    cat.append(btn_cat);
+    area_cat.append(cat);
+  }
+
+  cont_cat.append(area_cat);
 }
