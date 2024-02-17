@@ -32,8 +32,9 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 400px;
-    height: 50px;
+    width: auto;
+    height: auto;
+    padding: 4mm;
     background-color: 00488a;
     color: aliceblue;
     border-radius: 15px;
@@ -157,6 +158,13 @@
  transform: rotate(720deg);
  transition: 2s ;
 }
+
+.btn-card{
+    width: auto;
+    height: auto;
+    padding: 3mm;
+}
+
 /* #recentess {
     display: flex;
     flex-wrap: wrap;

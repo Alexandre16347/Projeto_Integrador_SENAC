@@ -467,11 +467,12 @@ body {
 }
 
 .btn-card {
+
   font-weight: bold;
   width: 85%;
   flex-wrap: wrap;
   text-align: center;
-  font-size: larger;
+  font-size: medium;
   max-height: 60px;
   padding: 2mm;
   background-color: #f78b1f;

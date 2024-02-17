@@ -4,9 +4,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../src/css/default.css">
-    <link rel="stylesheet" href="../src/css/cadastro-receita.css">
-    <script src="../src/js/funcoes.js"></script>
+    <link rel="stylesheet" href="css/default.css">
+    <link rel="stylesheet" href="css/cadastro-receita.css">
+    <script src="js/funcoes.js"></script>
     <script>verificarAutenticacao();</script>
     <title>Cadastro de Receitas</title>
 </head>
@@ -24,7 +24,7 @@
                     <form id="receitaForm" enctype="multipart/form-data">
 
                         <div id="quadrado1">
-                             
+
                             <div class="input-group">
                                 <label for="Titulo"> Título:</label>
                                 <input type="text" id="titulo" name="Titulo" placeholder="Digite o título" required>
@@ -34,7 +34,7 @@
                                 <label for="tempo">Tempo de Preparo (minutos):</label>
                                 <input type="number" id="tempo" name="tempo" placeholder="Digite o tempo de preparo">
                             </div>
-                          
+
                             <br><br>
                             <div class="input-group">
                                 <label for="porcoes">Numero de porções:</label>
@@ -52,11 +52,12 @@
                                 <label for="imagem">Imagem de Perfil:&nbsp; </label>
                                 <input type="file" id="imagem" name="imagem" accept="image/*" required>
                             </div>
-                         
+
 
                         </div>
 
-                        <label class="txt">Tipos de refeição (p. ex.: refeições principais, sobremesas, bebidas): </label>
+                        <label class="txt">Tipos de refeição (p. ex.: refeições principais, sobremesas, bebidas):
+                        </label>
 
                         <div id="categoria">
                             <div class="input-group">
@@ -99,8 +100,13 @@
     <!-- <script>
         enviarFormularioReceita()
     </script> -->
+    <script>
+        topBar();
+        botaoResponsivo();
+        bottomBar();
+    </script>
 
-    <script src="../src/js/script-ours-pages.js"></script>
+    <!-- <script src="../src/js/script-ours-pages.js"></script> -->
 </body>
 
 </html>

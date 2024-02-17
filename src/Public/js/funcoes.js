@@ -374,19 +374,19 @@ async function obterListaDeCardsReceitaUsuario() {
 
         card.append(div_img);
 
-        let div_chef = document.createElement('div');
-        div_chef.setAttribute('class', 'chef-avatar');
+        // let div_chef = document.createElement('div');
+        // div_chef.setAttribute('class', 'chef-avatar');
 
-        let img_avatar = document.createElement(`img`);
-        const foto = !cards.fotoDoChef
-          ? 'media/shumel.jpg'
-          : `Uploads/${cards.fotoDoChef}`;
-        img_avatar.setAttribute('src', foto);
-        img_avatar.setAttribute('class', 'img-avatar');
+        // let img_avatar = document.createElement(`img`);
+        // const foto = !cards.fotoDoChef
+        //   ? 'media/shumel.jpg'
+        //   : `Uploads/${cards.fotoDoChef}`;
+        // img_avatar.setAttribute('src', foto);
+        // img_avatar.setAttribute('class', 'img-avatar');
 
-        div_chef.append(img_avatar);
+        // div_chef.append(img_avatar);
 
-        card.append(div_chef);
+        // card.append(div_chef);
 
         let txt_card = document.createElement(`button`);
         txt_card.append(`${cards.Titulo}`);
@@ -397,12 +397,12 @@ async function obterListaDeCardsReceitaUsuario() {
 
         card.append(txt_card);
 
-        let txt_chef = document.createElement(`a`);
-        txt_chef.append(`Por ${cards.nomeDoChef}`);
-        txt_chef.setAttribute('href', `Chef?id=${cards.idReceita}`);
-        txt_chef.setAttribute('class', 'txt-chef');
+        // let txt_chef = document.createElement(`a`);
+        // txt_chef.append(`Por ${cards.nomeDoChef}`);
+        // txt_chef.setAttribute('href', `Chef?id=${cards.idReceita}`);
+        // txt_chef.setAttribute('class', 'txt-chef');
 
-        card.append(txt_chef);
+        // card.append(txt_chef);
 
         area_cardss.append(card);
       }

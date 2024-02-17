@@ -53,6 +53,12 @@ routes.get('/PerfilEditar', (req,res)=>{
     return res.sendFile(caminho);
 });
 
+routes.get('/cadastar-receita.html', (req,res)=>{
+    const caminho = path.resolve(__dirname, "View", "cadastrar-receita.html")
+    return res.sendFile(caminho);
+});
+
+
 
 // Rotas para manipulação de cards
 routes.get('/cards', card.buscarCards);
