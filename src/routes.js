@@ -60,6 +60,7 @@ routes.get('/cadastar-receita.html', (req,res)=>{
 
 
 
+
 // Rotas para manipulação de cards
 routes.get('/cards', card.buscarCards);
 

@@ -53,12 +53,12 @@
 #addreceita {
     margin-top: 3mm;
     height: 40px;
-    width: 100%;
+    width: auto;
     display: flex;
     justify-content: center;
 }
 
-.add {
+#add {
     padding: 3mm;
     border-radius: 10px;
 
