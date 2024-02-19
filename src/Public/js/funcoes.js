@@ -304,9 +304,8 @@ async function obterReceita() {
         lista_ingredientes.append(ingrediente);
       }
 
-      document.getElementById('tempo').textContent = `${
-        dadosReceita.tempo ? dadosReceita.tempo : 0
-      } min`;
+      document.getElementById('tempo').textContent = `${dadosReceita.tempo ? dadosReceita.tempo : 0
+        } min`;
 
       let lista_modo = document.getElementById('modo');
 
@@ -946,8 +945,7 @@ function botaoResponsivo() {
         // console.log("Hey 👀");
         link.style.animation
           ? (link.style.animation = '')
-          : (link.style.animation = `navLinkFade 0.5s ease forwards ${
-              index / 7 + 0.5
+          : (link.style.animation = `navLinkFade 0.5s ease forwards ${index / 7 + 0.5
             }s`);
       });
     }
@@ -1082,20 +1080,37 @@ function areaCategorias() {
   // *******************************************************************************************************************************************
   // Area Categorias
 
+  // const categorias = [
+  //   'Salgados',
+  //   'Doces',
+  //   'Massas',
+  //   'Bebidas',
+  //   'Sobremesas',
+  //   'Confeitaria',
+  //   'Saladas',
+  //   'Refeições',
+  //   'Comidas Rápidas',
+  //   'Sopas',
+  //   'Farofas',
+  //   'Drinks',
+  //   'Sorvetes',
+  // ];
   const categorias = [
-    'Salgados',
-    'Doces',
-    'Massas',
-    'Bebidas',
-    'Sobremesas',
-    'Confeitaria',
-    'Saladas',
-    'Refeições',
-    'Comidas Rápidas',
-    'Sopas',
-    'Farofas',
-    'Drinks',
-    'Sorvetes',
+    "Bolos",
+    "Tortas",
+    "Salgados",
+    "Doces",
+    "Massas",
+    "Sobremesas",
+    "Confeitaria",
+    "Saladas",
+    "Refeições",
+    "Comidas Rápidas",
+    "Carnes",
+    "Sopas",
+    "Farofas",
+    "Bebidas",
+    "Sorvetes"
   ];
 
   let tam_cat = categorias.length;

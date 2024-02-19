@@ -69,7 +69,7 @@
           <h1>Categorias Relacionadas</h1>
         </header>
         
-        <div class="listas">
+        <!-- <div class="listas">
           
             <a href="Chefes.html" class="button-categorias"
               onclick="ga('send', 'event', 'seo-tagcloud', 'clic-tags',  'Bolos e tortas doces' + this.href)">Bolos e
@@ -128,7 +128,9 @@
               Bolo sem Glúten
             </a>
           
-          </div>
+          </div> -->
+          <div id="cont-categorias"></div><br>
+          <div id="scrollcard"></div>
       </section>
       <!-- <div class="cardis">
 
@@ -187,9 +189,9 @@
         </div>
       </div> -->
 
+
       <h1 style="font-size: 25px">- Você também pode gostar -</h1>
 
-      <div id="scrollcard"></div>
     </div>
 
     <div id="bottom-bar"></div>
@@ -219,6 +221,7 @@
     verificarAutenticacaoOffline();
     obterReceita();
     obterCards();
+    areaCategorias();
   </script>
 </body>
 

@@ -58,6 +58,12 @@ routes.get('/cadastrarReceita', (req,res)=>{
     return res.sendFile(caminho);
 });
 
+routes.get('/Categorias', (req,res)=>{
+    const caminho = path.resolve(__dirname, "View", "Categorias.html")
+    return res.sendFile(caminho);
+});
+
+
 
 
 
