@@ -727,6 +727,18 @@ async function enviarFormularioReceita() {
 
   const { usuario } = await buscaUser();
 
+  // // Depuração: Exibir formData no console
+  // console.log("FormData completo:", formData);
+
+  // // Depuração: Iterar sobre os pares chave/valor
+  // console.log("Pares chave/valor:");
+  // for (let pair of formData.entries()) {
+  //   console.log(pair[0] + ': ' + pair[1]);
+  // }
+
+  // // Depuração: Acessar valor de uma chave específica
+  // console.log("Valor da chave 'nomeDaChave':", formData.get('nomeDaChave'));
+
   try {
     const response = await fetch('http://localhost:3333/receita', {
       method: 'POST',
