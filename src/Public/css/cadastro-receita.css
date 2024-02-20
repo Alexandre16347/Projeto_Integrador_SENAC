@@ -1,0 +1,131 @@
+#content {
+
+    background-color: #f2f2f2;
+}
+
+#cadastro {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#receitaForm {
+    padding: 10mm;
+    display: flex;
+    flex-direction: column;
+
+    width: 100%;
+
+    justify-content: space-around;
+    align-items: center;
+
+}
+
+#quadrado1 {
+    width: 80%;
+    background-color: rgb(255, 255, 255);
+    margin-bottom: 50mm;
+    padding: 10mm;
+    border-radius: 10px;
+    -webkit-box-shadow: 0px 0px 17px 9px rgba(0, 0, 0, 0.45);
+    box-shadow: 0px 0px 17px 9px rgba(0, 0, 0, 0.45);
+}
+
+
+#quadIngre {
+    margin-top: 10mm;
+    width: 80%;
+    border-radius: 10px;
+    padding: 10mm;
+    background-color: rgb(255, 255, 255);
+    -webkit-box-shadow: 0px 0px 17px 9px rgba(0, 0, 0, 0.45);
+    box-shadow: 0px 0px 17px 9px rgba(0, 0, 0, 0.45);
+}
+
+.input-group {
+    display: flex;
+    justify-content: space-between;
+    margin-left: 40mm;
+    margin-right: 40mm;
+    font-size: 25pt;
+    font-weight: bold;
+    font-family: sans-serif, Arial, 'Franklin Gothic Medium', 'Arial Narrow';
+}
+
+.box {
+    width: 100%;
+}
+
+h1 {
+    font-size: 40pt;
+}
+
+.txt {
+    font-size: 30pt;
+    color: black;
+    font-family: sans-serif, Arial, 'Franklin Gothic Medium', 'Arial Narrow';
+
+}
+
+input,
+textarea {
+    width: 500px;
+    height: 50px;
+    font-size: Large;
+    font-weight: bold;
+    border-radius: 10px;
+}
+
+#modoDePreparo {
+    margin-top: 10mm;
+    width: 80%;
+    border-radius: 10px;
+    padding: 10mm;
+    background-color: rgb(255, 255, 255);
+    -webkit-box-shadow: 0px 0px 17px 9px rgba(0, 0, 0, 0.45);
+    box-shadow: 0px 0px 17px 9px rgba(0, 0, 0, 0.45);
+}
+
+#categoria{
+  display: flex;
+  /* justify-content: center;
+  align-items: center; */
+  /* background-color: pink; */
+  width: 80%;
+}
+
+#nomesCat {
+    height: 200px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    /* background-color: aqua; */
+}
+
+#nomesCat input[type="checkbox"] {
+    /* margin-right: 10px; */
+}
+
+#nomesCat label {
+    /* margin-right: 20px; */
+}
+
+.item{
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    /* background-color: rgb(199, 154, 154); */
+    width: 20%;
+}
+
+.quadrado{
+    height: 40px;
+    width: 40px;
+    border-radius: 20px;
+}
+
+.texto{
+    font-size:  14pt;
+    margin-left: 3mm;
+}

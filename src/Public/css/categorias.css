@@ -1,0 +1,21 @@
+#Nome {
+    display: flex;
+    justify-content: center;
+    font-size: large;
+}
+
+#receitas {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+hr {
+    display: flex;
+    justify-content: center;
+    margin-left: 10%;
+    margin-right: 10%;
+    height: 4px;
+    background-color: black;
+    border-radius: 10px;
+}
