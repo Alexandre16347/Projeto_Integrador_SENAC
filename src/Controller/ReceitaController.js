@@ -4,26 +4,27 @@ import Receita from '../Model/Receita';
 import User from '../Model/User';
 
 // Função para aguardar X segundos
-function esperarSegundos(segundos) {
-  return new Promise((resolve) => {
-    setTimeout(resolve, segundos * 1000); // Multiplica por 1000 para converter segundos em milissegundos
-  });
-}
+// function esperarSegundos(segundos) {
+//   return new Promise((resolve) => {
+//     setTimeout(resolve, segundos * 1000); // Multiplica por 1000 para converter segundos em milissegundos
+//   });
+// }
 
 class CadastroReceita {
   // Método para cadastrar uma nova receita
   async store(req, res) {
     const {
       Titulo,
-      ingredientes,
-      modoDePreparo,
+      modoDePreparo = JSON.parse(modoDePreparo),
+      ingredientes = JSON.parse(ingredientes),
       tempo,
       porcoes,
-      categorias,
+      categorias = JSON.parse(categorias),
       descricao,
     } = req.body;
     const { filename } = req.file;
     const { user } = req.headers;
+    
 
     try {
       // Verifica se o usuário existe
@@ -144,7 +145,7 @@ class CadastroReceita {
 
         if (receita) {
           // Deleta a imagem associada à receita
-          this.deleteImageInUploadsFolder(receita.imagem);
+          CadastroReceita.deleteImageInUploadsFolder(receita.imagem);
           excluidas.push(receita);
         }
       }
@@ -159,6 +160,7 @@ class CadastroReceita {
   // Método estático para deletar imagem da pasta de uploads
   static deleteImageInUploadsFolder(imageName) {
     const uploadsFolderPath = path.join(__dirname, '..', 'Uploads');
+    
     const imagePath = path.join(uploadsFolderPath, imageName);
 
     try {
