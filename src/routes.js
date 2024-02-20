@@ -63,6 +63,15 @@ routes.get('/Categorias', (req,res)=>{
     return res.sendFile(caminho);
 });
 
+routes.get('/RecuperarSenha', (req,res)=>{
+    const caminho = path.resolve(__dirname, "View", "Recuperar-Senha.html")
+    return res.sendFile(caminho);
+});
+
+routes.get('/EditarReceita', (req,res)=>{
+    const caminho = path.resolve(__dirname, "View", "editar-receitas.html")
+    return res.sendFile(caminho);
+});
 
 
 
