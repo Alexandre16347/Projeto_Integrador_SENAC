@@ -32,8 +32,9 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 400px;
-    height: 50px;
+    width: auto;
+    height: auto;
+    padding: 4mm;
     background-color: 00488a;
     color: aliceblue;
     border-radius: 15px;
@@ -52,12 +53,12 @@
 #addreceita {
     margin-top: 3mm;
     height: 40px;
-    width: 100%;
+    width: auto;
     display: flex;
     justify-content: center;
 }
 
-.add {
+#add {
     padding: 3mm;
     border-radius: 10px;
 
@@ -136,11 +137,14 @@
     background-color: white;
 }
 
-#deletar{
+.deletar{
     display: flex;
     justify-content: flex-end;
     margin-top: 10mm;
     margin-bottom: 10mm;
+    height: 200px;
+    width: 200px;
+    background-color: aqua;
 }
 
 .btt{
@@ -157,6 +161,13 @@
  transform: rotate(720deg);
  transition: 2s ;
 }
+
+.btn-card{
+    width: auto;
+    height: auto;
+    padding: 3mm;
+}
+
 /* #recentess {
     display: flex;
     flex-wrap: wrap;

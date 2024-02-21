@@ -253,7 +253,7 @@ areaSearch.append(area)
 // *******************************************************************************************************************************************
 // Area Categorias
 
-const categorias = ["Salgados", "Doces", "Massas", "Bebidas", "Sobremesas", "Confeitaria", "Saladas", "Refeições", "Comidas Rápidas", "Sopas", "Farofas", "Drinks", "Sorvetes"]
+const categorias = ["Bolos", "Tortas", "Salgados", "Doces", "Massas", "Sobremesas", "Confeitaria", "Saladas", "Refeições", "Comidas Rápidas", "Carnes", "Sopas", "Farofas", "Bebidas", "Sorvetes"]
 
 let tam_cat = categorias.length
 

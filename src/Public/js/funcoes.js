@@ -146,16 +146,13 @@ async function enviarFormulario() {
 // Função para obter dados do usuário
 async function obterDadosDoUsuario() {
   try {
-    const response = await fetch(
-      '/buscaUserId',
-      {
-        method: 'GET',
-        headers: {
-          'Content-Type': 'application/json',
-          // Adicione cabeçalhos adicionais, se necessário
-        },
+    const response = await fetch('/buscaUserId', {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+        // Adicione cabeçalhos adicionais, se necessário
       },
-    );
+    });
 
     if (response.ok) {
       // Se a resposta estiver OK, obtenha os dados do usuário
@@ -175,22 +172,18 @@ async function obterDadosDoUsuario() {
 }
 
 async function obterUsuario() {
-
   // Extrai o ID da receita da query da URL
   const urlParams = new URLSearchParams(window.location.search);
   const idDoUser = urlParams.get('id');
 
   try {
-    const response = await fetch(
-      `/buscaUserId?id=${idDoUser}`,
-      {
-        method: 'GET',
-        headers: {
-          'Content-Type': 'application/json',
-          // Adicione cabeçalhos adicionais, se necessário
-        },
+    const response = await fetch(`/buscaUserId?id=${idDoUser}`, {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+        // Adicione cabeçalhos adicionais, se necessário
       },
-    );
+    });
 
     if (response.ok) {
       // Se a resposta estiver OK, obtenha os dados do usuário
@@ -198,33 +191,69 @@ async function obterUsuario() {
       // console.log('Dados do usuário:', dadosUsuario);
 
       // Faça algo com os dados do usuário, por exemplo, atualize a interface do usuário
-      document.getElementsByClassName('img-avatar')[0].src = `${dadosUsuario.imagem}`;
-      document.getElementsByClassName('Nome')[0].textContent = `${dadosUsuario.Nome}`;
+      document.getElementsByClassName(
+        'img-avatar',
+      )[0].src = `${dadosUsuario.imagem}`;
+      document.getElementsByClassName(
+        'Nome',
+      )[0].textContent = `${dadosUsuario.Nome}`;
 
       // Verifica se o usuário está autenticado
       const token = document.cookie.split('=')[1];
 
       if (token && token == dadosUsuario.idTemp) {
-
         // console.log("Esse é o meu perfil")
 
-        let botaoDel = document.createElement('button')
-        botaoDel.setAttribute("class", "btt")
-        botaoDel.setAttribute("type", "button")
-        botaoDel.textContent = "Deletar Conta"
-        
+        let botaoDel = document.createElement('button');
+        botaoDel.setAttribute('class', 'btt');
+        botaoDel.setAttribute('type', 'button');
+        botaoDel.textContent = 'Deletar Conta';
 
-        document.getElementById("deletar").append(botaoDel)
+        // Adicionar evento de clique ao botão "Deletar Conta"
+        botaoDel.addEventListener('click', async function () {
+          // Confirmar se o usuário realmente deseja deletar a conta
+          const confirmacao = confirm("Tem certeza de que deseja deletar sua conta? Esta ação não pode ser desfeita.");
 
-        // <button class="btt" type="button" onclick=" deletarUsuario()">
-        //     Deletar conta
-        //   </button>
+          if (confirmacao) {
+            try {
+              // Fazer a solicitação para deletar o usuário
+              const response = await fetch('/deletarUser', {
+                method: 'DELETE',
+                headers: {
+                  'Content-Type': 'application/json',
+                  // Adicione o token de autenticação, se necessário
+                  'id': `${dadosUsuario.id}`
+                },
+              });
 
+              if (response.ok) {
+                // Limpar o token do cookie
+                document.cookie =
+                  'token=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;';
+
+                // Redirecionar para a rota desejada
+                window.location.href = '/';
+
+                console.log('Usuário deletado com sucesso.');
+              } else {
+                console.error('Erro ao deletar usuário:', response.statusText);
+              }
+            } catch (error) {
+              console.error('Erro na solicitação:', error);
+            }
+          }
+        });
+
+        document.getElementById('deletar').append(botaoDel);
+
+        // Adicionar evento de clique ao botão "Deletar Conta"
+        // document.getElementById('btnDeletarConta').addEventListener('click', async function () {
+
+        // });
       }
 
       // Adicione outras manipulações conforme necessário
     } else {
-      
       console.error('Erro ao obter dados do usuário:', response.statusText);
     }
   } catch (error) {
@@ -265,8 +294,9 @@ async function obterReceita() {
       document.getElementsByClassName('chef')[0].textContent =
         dadosReceita.nomeDoChef;
 
-      document.getElementsByClassName('chef')[0].href =
-        `/Chef?id=${dadosReceita.user}`;
+      document.getElementsByClassName(
+        'chef',
+      )[0].href = `/Chef?id=${dadosReceita.user}`;
 
       let lista_ingredientes = document.getElementById('ingredientes');
 
@@ -297,6 +327,74 @@ async function obterReceita() {
       // document.getElementById("modo").textContent = `* ${dadosReceita.modoDePreparo}`;
 
       // Adicione outras manipulações conforme necessário
+
+
+
+      try {
+
+        const dadosUsuario = buscaUser()
+
+        if (dadosUsuario.id == dadosReceita.User) {
+
+          // console.log("Esse é o meu perfil")
+
+          let botaoDel = document.createElement('button');
+          botaoDel.setAttribute('class', 'btt');
+          botaoDel.setAttribute('type', 'button');
+          botaoDel.textContent = 'Deletar Receita';
+
+          // Adicionar evento de clique ao botão "Deletar Conta"
+          botaoDel.addEventListener('click', async function () {
+            // Confirmar se o usuário realmente deseja deletar a conta
+            const confirmacao = confirm("Tem certeza de que deseja deletar sua receita? Esta ação não pode ser desfeita.");
+
+            if (confirmacao) {
+              try {
+                // Fazer a solicitação para deletar o usuário
+                const response = await fetch('/deletarReceita', {
+                  method: 'DELETE',
+                  headers: {
+                    'Content-Type': 'application/json',
+                    // Adicione o token de autenticação, se necessário
+                    'id': `${dadosReceita.id}`
+                  },
+                });
+
+                if (response.ok) {
+                  // Limpar o token do cookie
+                  document.cookie =
+                    'token=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;';
+
+                  // Redirecionar para a rota desejada
+                  window.location.href = '/';
+
+                  console.log('Usuário deletado com sucesso.');
+                } else {
+                  console.error('Erro ao deletar usuário:', response.statusText);
+                }
+              } catch (error) {
+                console.error('Erro na solicitação:', error);
+              }
+            }
+          });
+
+          document.getElementById('deletarReceita').append(botaoDel);
+
+          // Adicionar evento de clique ao botão "Deletar Conta"
+          // document.getElementById('btnDeletarConta').addEventListener('click', async function () {
+
+          // });
+        }
+
+
+
+      } catch {
+
+      }
+
+
+
+
     } else {
       console.error('Erro ao obter dados da Receita:', response.statusText);
     }
@@ -349,19 +447,19 @@ async function obterListaDeCardsReceitaUsuario() {
 
         card.append(div_img);
 
-        let div_chef = document.createElement('div');
-        div_chef.setAttribute('class', 'chef-avatar');
+        // let div_chef = document.createElement('div');
+        // div_chef.setAttribute('class', 'chef-avatar');
 
-        let img_avatar = document.createElement(`img`);
-        const foto = !cards.fotoDoChef
-          ? 'media/shumel.jpg'
-          : `Uploads/${cards.fotoDoChef}`;
-        img_avatar.setAttribute('src', foto);
-        img_avatar.setAttribute('class', 'img-avatar');
+        // let img_avatar = document.createElement(`img`);
+        // const foto = !cards.fotoDoChef
+        //   ? 'media/shumel.jpg'
+        //   : `Uploads/${cards.fotoDoChef}`;
+        // img_avatar.setAttribute('src', foto);
+        // img_avatar.setAttribute('class', 'img-avatar');
 
-        div_chef.append(img_avatar);
+        // div_chef.append(img_avatar);
 
-        card.append(div_chef);
+        // card.append(div_chef);
 
         let txt_card = document.createElement(`button`);
         txt_card.append(`${cards.Titulo}`);
@@ -372,12 +470,12 @@ async function obterListaDeCardsReceitaUsuario() {
 
         card.append(txt_card);
 
-        let txt_chef = document.createElement(`a`);
-        txt_chef.append(`Por ${cards.nomeDoChef}`);
-        txt_chef.setAttribute('href', `Chef?id=${cards.idReceita}`);
-        txt_chef.setAttribute('class', 'txt-chef');
+        // let txt_chef = document.createElement(`a`);
+        // txt_chef.append(`Por ${cards.nomeDoChef}`);
+        // txt_chef.setAttribute('href', `Chef?id=${cards.idReceita}`);
+        // txt_chef.setAttribute('class', 'txt-chef');
 
-        card.append(txt_chef);
+        // card.append(txt_chef);
 
         area_cardss.append(card);
       }
@@ -547,7 +645,6 @@ async function verificarAutenticacaoOffline() {
   const token = document.cookie.split('=')[1];
 
   if (token) {
-
     const response = await fetch('/verificar-token', {
       method: 'POST',
       headers: {
@@ -703,6 +800,18 @@ async function enviarFormularioReceita() {
   formData.set('categorias', JSON.stringify(categoriasArray));
 
   const { usuario } = await buscaUser();
+
+  // // Depuração: Exibir formData no console
+  // console.log("FormData completo:", formData);
+
+  // // Depuração: Iterar sobre os pares chave/valor
+  // console.log("Pares chave/valor:");
+  // for (let pair of formData.entries()) {
+  //   console.log(pair[0] + ': ' + pair[1]);
+  // }
+
+  // // Depuração: Acessar valor de uma chave específica
+  // console.log("Valor da chave 'nomeDaChave':", formData.get('nomeDaChave'));
 
   try {
     const response = await fetch('http://localhost:3333/receita', {
@@ -1057,20 +1166,37 @@ function areaCategorias() {
   // *******************************************************************************************************************************************
   // Area Categorias
 
+  // const categorias = [
+  //   'Salgados',
+  //   'Doces',
+  //   'Massas',
+  //   'Bebidas',
+  //   'Sobremesas',
+  //   'Confeitaria',
+  //   'Saladas',
+  //   'Refeições',
+  //   'Comidas Rápidas',
+  //   'Sopas',
+  //   'Farofas',
+  //   'Drinks',
+  //   'Sorvetes',
+  // ];
   const categorias = [
-    'Salgados',
-    'Doces',
-    'Massas',
-    'Bebidas',
-    'Sobremesas',
-    'Confeitaria',
-    'Saladas',
-    'Refeições',
-    'Comidas Rápidas',
-    'Sopas',
-    'Farofas',
-    'Drinks',
-    'Sorvetes',
+    "Bolos",
+    "Tortas",
+    "Salgados",
+    "Doces",
+    "Massas",
+    "Sobremesas",
+    "Confeitaria",
+    "Saladas",
+    "Refeições",
+    "Comidas Rápidas",
+    "Carnes",
+    "Sopas",
+    "Farofas",
+    "Bebidas",
+    "Sorvetes"
   ];
 
   let tam_cat = categorias.length;

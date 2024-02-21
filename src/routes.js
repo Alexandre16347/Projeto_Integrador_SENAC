@@ -53,6 +53,28 @@ routes.get('/PerfilEditar', (req,res)=>{
     return res.sendFile(caminho);
 });
 
+routes.get('/cadastrarReceita', (req,res)=>{
+    const caminho = path.resolve(__dirname, "View", "cadastrar-receita.html")
+    return res.sendFile(caminho);
+});
+
+routes.get('/Categorias', (req,res)=>{
+    const caminho = path.resolve(__dirname, "View", "Categorias.html")
+    return res.sendFile(caminho);
+});
+
+routes.get('/RecuperarSenha', (req,res)=>{
+    const caminho = path.resolve(__dirname, "View", "Recuperar-Senha.html")
+    return res.sendFile(caminho);
+});
+
+routes.get('/EditarReceita', (req,res)=>{
+    const caminho = path.resolve(__dirname, "View", "editar-receitas.html")
+    return res.sendFile(caminho);
+});
+
+
+
 
 // Rotas para manipulação de cards
 routes.get('/cards', card.buscarCards);

@@ -10,12 +10,12 @@
     font-weight: 300;
 }
 
-.descricao{
+.descricao {
     display: flex;
     flex-direction: column;
 }
 
-#content{
+#content {
     background-color: rgb(236, 219, 204);
 }
 
@@ -25,12 +25,12 @@
 
 }
 
-.cheff-img{
+.cheff-img {
     width: 300px;
     height: 300px;
 }
 
-.cate-section{
+.cate-section {
     text-align: center;
     font-family: Rubik, sans-serif;
     font-weight: 400;
@@ -38,8 +38,8 @@
     color: rgb(1, 1, 10);
 }
 
-.button-categorias{
-    box-shadow: 2px 4px 6px 0 rgba(0, 0, 0,.3);
+.button-categorias {
+    box-shadow: 2px 4px 6px 0 rgba(0, 0, 0, .3);
     background-color: #f3f3f3;
 }
 
@@ -56,7 +56,7 @@ h1 {
 
 .lp {
     margin-left: 20px;
-    font-family:system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif ;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
     justify-content: center;
     align-items: center;
     /* space-between:center; */
@@ -75,7 +75,7 @@ li {
     list-style-position: inside;
     line-height: 35px;
     list-style-type: none;
-   
+
 }
 
 .titulo-receita {
@@ -85,7 +85,7 @@ li {
     /* margin-top: 50px; */
 }
 
-.listas{
+.listas {
     padding: 20px;
     /* margin: 20px; */
     /* margin-right: calc(4% - 4mm); */
@@ -93,20 +93,20 @@ li {
     display: flex;
     flex-direction: row;
     align-items: center;
-    overflow: scroll;
+    overflow-x: scroll;
     background-color: white;
     border-top: #f78b1f solid 4px;
 }
 
-.button-categorias{
+.button-categorias {
     padding: 6px 11px 2px;
     background-color: #11527e;
     font-size: .78rem;
     font-weight: 400;
     text-decoration: none;
     color: #fbfafa;
-    box-shadow: 0 2px 4px 0 rgba(0,0,0,.3);
-    transition: background-color .2s ease-in-out,box-shadow .2s ease-in-out;
+    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, .3);
+    transition: background-color .2s ease-in-out, box-shadow .2s ease-in-out;
     border-radius: 5px;
     display: inline-flex;
     margin: 10px;
@@ -153,7 +153,7 @@ h4 {
 }
 
 .op {
-    margin-left:70px;
+    margin-left: 70px;
     margin-right: 10px;
 }
 
@@ -203,7 +203,7 @@ textarea {
 .id .jd {
     border-left: 2px solid #ff7875;
     padding-left: 10px;
-    
+
 
 }
 
@@ -258,6 +258,13 @@ p {
     padding: 0px;
 }
 
+.chef {
+    display: flex;
+    justify-content: center;
+    margin-left: 3mm;
+    margin-bottom: 3mm;
+}
+
 /* .hz {
     color: #11527e;
     font-family: Rubik, sans-serif;
@@ -266,3 +273,14 @@ p {
     padding-left: 20px;
     position: relative;
 } */
+
+
+#deletarReceita {
+    display: flex;
+    justify-content: center;
+    margin-top: 10mm;
+    margin-bottom: 10mm;
+    height: 200px;
+    width: 100%;
+    background-color: aqua;
+}
