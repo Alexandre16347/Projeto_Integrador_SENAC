@@ -137,11 +137,14 @@
     background-color: white;
 }
 
-#deletar{
+.deletar{
     display: flex;
     justify-content: flex-end;
     margin-top: 10mm;
     margin-bottom: 10mm;
+    height: 200px;
+    width: 200px;
+    background-color: aqua;
 }
 
 .btt{

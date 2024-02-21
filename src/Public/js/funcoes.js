@@ -211,39 +211,45 @@ async function obterUsuario() {
 
         // Adicionar evento de clique ao botão "Deletar Conta"
         botaoDel.addEventListener('click', async function () {
-          try {
-            // Fazer a solicitação para deletar o usuário
-            const response = await fetch('/deletarUser', {
-              method: 'DELETE',
-              headers: {
-                'Content-Type': 'application/json',
-                // Adicione o token de autenticação, se necessário
-                'id': `${dadosUsuario.id}`
-              },
-            });
+          // Confirmar se o usuário realmente deseja deletar a conta
+          const confirmacao = confirm("Tem certeza de que deseja deletar sua conta? Esta ação não pode ser desfeita.");
 
-            if (response.ok) {
-              // Limpar o token do cookie
-              document.cookie =
-                'token=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;';
+          if (confirmacao) {
+            try {
+              // Fazer a solicitação para deletar o usuário
+              const response = await fetch('/deletarUser', {
+                method: 'DELETE',
+                headers: {
+                  'Content-Type': 'application/json',
+                  // Adicione o token de autenticação, se necessário
+                  'id': `${dadosUsuario.id}`
+                },
+              });
 
-              // Redirecionar para a rota desejada
-              window.location.href = '/';
+              if (response.ok) {
+                // Limpar o token do cookie
+                document.cookie =
+                  'token=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;';
 
-              console.log('Usuário deletado com sucesso.');
-            } else {
-              console.error('Erro ao deletar usuário:', response.statusText);
+                // Redirecionar para a rota desejada
+                window.location.href = '/';
+
+                console.log('Usuário deletado com sucesso.');
+              } else {
+                console.error('Erro ao deletar usuário:', response.statusText);
+              }
+            } catch (error) {
+              console.error('Erro na solicitação:', error);
             }
-          } catch (error) {
-            console.error('Erro na solicitação:', error);
           }
         });
 
         document.getElementById('deletar').append(botaoDel);
 
-        // <button class="btt" type="button" onclick=" deletarUsuario()">
-        //     Deletar conta
-        //   </button>
+        // Adicionar evento de clique ao botão "Deletar Conta"
+        // document.getElementById('btnDeletarConta').addEventListener('click', async function () {
+
+        // });
       }
 
       // Adicione outras manipulações conforme necessário
@@ -321,6 +327,74 @@ async function obterReceita() {
       // document.getElementById("modo").textContent = `* ${dadosReceita.modoDePreparo}`;
 
       // Adicione outras manipulações conforme necessário
+
+
+
+      try {
+
+        const dadosUsuario = buscaUser()
+
+        if (dadosUsuario.id == dadosReceita.User) {
+
+          // console.log("Esse é o meu perfil")
+
+          let botaoDel = document.createElement('button');
+          botaoDel.setAttribute('class', 'btt');
+          botaoDel.setAttribute('type', 'button');
+          botaoDel.textContent = 'Deletar Receita';
+
+          // Adicionar evento de clique ao botão "Deletar Conta"
+          botaoDel.addEventListener('click', async function () {
+            // Confirmar se o usuário realmente deseja deletar a conta
+            const confirmacao = confirm("Tem certeza de que deseja deletar sua receita? Esta ação não pode ser desfeita.");
+
+            if (confirmacao) {
+              try {
+                // Fazer a solicitação para deletar o usuário
+                const response = await fetch('/deletarReceita', {
+                  method: 'DELETE',
+                  headers: {
+                    'Content-Type': 'application/json',
+                    // Adicione o token de autenticação, se necessário
+                    'id': `${dadosReceita.id}`
+                  },
+                });
+
+                if (response.ok) {
+                  // Limpar o token do cookie
+                  document.cookie =
+                    'token=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;';
+
+                  // Redirecionar para a rota desejada
+                  window.location.href = '/';
+
+                  console.log('Usuário deletado com sucesso.');
+                } else {
+                  console.error('Erro ao deletar usuário:', response.statusText);
+                }
+              } catch (error) {
+                console.error('Erro na solicitação:', error);
+              }
+            }
+          });
+
+          document.getElementById('deletarReceita').append(botaoDel);
+
+          // Adicionar evento de clique ao botão "Deletar Conta"
+          // document.getElementById('btnDeletarConta').addEventListener('click', async function () {
+
+          // });
+        }
+
+
+
+      } catch {
+
+      }
+
+
+
+
     } else {
       console.error('Erro ao obter dados da Receita:', response.statusText);
     }
