@@ -102,8 +102,8 @@ function toggleConfirmarSenha() {
     confirmarSenhaInput.type === 'password' ? 'text' : 'password';
   eyeIconConfirmarSenha.src =
     confirmarSenhaInput.type === 'password'
-      ? '../src/media/closed-eyes.png'
-      : '../src/media/eye.png';
+      ? 'media/closed-eyes.png'
+      : 'media/eye.png';
 }
 
 async function enviarFormulario() {
