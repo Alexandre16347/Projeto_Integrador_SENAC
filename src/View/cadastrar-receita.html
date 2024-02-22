@@ -26,6 +26,14 @@
                         <div id="quadrado1">
 
                             <div class="input-group">
+                                <label class="picture" for="picture__input" tabIndex="0">
+                                    <span class="picture__image"></span>
+                                </label>
+
+                                <input type="file" name="picture__input" id="picture__input">
+                            </div> <br><br>
+
+                            <div class="input-group">
                                 <label for="Titulo"> Título:</label>
                                 <input type="text" id="titulo" name="Titulo" placeholder="Digite o título" required>
                             </div>
@@ -48,23 +56,23 @@
                                     placeholder="Digite uma descrição para sua receita" required></textarea>
                             </div>
                             <br><br>
-                            <div class="input-group">
-                                <label for="imagem">Escolher uma Imagem:&nbsp; </label>
-                                <input type="file" id="imagem" name="imagem" accept="image/*" required>
-                            </div> <br><br>
+
+
+
 
                             <!-- <div id="quadIngre"> -->
                             <div class="input-group">
                                 <label for="ingredientes">Ingredientes: &nbsp;</label>
-                                <textarea id="ingredientes" name="ingredientes" placeholder="Digite os ingredientes" required></textarea>
+                                <textarea id="ingredientes" name="ingredientes" placeholder="Digite os ingredientes"
+                                    required></textarea>
                             </div> <br><br>
                             <!-- </div> -->
 
                             <!-- <div id="modoDePreparo"> -->
                             <div class="input-group">
                                 <label for="modoDePreparo">Modo de Preparo:</label>
-                                <textarea id="modoDePreparo" name="modoDePreparo" placeholder="Ex.: bata todos os ingredientes..."
-                                    required></textarea>
+                                <textarea id="modoDePreparo" name="modoDePreparo"
+                                    placeholder="Ex.: bata todos os ingredientes..." required></textarea>
                             </div> <br><br>
                             <!-- </div> -->
 
@@ -182,7 +190,8 @@
 
                         <div class="input-group w50">
 
-                            <button type="button" class="btn-login" onclick="enviarFormularioReceita()">Cadastrar Receita</button>
+                            <button type="button" class="btn-login" onclick="enviarFormularioReceita()">Cadastrar
+                                Receita</button>
                         </div>
                     </form>
 
@@ -199,6 +208,37 @@
         topBar();
         botaoResponsivo();
         bottomBar();
+
+//script input img//
+        const inputFile = document.querySelector("#picture__input");
+        const pictureImage = document.querySelector(".picture__image");
+        const pictureImageTxt = "Adicionar imagem";
+        pictureImage.innerHTML = pictureImageTxt;
+
+        inputFile.addEventListener("change", function (e) {
+            const inputTarget = e.target;
+            const file = inputTarget.files[0];
+
+            if (file) {
+                const reader = new FileReader();
+
+                reader.addEventListener("load", function (e) {
+                    const readerTarget = e.target;
+
+                    const img = document.createElement("img");
+                    img.src = readerTarget.result;
+                    img.classList.add("picture__img");
+
+                    pictureImage.innerHTML = "";
+                    pictureImage.appendChild(img);
+                });
+
+                reader.readAsDataURL(file);
+            } else {
+                pictureImage.innerHTML = pictureImageTxt;
+            }
+        });
+
     </script>
 
     <!-- <script src="../src/js/script-ours-pages.js"></script> -->
