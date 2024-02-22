@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/default.css">
     <link rel="stylesheet" href="css/cadastro-receita.css">
-    <script src="js/funcoes.js"></script>
+    <script type="module" src="js/funcoes.js"></script>
     <script>verificarAutenticacao();</script>
     <title>Atualizar Receita</title>
 </head>
@@ -199,6 +199,8 @@
         topBar();
         botaoResponsivo();
         bottomBar();
+        obterReceita();
+        povoaCampos();
     </script>
 
     <!-- <script src="../src/js/script-ours-pages.js"></script> -->

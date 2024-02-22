@@ -282,15 +282,25 @@ p {
     margin-bottom: 10mm;
 }
 
-.btt{
+.btt {
     padding: 3mm;
     border-radius: 10px;
     background-color: red;
     font-size: large;
 }
-.btt:hover{
+
+.btt:hover {
     background-color: black;
     transform: rotate(720deg);
-    transition: 2s ;
+    transition: 2s;
     color: white;
-   }
+}
+
+#atualizar{
+    display: flex;
+    justify-content: center;
+}
+
+.bt{
+    padding: 3mm;
+}

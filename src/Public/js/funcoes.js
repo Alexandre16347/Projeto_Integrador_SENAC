@@ -1,3 +1,5 @@
+import Receita from "../../Model/Receita";
+
 // Declarações de Variáveis Globais
 let logos_redes = [
   'media/icon-facebook.png',
@@ -262,6 +264,8 @@ async function obterUsuario() {
   }
 }
 
+let receitaTeste // teste
+
 async function obterReceita() {
   // Extrai o ID da receita da query da URL
   const urlParams = new URLSearchParams(window.location.search);
@@ -280,7 +284,7 @@ async function obterReceita() {
     if (response.ok) {
       // Se a resposta estiver OK, obtenha os dados da receita
       const dadosReceita = await response.json();
-
+      receitaTeste = dadosReceita;
       // Faça algo com os dados da receita, por exemplo, atualize a interface do usuário
 
       document.getElementsByClassName('titulo-receita')[0].textContent =
@@ -328,27 +332,25 @@ async function obterReceita() {
 
       // Adicione outras manipulações conforme necessário
 
-
-
       try {
 
         // const dadosUsuario = buscaUser()
         buscaUser().then(data => {
           if (data.usuario.id === dadosReceita.user) {
-          
-      
+
+
             // console.log("Esse é o meu perfil")
-  
+
             let botaoDel = document.createElement('button');
             botaoDel.setAttribute('class', 'btt');
             botaoDel.setAttribute('type', 'button');
             botaoDel.textContent = 'Deletar Receita';
-  
+
             // Adicionar evento de clique ao botão "Deletar Conta"
             botaoDel.addEventListener('click', async function () {
               // Confirmar se o usuário realmente deseja deletar a conta
               const confirmacao = confirm("Tem certeza de que deseja deletar sua receita? Esta ação não pode ser desfeita.");
-  
+
               if (confirmacao) {
                 try {
                   // Fazer a solicitação para deletar o usuário
@@ -360,15 +362,15 @@ async function obterReceita() {
                       'id': `${dadosReceita.id}`
                     },
                   });
-  
+
                   if (response.ok) {
                     // Limpar o token do cookie
                     document.cookie =
                       'token=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;';
-  
+
                     // Redirecionar para a rota desejada
                     window.location.href = '/';
-  
+
                     console.log('Usuário deletado com sucesso.');
                   } else {
                     console.error('Erro ao deletar usuário:', response.statusText);
@@ -378,15 +380,15 @@ async function obterReceita() {
                 }
               }
             });
-  
+
             document.getElementById('deletarReceita').append(botaoDel);
-  
+
             // Adicionar evento de clique ao botão "Deletar Conta"
             // document.getElementById('btnDeletarConta').addEventListener('click', async function () {
-  
+
             // });
           }
-          
+
         });
 
       } catch {
@@ -1221,4 +1223,10 @@ function areaCategorias() {
   }
 
   cont_cat.append(area_cat);
+}
+
+function povoaCampos() {
+  console.log("asdjaskdjaskda")
+  let tf_nome = document.getElementById('titulo');
+  tf_nome.textContent = receitaTeste.nome;
 }
