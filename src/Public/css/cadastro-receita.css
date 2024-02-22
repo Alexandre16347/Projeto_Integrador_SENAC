@@ -8,6 +8,8 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    font-family: "Poppins", sans-serif;
+    color: #2f2f2f;
 }
 
 #receitaForm {
@@ -23,13 +25,13 @@
 }
 
 #quadrado1 {
-    width: 80%;
+    width: 70%;
     background-color: rgb(255, 255, 255);
-    margin-bottom: 10mm;
+    margin-bottom: 20mm;
     padding: 10mm;
     border-radius: 10px;
-    -webkit-box-shadow: 0px 0px 17px 9px rgba(0, 0, 0, 0.45);
-    box-shadow: 0px 0px 17px 9px rgba(0, 0, 0, 0.45);
+    /* -webkit-box-shadow: 0px 0px 10px 9px rgba(0, 0, 0, 0.45);
+    box-shadow: 0px 0px 10px 9px rgba(0, 0, 0, 0.45); */
 }
 
 
@@ -39,8 +41,8 @@
     border-radius: 10px;
     padding: 10mm;
     background-color: rgb(255, 255, 255);
-    -webkit-box-shadow: 0px 0px 17px 9px rgba(0, 0, 0, 0.45);
-    box-shadow: 0px 0px 17px 9px rgba(0, 0, 0, 0.45);
+    -webkit-box-shadow: 0px 0px 10px 5px rgba(0, 0, 0, 0.45);
+    box-shadow: 0px 0px 10px 5px rgba(0, 0, 0, 0.45);
 }
 
 .input-group {
@@ -48,9 +50,11 @@
     justify-content: space-between;
     margin-left: 40mm;
     margin-right: 40mm;
-    font-size: 25pt;
+    font-size: 20pt;
+    color: #2f2f2f;
     font-weight: bold;
     font-family: sans-serif, Arial, 'Franklin Gothic Medium', 'Arial Narrow';
+    
 }
 
 .box {
@@ -58,7 +62,7 @@
 }
 
 h1 {
-    font-size: 40pt;
+    font-size: 30pt;
 }
 
 /* .txt {
@@ -72,9 +76,11 @@ input,
 textarea {
     width: 500px;
     height: 50px;
-    font-size: Large;
+    font-size: medium;
     font-weight: bold;
     border-radius: 10px;
+    border-color: #f2f2f2;
+    box-shadow: 0px 0px 5px 3px tomato;
 }
 
 /* #modoDePreparo {
@@ -87,12 +93,12 @@ textarea {
     box-shadow: 0px 0px 17px 9px rgba(0, 0, 0, 0.45);
 } */
 
-#categoria{
-  display: flex;
-  /* justify-content: center;
+#categoria {
+    display: flex;
+    /* justify-content: center;
   align-items: center; */
-  /* background-color: pink; */
-  width: 80%;
+    /* background-color: pink; */
+    width: 80%;
 }
 
 #nomesCat {
@@ -103,7 +109,7 @@ textarea {
     /* background-color: aqua; */
 }
 
- /*#nomesCat input[type="checkbox"] {
+/*#nomesCat input[type="checkbox"] {
     margin-right: 10px; 
 }
 
@@ -111,37 +117,47 @@ textarea {
      margin-right: 20px; 
 } */
 
-.item{
+.item {
     display: flex;
     justify-content: start;
     align-items: center;
     /* background-color: rgb(199, 154, 154); */
     width: 20%;
+    
 }
 
-.quadrado{
-    height: 40px;
-    width: 40px;
-    border-radius: 20px;
+.quadrado {
+    height: 30px;
+    width: 30px;
+    border-radius: 40px;
+    
 }
 
-.texto{
-    font-size:  14pt;
+.texto {
+    font-size: 12pt;
     margin-left: 3mm;
 }
 
-.catnome{
+.catnome {
     display: flex;
     justify-content: center;
     font-weight: bold;
-    font-size: 25pt;
+    font-size: 18pt;
+    
 
 }
 
-.btn-login{
-    background-color: aquamarine;
+.btn-login {
+    background-color: tomato;
     padding: 3mm;
     border-radius: 10px;
+    border-color: #f2f2f2;
     font-weight: bold;
+    color: #f2f2f2;
+}
+
+.btn-login:hover {
+    background-color: #cabf1f;
+
 
 }
