@@ -151,7 +151,7 @@
     padding: 8mm;
     border-radius: 10px;
     background-color: red;
-    color: white;
+    
     font-weight: bold;
     font-size: large;
 }
@@ -160,6 +160,7 @@
  background-color: black;
  transform: rotate(720deg);
  transition: 2s ;
+ color: white;
 }
 
 .btn-card{
