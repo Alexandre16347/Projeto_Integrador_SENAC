@@ -146,7 +146,7 @@ routes.put('/receita/:id/descricao', receita.atualizarDescricao);
 routes.put('/receita/:id/imagem', upload.single('imagem'), receita.atualizarImagem);
 
 // Rota para atualizar todos os atributos da receita de uma vez com o ID fornecido
-routes.put('/receita/:id', upload.single('imagem'), receita.atualizarTudo);
+routes.put('/receita', upload.single('imagem'), receita.atualizarTudo);
 
 
 // Deletar uma receita

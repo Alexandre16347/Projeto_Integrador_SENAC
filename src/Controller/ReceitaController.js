@@ -372,8 +372,10 @@ class CadastroReceita {
 
   // Função para atualizar todos os atributos da receita de uma vez com o ID fornecido
   async atualizarTudo(req, res) {
-    const { id } = req.params;
+    const { id } = req.query;
     const novosDados = req.body;
+
+    console.log({id, novosDados})
 
     try {
       const receita = await Receita.findByIdAndUpdate(id, novosDados, {

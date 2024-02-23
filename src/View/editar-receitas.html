@@ -6,8 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/default.css">
     <link rel="stylesheet" href="css/cadastro-receita.css">
-    <script type="module" src="js/funcoes.js"></script>
-    <script>verificarAutenticacao();</script>
+    <script src="js/funcoes.js"></script>
     <title>Atualizar Receita</title>
 </head>
 
@@ -75,90 +74,90 @@
 
                                 <div id="nomesCat">
                                     <div class="item">
-                                        <input type="checkbox" id="bolos" name="categoria" value="Bolos"
+                                        <input type="checkbox" id="bolos" name="categorias" value="Bolos"
                                             class="quadrado">
                                         <label class="texto" for="bolos"> Bolos</label><br>
                                     </div>
 
                                     <div class="item">
-                                        <input type="checkbox" id="tortas" name="categoria" value="Tortas"
+                                        <input type="checkbox" id="tortas" name="categorias" value="Tortas"
                                             class="quadrado">
                                         <label class="texto" for="tortas"> Tortas</label><br>
                                     </div>
 
                                     <div class="item">
-                                        <input type="checkbox" id="salgados" name="categoria" value="Salgados"
+                                        <input type="checkbox" id="salgados" name="categorias" value="Salgados"
                                             class="quadrado">
                                         <label class="texto" for="salgados"> Salgados</label><br>
                                     </div>
 
                                     <div class="item">
-                                        <input type="checkbox" id="doces" name="categoria" value="Doces"
+                                        <input type="checkbox" id="doces" name="categorias" value="Doces"
                                             class="quadrado">
                                         <label class="texto" for="doces"> Doces</label><br>
                                     </div>
 
                                     <div class="item">
-                                        <input type="checkbox" id="massas" name="categoria" value="Massas"
+                                        <input type="checkbox" id="massas" name="categorias" value="Massas"
                                             class="quadrado">
                                         <label class="texto" for="massas"> Massas</label><br>
                                     </div>
 
                                     <div class="item">
-                                        <input type="checkbox" id="sobremesas" name="categoria" value="Sobremesas"
+                                        <input type="checkbox" id="sobremesas" name="categorias" value="Sobremesas"
                                             class="quadrado">
                                         <label class="texto" for="sobremesas"> Sobremesas</label><br>
                                     </div>
 
                                     <div class="item">
-                                        <input type="checkbox" id="confeitaria" name="categoria" value="Confeitaria"
+                                        <input type="checkbox" id="confeitaria" name="categorias" value="Confeitaria"
                                             class="quadrado">
                                         <label class="texto" for="confeitaria"> Confeitaria</label><br>
                                     </div>
 
                                     <div class="item">
-                                        <input type="checkbox" id="saladas" name="categoria" value="Saladas"
+                                        <input type="checkbox" id="saladas" name="categorias" value="Saladas"
                                             class="quadrado">
                                         <label class="texto" for="saladas"> Saladas</label><br>
                                     </div>
 
                                     <div class="item">
-                                        <input type="checkbox" id="refeicoes" name="categoria" value="Refeições"
+                                        <input type="checkbox" id="refeicoes" name="categorias" value="Refeições"
                                             class="quadrado">
                                         <label class="texto" for="refeicoes"> Refeições</label><br>
                                     </div>
 
                                     <div class="item">
-                                        <input type="checkbox" id="comidas-rapidas" name="categoria" class="quadrado">
+                                        <input type="checkbox" id="comidas-rapidas" name="categorias" class="quadrado">
                                         <label class="texto" for="comidas-rapidas"> Comidas Rápidas</label><br>
                                     </div>
 
                                     <div class="item">
-                                        <input type="checkbox" id="carnes" name="categoria" value="Carnes"
+                                        <input type="checkbox" id="carnes" name="categorias" value="Carnes"
                                             class="quadrado">
                                         <label class="texto" for="carnes"> Carnes</label><br>
                                     </div>
 
                                     <div class="item">
-                                        <input type="checkbox" id="sopas" name="categoria" value="Sopas"
+                                        <input type="checkbox" id="sopas" name="categorias" value="Sopas"
                                             class="quadrado">
                                         <label class="texto" for="sopas"> Sopas</label><br>
                                     </div>
 
                                     <div class="item">
-                                        <input type="checkbox" id="farofas" name="categoria" value="Farofas"
+                                        <input type="checkbox" id="farofas" name="categorias" value="Farofas"
                                             class="quadrado">
                                         <label class="texto" for="farofas"> Farofas</label><br>
                                     </div>
 
                                     <div class="item">
-                                        <input type="checkbox" id="bebidas" name="categoria" value="Bebidas"
+                                        <input type="checkbox" id="bebidas" name="categorias" value="Bebidas"
                                             class="quadrado">
                                         <label class="texto" for="bebidas"> Bebidas</label><br>
                                     </div>
 
                                     <div class="item">
-                                        <input type="checkbox" id="sorvetes" name="categoria" value="Sorvetes"
+                                        <input type="checkbox" id="sorvetes" name="categorias" value="Sorvetes"
                                             class="quadrado">
                                         <label class="texto" for="sorvetes"> Sorvetes</label><br>
                                     </div>
@@ -182,7 +181,7 @@
 
                         <div class="input-group w50">
 
-                            <button type="button" class="btn-login" onclick="enviarFormularioReceita()">Atualizar Receita</button>
+                            <button type="button" class="btn-login" onclick="enviarFormularioEditarReceita()">Atualizar Receita</button>
                         </div>
                     </form>
 
@@ -199,8 +198,8 @@
         topBar();
         botaoResponsivo();
         bottomBar();
-        obterReceita();
-        povoaCampos();
+        verificarAutenticacao()
+        editarReceita();
     </script>
 
     <!-- <script src="../src/js/script-ours-pages.js"></script> -->
