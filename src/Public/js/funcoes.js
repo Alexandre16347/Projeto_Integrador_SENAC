@@ -1,4 +1,4 @@
-import Receita from "../../Model/Receita";
+
 
 // Declarações de Variáveis Globais
 let logos_redes = [
@@ -264,8 +264,6 @@ async function obterUsuario() {
   }
 }
 
-let receitaTeste // teste
-
 async function obterReceita() {
   // Extrai o ID da receita da query da URL
   const urlParams = new URLSearchParams(window.location.search);
@@ -284,120 +282,7 @@ async function obterReceita() {
     if (response.ok) {
       // Se a resposta estiver OK, obtenha os dados da receita
       const dadosReceita = await response.json();
-      receitaTeste = dadosReceita;
-      // Faça algo com os dados da receita, por exemplo, atualize a interface do usuário
-
-      document.getElementsByClassName('titulo-receita')[0].textContent =
-        dadosReceita.Titulo;
-      document.getElementById('img').src = `${dadosReceita.imagem}`;
-      document.getElementById(
-        'porcoes',
-      ).textContent = `Serve ${dadosReceita.porcoes} \n porção(ões)`;
-      document.getElementsByClassName('lp')[0].textContent =
-        dadosReceita.descricao;
-      document.getElementsByClassName('chef')[0].textContent =
-        dadosReceita.nomeDoChef;
-
-      document.getElementsByClassName(
-        'chef',
-      )[0].href = `/Chef?id=${dadosReceita.user}`;
-
-      let lista_ingredientes = document.getElementById('ingredientes');
-
-      for (let i = 0; i < dadosReceita.ingredientes.length; i++) {
-        const ig = dadosReceita.ingredientes[i];
-
-        let ingrediente = document.createElement(`li`);
-        ingrediente.setAttribute('class', 'ingrediente');
-        ingrediente.textContent = `* ${ig}`;
-
-        lista_ingredientes.append(ingrediente);
-      }
-
-      document.getElementById('tempo').textContent = `${dadosReceita.tempo ? dadosReceita.tempo : 0
-        } min`;
-
-      let lista_modo = document.getElementById('modo');
-
-      for (let i = 0; i < dadosReceita.modoDePreparo.length; i++) {
-        const mdf = dadosReceita.modoDePreparo[i];
-
-        let modo = document.createElement(`li`);
-        modo.setAttribute('class', 'modoDeFazer');
-        modo.textContent = `* ${mdf}`;
-
-        lista_modo.append(modo);
-      }
-      // document.getElementById("modo").textContent = `* ${dadosReceita.modoDePreparo}`;
-
-      // Adicione outras manipulações conforme necessário
-
-      try {
-
-        // const dadosUsuario = buscaUser()
-        buscaUser().then(data => {
-          if (data.usuario.id === dadosReceita.user) {
-
-
-            // console.log("Esse é o meu perfil")
-
-            let botaoDel = document.createElement('button');
-            botaoDel.setAttribute('class', 'btt');
-            botaoDel.setAttribute('type', 'button');
-            botaoDel.textContent = 'Deletar Receita';
-
-            // Adicionar evento de clique ao botão "Deletar Conta"
-            botaoDel.addEventListener('click', async function () {
-              // Confirmar se o usuário realmente deseja deletar a conta
-              const confirmacao = confirm("Tem certeza de que deseja deletar sua receita? Esta ação não pode ser desfeita.");
-
-              if (confirmacao) {
-                try {
-                  // Fazer a solicitação para deletar o usuário
-                  const response = await fetch('/deletarReceita', {
-                    method: 'DELETE',
-                    headers: {
-                      'Content-Type': 'application/json',
-                      // Adicione o token de autenticação, se necessário
-                      'id': `${dadosReceita.id}`
-                    },
-                  });
-
-                  if (response.ok) {
-                    // Limpar o token do cookie
-                    document.cookie =
-                      'token=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;';
-
-                    // Redirecionar para a rota desejada
-                    window.location.href = '/';
-
-                    console.log('Usuário deletado com sucesso.');
-                  } else {
-                    console.error('Erro ao deletar usuário:', response.statusText);
-                  }
-                } catch (error) {
-                  console.error('Erro na solicitação:', error);
-                }
-              }
-            });
-
-            document.getElementById('deletarReceita').append(botaoDel);
-
-            // Adicionar evento de clique ao botão "Deletar Conta"
-            // document.getElementById('btnDeletarConta').addEventListener('click', async function () {
-
-            // });
-          }
-
-        });
-
-      } catch {
-
-      }
-
-
-
-
+      return dadosReceita;
     } else {
       console.error('Erro ao obter dados da Receita:', response.statusText);
     }
@@ -406,13 +291,165 @@ async function obterReceita() {
   }
 }
 
+async function mostrarReceita() {
+
+  const dadosReceita = await obterReceita();
+
+  console.log(dadosReceita)
+
+  // Faça algo com os dados da receita, por exemplo, atualize a interface do usuário
+
+  document.getElementsByClassName('titulo-receita')[0].textContent =
+    dadosReceita.Titulo;
+  document.getElementById('img').src = `${dadosReceita.imagem}`;
+  document.getElementById(
+    'porcoes',
+  ).textContent = `Serve ${dadosReceita.porcoes} \n porção(ões)`;
+  document.getElementsByClassName('lp')[0].textContent =
+    dadosReceita.descricao;
+  document.getElementsByClassName('chef')[0].textContent =
+    dadosReceita.nomeDoChef;
+
+  document.getElementsByClassName(
+    'chef',
+  )[0].href = `/Chef?id=${dadosReceita.user}`;
+
+  let lista_ingredientes = document.getElementById('ingredientes');
+
+  for (let i = 0; i < dadosReceita.ingredientes.length; i++) {
+    const ig = dadosReceita.ingredientes[i];
+
+    let ingrediente = document.createElement(`li`);
+    ingrediente.setAttribute('class', 'ingrediente');
+    ingrediente.textContent = `* ${ig}`;
+
+    lista_ingredientes.append(ingrediente);
+  }
+
+  document.getElementById('tempo').textContent = `${dadosReceita.tempo ? dadosReceita.tempo : 0
+    } min`;
+
+  let lista_modo = document.getElementById('modo');
+
+  for (let i = 0; i < dadosReceita.modoDePreparo.length; i++) {
+    const mdf = dadosReceita.modoDePreparo[i];
+
+    let modo = document.createElement(`li`);
+    modo.setAttribute('class', 'modoDeFazer');
+    modo.textContent = `* ${mdf}`;
+
+    lista_modo.append(modo);
+  }
+  // document.getElementById("modo").textContent = `* ${dadosReceita.modoDePreparo}`;
+
+  // Adicione outras manipulações conforme necessário
+
+  try {
+
+    // const dadosUsuario = buscaUser()
+    buscaUser().then(data => {
+      if (data.usuario.id == dadosReceita.user) {
+
+        let atualizar = document.createElement('button');
+        atualizar.setAttribute('class', 'btt');
+        atualizar.setAttribute('type', 'button');
+        atualizar.textContent = 'Editar Receita';
+
+        atualizar.addEventListener('click', function () {
+          window.location.href = `/EditarReceita?id=${dadosReceita.id}`;
+        });
+
+
+
+        document.getElementById('atualizar').append(atualizar);
+
+        //fim do bt editar rc
+        // console.log("Esse é o meu perfil")
+
+        let botaoDel = document.createElement('button');
+        botaoDel.setAttribute('class', 'btt');
+        botaoDel.setAttribute('type', 'button');
+        botaoDel.textContent = 'Deletar Receita';
+
+        // Adicionar evento de clique ao botão "Deletar Conta"
+        botaoDel.addEventListener('click', async function () {
+          // Confirmar se o usuário realmente deseja deletar a conta
+          const confirmacao = confirm("Tem certeza de que deseja deletar sua receita? Esta ação não pode ser desfeita.");
+
+          if (confirmacao) {
+            try {
+              // Fazer a solicitação para deletar o usuário
+              const response = await fetch('/deletarReceita', {
+                method: 'DELETE',
+                headers: {
+                  'Content-Type': 'application/json',
+                  // Adicione o token de autenticação, se necessário
+                  'id': `${dadosReceita.id}`
+                },
+              });
+
+              if (response.ok) {
+                // Limpar o token do cookie
+                document.cookie =
+                  'token=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;';
+
+                // Redirecionar para a rota desejada
+                window.location.href = '/';
+
+                console.log('Usuário deletado com sucesso.');
+              } else {
+                console.error('Erro ao deletar usuário:', response.statusText);
+              }
+            } catch (error) {
+              console.error('Erro na solicitação:', error);
+            }
+          }
+        });
+
+        document.getElementById('deletarReceita').append(botaoDel);
+
+        // Adicionar evento de clique ao botão "Deletar Conta"
+        // document.getElementById('btnDeletarConta').addEventListener('click', async function () {
+
+        // });
+      }
+
+    });
+
+  } catch {
+
+  }
+
+
+
+
+
+}
+
+async function editarReceita() {
+  const dadosReceita = await obterReceita();
+
+  console.log(dadosReceita)
+
+  document.getElementById('titulo').value = dadosReceita.Titulo;
+  document.getElementById('tempo').value = dadosReceita.tempo;
+  document.getElementById('porcoes').value = dadosReceita.porcoes;
+  document.getElementById('descricao').value = dadosReceita.descricao;
+  // document.getElementById('imagem').value = dadosReceita.imagem;
+  // console.log(dadosReceita.ingredientes)
+  document.getElementById('ingredientes').value = dadosReceita.ingredientes;
+  document.getElementById('modoDePreparo').value = dadosReceita.modoDePreparo;
+
+
+}
+
 async function obterListaDeCardsReceitaUsuario() {
   // Verifica se o usuário está autenticado
   const token = document.cookie.split('=')[1];
 
   const { usuario } = await buscaUser();
 
-  const response = await fetch('http://localhost:3333/buscarReceitaUser', {
+  const response = await fetch('/buscarReceitaUser', {
     method: 'GET',
     headers: {
       'Content-Type': 'application/json',
@@ -817,7 +854,7 @@ async function enviarFormularioReceita() {
   // console.log("Valor da chave 'nomeDaChave':", formData.get('nomeDaChave'));
 
   try {
-    const response = await fetch('http://localhost:3333/receita', {
+    const response = await fetch(`/receita`, {
       method: 'POST',
       body: formData,
       headers: {
@@ -830,6 +867,43 @@ async function enviarFormularioReceita() {
       // Redirecionar ou realizar ações necessárias após o cadastro
     } else {
       console.error('Erro no cadastro da receita:', response.statusText);
+    }
+  } catch (error) {
+    console.error('Erro na solicitação:', error);
+  }
+}
+
+async function enviarFormularioEditarReceita() {
+  // Extrai o ID da receita da query da URL
+  const urlParams = new URLSearchParams(window.location.search);
+  const idDaReceita = urlParams.get('id');
+
+  var formulario = document.getElementById('receitaForm');
+  var formData = new FormData(formulario);
+
+  // Processar o campo 'ingredientes' como um array
+  const ingredientesTextArea = formData.get('ingredientes');
+  const ingredientesArray = ingredientesTextArea
+    .split('\n')
+    .map((ingrediente) => ingrediente.trim());
+  formData.set('ingredientes', JSON.stringify(ingredientesArray));
+
+  const { usuario } = await buscaUser();
+
+  try {
+    const response = await fetch(`/receita?id=${idDaReceita}`, {
+      method: 'PUT',
+      body: formData,
+    });
+
+    if (response.ok) {
+      console.log('Receita editada com sucesso!');
+      // Redirecionar ou realizar ações necessárias após o cadastro
+      // Redirecionar para a página principal
+      alert(response.statusText)
+      window.location.href = '/';
+    } else {
+      console.error('Erro na atualização da receita:', response.statusText);
     }
   } catch (error) {
     console.error('Erro na solicitação:', error);
@@ -1225,8 +1299,3 @@ function areaCategorias() {
   cont_cat.append(area_cat);
 }
 
-function povoaCampos() {
-  console.log("asdjaskdjaskda")
-  let tf_nome = document.getElementById('titulo');
-  tf_nome.textContent = receitaTeste.nome;
-}

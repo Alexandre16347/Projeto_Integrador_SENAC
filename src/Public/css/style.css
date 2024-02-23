@@ -287,6 +287,7 @@ p {
     border-radius: 10px;
     background-color: red;
     font-size: large;
+    
 }
 
 .btt:hover {
@@ -301,6 +302,6 @@ p {
     justify-content: center;
 }
 
-.bt{
+.btt{
     padding: 3mm;
 }
