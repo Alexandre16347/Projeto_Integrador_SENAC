@@ -796,13 +796,6 @@ async function enviarFormularioReceita() {
     .map((ingrediente) => ingrediente.trim());
   formData.set('ingredientes', JSON.stringify(ingredientesArray));
 
-  // Processar o campo 'ingredientes' como um array
-  const categoriasTextArea = formData.get('categorias');
-  const categoriasArray = categoriasTextArea
-    .split('\n')
-    .map((categoria) => categoria.trim());
-  formData.set('categorias', JSON.stringify(categoriasArray));
-
   const { usuario } = await buscaUser();
 
   // // Depuração: Exibir formData no console

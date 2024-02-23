@@ -13,17 +13,21 @@ import User from '../Model/User';
 class CadastroReceita {
   // Método para cadastrar uma nova receita
   async store(req, res) {
+    console.log(req.body)
     const {
       Titulo,
       modoDePreparo = JSON.parse(modoDePreparo),
       ingredientes = JSON.parse(ingredientes),
       tempo,
       porcoes,
-      categorias = JSON.parse(categorias),
+      categoria,
       descricao,
     } = req.body;
     const { filename } = req.file;
     const { user } = req.headers;
+
+    const categorias = categoria
+
     
 
     try {
