@@ -1,4 +1,5 @@
-import Receita from "../../Model/Receita";
+
+
 
 // Declarações de Variáveis Globais
 let logos_redes = [
@@ -264,7 +265,7 @@ async function obterUsuario() {
   }
 }
 
-let receitaTeste // teste
+
 
 async function obterReceita() {
   // Extrai o ID da receita da query da URL
@@ -1225,8 +1226,40 @@ function areaCategorias() {
   cont_cat.append(area_cat);
 }
 
-function povoaCampos() {
-  console.log("asdjaskdjaskda")
-  let tf_nome = document.getElementById('titulo');
-  tf_nome.textContent = receitaTeste.nome;
+
+
+function carregarImagem() {
+  //Script input img Atualizar perfil
+  const inputFile = document.querySelector("#picture__input");
+  const pictureImage = document.querySelector(".picture__image");
+  const pictureImageTxt = "Alterar imagem";
+  pictureImage.innerHTML = pictureImageTxt;
+
+
+  inputFile.addEventListener("change", function (e) {
+    const inputTarget = e.target;
+    const file = inputTarget.files[0];
+
+
+    if (file) {
+      const reader = new FileReader();
+
+      reader.addEventListener("load", function (e) {
+        const readerTarget = e.target;
+
+        const img = document.createElement("img");
+        img.src = readerTarget.result;
+        img.classList.add("picture__img");
+
+        pictureImage.innerHTML = "";
+        pictureImage.appendChild(img);
+      });
+
+      reader.readAsDataURL(file);
+    } else {
+      pictureImage.innerHTML = pictureImageTxt;
+    }
+  });
 }
+
+

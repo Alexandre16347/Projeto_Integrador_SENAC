@@ -7,7 +7,6 @@ let tam_social = logos_redes.length;
 // *******************************************************************************************************************************************
 // TOP BAR
 
-
 let top_bar = document.getElementById("top-bar")
 let barra_menu = document.createDocumentFragment();
 
@@ -254,3 +253,4 @@ barra_bottom.append(container_redes_b);
 
 bottom_bar.append(barra_bottom);
 console.log(bottom_bar)
+

@@ -7,7 +7,6 @@
     <link rel="stylesheet" href="css/default.css">
     <link rel="stylesheet" href="css/cadastro-receita.css">
     <script src="js/funcoes.js"></script>
-    <script>verificarAutenticacao();</script>
     <title>Cadastro de Receitas</title>
 </head>
 
@@ -208,36 +207,9 @@
         topBar();
         botaoResponsivo();
         bottomBar();
+        verificarAutenticacao();
 
-//script input img//
-        const inputFile = document.querySelector("#picture__input");
-        const pictureImage = document.querySelector(".picture__image");
-        const pictureImageTxt = "Adicionar imagem";
-        pictureImage.innerHTML = pictureImageTxt;
-
-        inputFile.addEventListener("change", function (e) {
-            const inputTarget = e.target;
-            const file = inputTarget.files[0];
-
-            if (file) {
-                const reader = new FileReader();
-
-                reader.addEventListener("load", function (e) {
-                    const readerTarget = e.target;
-
-                    const img = document.createElement("img");
-                    img.src = readerTarget.result;
-                    img.classList.add("picture__img");
-
-                    pictureImage.innerHTML = "";
-                    pictureImage.appendChild(img);
-                });
-
-                reader.readAsDataURL(file);
-            } else {
-                pictureImage.innerHTML = pictureImageTxt;
-            }
-        });
+        carregarImagem();
 
     </script>
 
