@@ -1,131 +1,131 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="css/default.css" />
-    <link rel="stylesheet" href="css/cadastro.css" />
-    <script src="js/funcoes.js"></script>
-    <!-- <script>verificarAutenticacao();</script> -->
-    <title>Formulário de cadastro de usuario</title>
-  </head>
 
-  <body>
-    <div id="container">
-      <div id="top-bar"></div>
-      <div id="content">
-        <div class="box">
-          <div class="img-box">
-            <img alt="" src="../Uploads/por-do-sol-1-1708124367053.jpg" />
-          </div>
-          <div class="form-box">
-            <h2>Atualizar Dados Pessoais</h2>
-            <form id="cadastroForm" enctype="multipart/form-data" method="post">
-              <div class="input-group">
-                <label for="nome"> Nome Completo</label>
-                <input
-                  type="text"
-                  id="nome"
-                  name="Nome"
-                  placeholder="Digite o seu nome completo"
-                  required
-                />
-              </div>
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="css/default.css" />
+  <link rel="stylesheet" href="css/cadastro.css" />
+  <script src="js/funcoes.js"></script>
+  <!-- <script>verificarAutenticacao();</script> -->
+  <title>Formulário de cadastro de usuario</title>
+</head>
 
-              <div class="input-group">
-                <label for="email">E-mail</label>
-                <input
-                  type="email"
-                  id="email"
-                  name="email"
-                  placeholder="Digite o seu email"
-                  required
-                />
-              </div>
+<body>
+  <div id="container">
+    <div id="top-bar"></div>
+    <div id="content">
+      <div class="box">
+        <div class="img-box">
+          <img alt="" src="../Uploads/por-do-sol-1-1708124367053.jpg" />
+        </div>
+        <div class="form-box">
+          <h2>Atualizar Dados Pessoais</h2>
+          <form id="cadastroForm" enctype="multipart/form-data" method="post">
+            <div class="input-group">
+              <label for="nome"> Nome Completo</label>
+              <input type="text" id="nome" name="Nome" placeholder="Digite o seu nome completo" required />
+            </div>
 
-              <div class="input-group">
-                <label for="idade">Idade</label>
-                <input
-                  type="number"
-                  id="idade"
-                  name="idade"
-                  placeholder="Digite a sua idade"
-                  required
-                />
-              </div>
+            <div class="input-group">
+              <label for="email">E-mail</label>
+              <input type="email" id="email" name="email" placeholder="Digite o seu email" required />
+            </div>
 
-              <div class="input-group position-relative">
-                <label for="senha">Senha</label>
-                <input
-                  type="password"
-                  id="senha"
-                  name="senha"
-                  placeholder="Digite sua senha"
-                  required
-                />
-                <span class="password-toggle" onclick="togglePassword()">
-                  <img
-                    id="eyeIcon"
-                    src="media/closed-eyes.png"
-                    alt="Toggle Password Visibility"
-                  />
-                </span>
-              </div>
+            <div class="input-group">
+              <label for="idade">Idade</label>
+              <input type="number" id="idade" name="idade" placeholder="Digite a sua idade" required />
+            </div>
 
-              <div class="input-group position-relative">
-                <label for="confirmarSenha">Confirmar Senha</label>
-                <input
-                  type="password"
-                  id="confirmarSenha"
-                  name="confirmarSenha"
-                  placeholder="Confirme sua senha"
-                  required
-                />
-                <span class="password-toggle" onclick="toggleConfirmarSenha()">
-                  <img
-                    id="eyeIconConfirmarSenha"
-                    src="media/closed-eyes.png"
-                    alt="Toggle Confirmar Senha Visibility"
-                  />
-                </span>
-              </div>
+            <div class="input-group position-relative">
+              <label for="senha">Senha</label>
+              <input type="password" id="senha" name="senha" placeholder="Digite sua senha" required />
+              <span class="password-toggle" onclick="togglePassword()">
+                <img id="eyeIcon" src="media/closed-eyes.png" alt="Toggle Password Visibility" />
+              </span>
+            </div>
 
-              <div class="input-group">
-                <label for="imagem">Imagem de Perfil</label>
+            <div class="input-group position-relative">
+              <label for="confirmarSenha">Confirmar Senha</label>
+              <input type="password" id="confirmarSenha" name="confirmarSenha" placeholder="Confirme sua senha"
+                required />
+              <span class="password-toggle" onclick="toggleConfirmarSenha()">
+                <img id="eyeIconConfirmarSenha" src="media/closed-eyes.png" alt="Toggle Confirmar Senha Visibility" />
+              </span>
+            </div>
+
+            <div class="input-group">
+              <!-- <label for="imagem">Imagem de Perfil</label>
                 <input
                   type="file"
                   id="imagem"
                   name="imagem"
                   accept="image/*"
                   required
-                />
-              </div>
+                /> -->
+
+              <label class="picture" for="picture__input" tabIndex="0">
+                <span class="picture__image"></span>
+              </label>
+
+              <input type="file" name="picture__input" id="picture__input">
+            </div>
 
 
-              <div class="input-group w50">
-                <button
-                  type="button"
-                  class="btn-login"
-                  onclick="enviarFormulario()"
-                >
-                  Atualizar Cadastro
-                </button>
-              </div>
-            </form>
-          </div>
+            <div class="input-group w50">
+              <button type="button" class="btn-login" onclick="enviarFormulario()">
+                Atualizar Cadastro
+              </button>
+            </div>
+          </form>
         </div>
       </div>
-
-      <div id="bottom-bar"></div>
     </div>
 
-    <script>
-      topBar();
-      botaoResponsivo();
-      bottomBar();
-    </script>
+    <div id="bottom-bar"></div>
+  </div>
 
-    <!-- <script src="js/script-ours-pages.js"></script> -->
-  </body>
+  <script>
+    topBar();
+    botaoResponsivo();
+    bottomBar();
+
+
+    const inputFile = document.querySelector("#picture__input");
+    const pictureImage = document.querySelector(".picture__image");
+    const pictureImageTxt = "Alterar imagem";
+    pictureImage.innerHTML = pictureImageTxt;
+
+
+    inputFile.addEventListener("change", function (e) {
+      const inputTarget = e.target;
+      const file = inputTarget.files[0];
+
+
+      if (file) {
+        const reader = new FileReader();
+
+        reader.addEventListener("load", function (e) {
+          const readerTarget = e.target;
+
+          const img = document.createElement("img");
+          img.src = readerTarget.result;
+          img.classList.add("picture__img");
+
+          pictureImage.innerHTML = "";
+          pictureImage.appendChild(img);
+        });
+
+        reader.readAsDataURL(file);
+      } else {
+        pictureImage.innerHTML = pictureImageTxt;
+      }
+    });
+
+  </script>
+
+  <!-- <script src="js/script-ours-pages.js"></script> -->
+</body>
+
 </html>

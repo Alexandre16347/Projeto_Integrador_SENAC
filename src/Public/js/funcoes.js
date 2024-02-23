@@ -1,4 +1,8 @@
 
+// <<<<<<< HEAD
+// =======
+
+// >>>>>>> 6cad6ad9c39c88ae9a48596df82055dc074d1776
 
 // Declarações de Variáveis Globais
 let logos_redes = [
@@ -264,6 +268,11 @@ async function obterUsuario() {
   }
 }
 
+// <<<<<<< HEAD
+// =======
+
+
+// >>>>>>> 6cad6ad9c39c88ae9a48596df82055dc074d1776
 async function obterReceita() {
   // Extrai o ID da receita da query da URL
   const urlParams = new URLSearchParams(window.location.search);
@@ -1299,3 +1308,43 @@ function areaCategorias() {
   cont_cat.append(area_cat);
 }
 
+// <<<<<<< HEAD
+// =======
+
+
+function carregarImagem() {
+  //Script input img Atualizar perfil
+  const inputFile = document.querySelector("#picture__input");
+  const pictureImage = document.querySelector(".picture__image");
+  const pictureImageTxt = "Alterar imagem";
+  pictureImage.innerHTML = pictureImageTxt;
+
+
+  inputFile.addEventListener("change", function (e) {
+    const inputTarget = e.target;
+    const file = inputTarget.files[0];
+
+
+    if (file) {
+      const reader = new FileReader();
+
+      reader.addEventListener("load", function (e) {
+        const readerTarget = e.target;
+
+        const img = document.createElement("img");
+        img.src = readerTarget.result;
+        img.classList.add("picture__img");
+
+        pictureImage.innerHTML = "";
+        pictureImage.appendChild(img);
+      });
+
+      reader.readAsDataURL(file);
+    } else {
+      pictureImage.innerHTML = pictureImageTxt;
+    }
+  });
+}
+
+
+// >>>>>>> 6cad6ad9c39c88ae9a48596df82055dc074d1776

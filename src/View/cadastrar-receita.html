@@ -7,7 +7,6 @@
     <link rel="stylesheet" href="css/default.css">
     <link rel="stylesheet" href="css/cadastro-receita.css">
     <script src="js/funcoes.js"></script>
-    <script>verificarAutenticacao();</script>
     <title>Cadastro de Receitas</title>
 </head>
 
@@ -24,6 +23,14 @@
                     <form id="receitaForm" enctype="multipart/form-data">
 
                         <div id="quadrado1">
+
+                            <div class="input-group">
+                                <label class="picture" for="picture__input" tabIndex="0">
+                                    <span class="picture__image"></span>
+                                </label>
+
+                                <input type="file" name="picture__input" id="picture__input">
+                            </div> <br><br>
 
                             <div class="input-group">
                                 <label for="Titulo"> Título:</label>
@@ -48,23 +55,23 @@
                                     placeholder="Digite uma descrição para sua receita" required></textarea>
                             </div>
                             <br><br>
-                            <div class="input-group">
-                                <label for="imagem">Escolher uma Imagem:&nbsp; </label>
-                                <input type="file" id="imagem" name="imagem" accept="image/*" required>
-                            </div> <br><br>
+
+
+
 
                             <!-- <div id="quadIngre"> -->
                             <div class="input-group">
                                 <label for="ingredientes">Ingredientes: &nbsp;</label>
-                                <textarea id="ingredientes" name="ingredientes" placeholder="Digite os ingredientes" required></textarea>
+                                <textarea id="ingredientes" name="ingredientes" placeholder="Digite os ingredientes"
+                                    required></textarea>
                             </div> <br><br>
                             <!-- </div> -->
 
                             <!-- <div id="modoDePreparo"> -->
                             <div class="input-group">
                                 <label for="modoDePreparo">Modo de Preparo:</label>
-                                <textarea id="modoDePreparo" name="modoDePreparo" placeholder="Ex.: bata todos os ingredientes..."
-                                    required></textarea>
+                                <textarea id="modoDePreparo" name="modoDePreparo"
+                                    placeholder="Ex.: bata todos os ingredientes..." required></textarea>
                             </div> <br><br>
                             <!-- </div> -->
 
@@ -182,7 +189,8 @@
 
                         <div class="input-group w50">
 
-                            <button type="button" class="btn-login" onclick="enviarFormularioReceita()">Cadastrar Receita</button>
+                            <button type="button" class="btn-login" onclick="enviarFormularioReceita()">Cadastrar
+                                Receita</button>
                         </div>
                     </form>
 
@@ -199,6 +207,10 @@
         topBar();
         botaoResponsivo();
         bottomBar();
+        verificarAutenticacao();
+
+        carregarImagem();
+
     </script>
 
     <!-- <script src="../src/js/script-ours-pages.js"></script> -->
