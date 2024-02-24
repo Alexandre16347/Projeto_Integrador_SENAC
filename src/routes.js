@@ -5,6 +5,7 @@ import user from './Controller/UserController';
 import receita from './Controller/ReceitaController';
 import card from './Controller/CardController';
 import path from 'path';
+import categoria from './Controller/CategoriaController';
 
 const upload = new multer(Upload);
 const routes = new Router();
@@ -153,6 +154,22 @@ routes.put('/receita', upload.single('imagem'), receita.atualizarTudo);
 routes.delete('/deletarReceita', receita.deletarReceita);
 // Deletar todas as receitas de um usuário
 routes.delete('/deletarReceitasUser', receita.deletarReceitasPorUsuario);
+
+
+
+//categoria
+//adicionar uma categoria
+routes.post('/adicionarCategoria', categoria.store);
+//
+routes.get('/Categoria', categoria.buscarPorId);
+//
+routes.get('/todasCategoria', categoria.buscarTudo);
+//
+routes.put('/atualizarCategoria', categoria.atualizaNome)
+
+
+
+
 
 module.exports = routes;
 
