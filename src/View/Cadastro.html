@@ -1,132 +1,101 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="css/default.css" />
-    <link rel="stylesheet" href="css/cadastro.css" />
-    <script src="js/funcoes.js"></script>
-    <title>Formulário de cadastro de usuario</title>
-  </head>
 
-  <body>
-    <div id="container">
-      <div id="top-bar"></div>
-      <div id="content">
-        <div class="box">
-          <div class="img-box">
-            <img alt="logo" src="media/1200px-Senac_logo.svg.png" />
-          </div>
-          <div class="form-box">
-            <h2>Criar Conta</h2>
-            <p>
-              Já possui cadastro?
-              <a href="Login"> Login </a>
-            </p>
-            <form id="cadastroForm" enctype="multipart/form-data" method="post">
-              <div class="input-group">
-                <label for="nome"> Nome Completo</label>
-                <input
-                  type="text"
-                  id="nome"
-                  name="Nome"
-                  placeholder="Digite o seu nome completo"
-                  required
-                />
-              </div>
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="css/default.css" />
+  <link rel="stylesheet" href="css/cadastro.css" />
+  <script src="js/funcoes.js"></script>
+  <title>Formulário de cadastro de usuario</title>
+</head>
 
-              <div class="input-group">
-                <label for="email">E-mail</label>
-                <input
-                  type="email"
-                  id="email"
-                  name="email"
-                  placeholder="Digite o seu email"
-                  required
-                />
-              </div>
+<body>
+  <div id="container">
+    <div id="top-bar"></div>
+    <div id="content">
+      <div class="box">
+        <div class="img-box">
+          <img alt="logo" src="media/1200px-Senac_logo.svg.png" />
+        </div>
+        <div class="form-box">
+          <h2>Criar Conta</h2>
+          <p>
+            Já possui cadastro?
+            <a href="Login"> Login </a>
+          </p>
+          <form id="cadastroForm" enctype="multipart/form-data" method="post">
+            <div class="input-group">
+              <label for="nome"> Nome Completo</label>
+              <input type="text" id="nome" name="Nome" placeholder="Digite o seu nome completo" required />
+            </div>
 
-              <div class="input-group">
-                <label for="idade">Idade</label>
-                <input
-                  type="number"
-                  id="idade"
-                  name="idade"
-                  placeholder="Digite a sua idade"
-                  required
-                />
-              </div>
+            <div class="input-group">
+              <label for="email">E-mail</label>
+              <input type="email" id="email" name="email" placeholder="Digite o seu email" required />
+            </div>
 
-              <div class="input-group position-relative">
-                <label for="senha">Senha</label>
-                <input
-                  type="password"
-                  id="senha"
-                  name="senha"
-                  placeholder="Digite sua senha"
-                  required
-                />
-                <span class="password-toggle" onclick="togglePassword()">
-                  <img
-                    id="eyeIcon"
-                    src="media/closed-eyes.png"
-                    alt="Toggle Password Visibility"
-                  />
-                </span>
-              </div>
+            <div class="input-group">
+              <label for="idade">Idade</label>
+              <input type="number" id="idade" name="idade" placeholder="Digite a sua idade" required />
+            </div>
 
-              <div class="input-group position-relative">
-                <label for="confirmarSenha">Confirmar Senha</label>
-                <input
-                  type="password"
-                  id="confirmarSenha"
-                  name="confirmarSenha"
-                  placeholder="Confirme sua senha"
-                  required
-                />
-                <span class="password-toggle" onclick="toggleConfirmarSenha()">
-                  <img
-                    id="eyeIconConfirmarSenha"
-                    src="media/closed-eyes.png"
-                    alt="Toggle Confirmar Senha Visibility"
-                  />
-                </span>
-              </div>
+            <div class="input-group position-relative">
+              <label for="senha">Senha</label>
+              <input type="password" id="senha" name="senha" placeholder="Digite sua senha" required />
+              <span class="password-toggle" onclick="togglePassword()">
+                <img id="eyeIcon" src="media/closed-eyes.png" alt="Toggle Password Visibility" />
+              </span>
+            </div>
 
-              <div class="input-group">
-                <label for="imagem">Imagem de Perfil</label>
+            <div class="input-group position-relative">
+              <label for="confirmarSenha">Confirmar Senha</label>
+              <input type="password" id="confirmarSenha" name="confirmarSenha" placeholder="Confirme sua senha"
+                required />
+              <span class="password-toggle" onclick="toggleConfirmarSenha()">
+                <img id="eyeIconConfirmarSenha" src="media/closed-eyes.png" alt="Toggle Confirmar Senha Visibility" />
+              </span>
+            </div>
+
+            <div class="input-group">
+              <!-- <label for="imagem">Imagem de Perfil</label>
                 <input
                   type="file"
                   id="imagem"
                   name="imagem"
                   accept="image/*"
                   required
-                />
-              </div>
+                /> -->
+              <label class="picture" for="picture__input" tabIndex="0">
+                <span class="picture__image" ></span>
+              </label>
 
-              <div class="input-group w50">
-                <button
-                  type="button"
-                  class="btn-login"
-                  onclick="enviarFormulario()"
-                >
-                  Finalizar Cadastro
-                </button>
-              </div>
-            </form>
-          </div>
+              <input type="file" name="imagem" id="picture__input" >
+            </div> <br><br>
+            <div class="input-group w50">
+              <button type="button" class="btn-login" onclick="enviarFormulario()">
+                Finalizar Cadastro
+              </button>
+            </div>
         </div>
+
+       
+        </form>
       </div>
-
-      <div id="bottom-bar"></div>
     </div>
+  </div>
 
-    <script>
-      topBar();
-      botaoResponsivo();
-      bottomBar();
-    </script>
-    <!-- <script src="../src/js/script-ours-pages.js" defer></script> -->
-  </body>
+  <div id="bottom-bar"></div>
+  </div>
+
+  <script>
+    topBar();
+    botaoResponsivo();
+    bottomBar();
+    carregarImagem();
+  </script>
+  <!-- <script src="../src/js/script-ours-pages.js" defer></script> -->
+</body>
+
 </html>
