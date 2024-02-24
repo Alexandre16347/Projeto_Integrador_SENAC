@@ -1241,7 +1241,67 @@ function areaSearch() {
   areaSearch.append(area);
 }
 
-function areaCategorias() {
+async function obterCategorias() {
+  try {
+    const response = await fetch('/todasCategoria', {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+        // Adicione cabeçalhos adicionais, se necessário
+      },
+    });
+
+    if (!response.ok) {
+      throw new Error('Não foi possível obter as categorias. Código de status: ' + response.status);
+    }
+
+    const categorias = await response.json();
+    return categorias;
+  } catch (error) {
+    console.error('Ocorreu um erro ao obter as categorias:', error);
+    throw error; // Você pode optar por relançar o erro para que a função que chama obterCategorias também possa lidar com o erro, se necessário
+  }
+}
+
+async function categorias(){
+  const categorias = await obterCategorias()
+  // <div class="item">
+  //     <input type="checkbox" name="categorias" value="Bolos"
+  //         class="quadrado">
+  //     <label class="texto" for="bolos"> Bolos</label><br>
+  // </div>
+
+  let checkboxs = document.getElementById("nomesCat")
+
+  for (let i = 0; i < categorias.length; i++) {
+    const categoria = categorias[i];
+
+    let divCategoria = document.createElement('div')
+    divCategoria.setAttribute('class', "item")
+
+    let checkCategoria = document.createElement('input')
+    checkCategoria.setAttribute('type', 'checkbox')
+    checkCategoria.setAttribute('name', 'categorias')
+    checkCategoria.setAttribute('values', `${categoria.nome}`)
+    checkCategoria.setAttribute('class', 'quadrado')
+
+    let labelCategoria = document.createElement('label')
+    labelCategoria.setAttribute('class', 'texto')
+    labelCategoria.textContent = categoria.nome
+
+    let br = document.createElement('br')
+
+    divCategoria.append(checkCategoria)
+    divCategoria.append(labelCategoria)
+    divCategoria.append(br)
+
+    checkboxs.append(divCategoria)
+  }
+
+}
+
+
+async function areaCategorias() {
   // *******************************************************************************************************************************************
   // Area Categorias
 
@@ -1260,23 +1320,10 @@ function areaCategorias() {
   //   'Drinks',
   //   'Sorvetes',
   // ];
-  const categorias = [
-    "Bolos",
-    "Tortas",
-    "Salgados",
-    "Doces",
-    "Massas",
-    "Sobremesas",
-    "Confeitaria",
-    "Saladas",
-    "Refeições",
-    "Comidas Rápidas",
-    "Carnes",
-    "Sopas",
-    "Farofas",
-    "Bebidas",
-    "Sorvetes"
-  ];
+
+  const { categorias } = await obterCategorias()
+
+  console.log(categorias)
 
   let tam_cat = categorias.length;
 
@@ -1291,7 +1338,7 @@ function areaCategorias() {
     // cat.setAttribute('href', '')
 
     let btn_cat = document.createElement(`button`);
-    btn_cat.append(categorias[i]);
+    btn_cat.append(categorias[i].nome);
     btn_cat.setAttribute('class', 'btn-menu');
 
     cat.append(btn_cat);
