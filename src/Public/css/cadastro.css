@@ -108,7 +108,7 @@ form .input-group button{
 
 .btn-login {
     font-weight: bold;
-    width: 40%;
+    width: 70%;
     flex-wrap: wrap;
     text-align: center;
     font-size: larger;
@@ -132,6 +132,7 @@ form .input-group button{
 
 #picture__input {
     display: none;
+   
   }
   
   .picture {
@@ -149,6 +150,7 @@ form .input-group button{
     outline: none;
     overflow: hidden;
   }
+
   
   .picture:hover {
     color: #777;
@@ -170,4 +172,5 @@ form .input-group button{
   .picture__img {
     max-width: 100%;
   }
+
   
