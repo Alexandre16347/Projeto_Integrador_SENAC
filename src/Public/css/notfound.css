@@ -9,13 +9,13 @@ p {
     margin-bottom: 20px;
 }
 
-a {
+.content a {
     text-decoration: none;
     color: #007bff;
     font-weight: bold;
 }
 
-a:hover {
+.content a:hover {
     text-decoration: underline;
 }
 
