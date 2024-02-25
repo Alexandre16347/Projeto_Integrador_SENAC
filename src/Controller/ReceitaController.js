@@ -1,7 +1,7 @@
-import fs from 'fs';
-import path from 'path';
-import Receita from '../Model/Receita';
-import User from '../Model/User';
+import fs from "fs";
+import path from "path";
+import Receita from "../Model/Receita";
+import User from "../Model/User";
 
 // Função para aguardar X segundos
 // function esperarSegundos(segundos) {
@@ -13,29 +13,26 @@ import User from '../Model/User';
 class CadastroReceita {
   // Método para cadastrar uma nova receita
   async store(req, res) {
-    console.log(req.body)
     const {
       Titulo,
-      modoDePreparo = JSON.parse(modoDePreparo),
-      ingredientes = JSON.parse(ingredientes),
+      modoDePreparo,
+      ingredientes,
       tempo,
       porcoes,
-      categoria,
+      categorias,
       descricao,
     } = req.body;
     const { filename } = req.file;
     const { user } = req.headers;
 
-    const categorias = categoria
-
-    
+    console.log(ingredientes);
 
     try {
       // Verifica se o usuário existe
-      const usuario = await User.findById(user, 'Nome');
+      const usuario = await User.findById(user, "Nome");
 
       if (!usuario) {
-        return res.status(404).json({ error: 'Usuário não encontrado' });
+        return res.status(404).json({ error: "Usuário não encontrado" });
       }
 
       // Cria a nova receita
@@ -54,8 +51,8 @@ class CadastroReceita {
 
       return res.status(201).json(novaReceita);
     } catch (error) {
-      console.error('Erro no cadastro de receita:', error);
-      return res.status(500).json({ error: 'Erro interno no servidor' });
+      console.error("Erro no cadastro de receita:", error);
+      return res.status(500).json({ error: "Erro interno no servidor" });
     }
   }
 
@@ -68,18 +65,18 @@ class CadastroReceita {
       for (let i = 0; i < lista.length; i++) {
         const receita = lista[i];
 
-        if (!receita.categorias || !receita.porcoes || !receita.descricao) {
-          receita.categorias = 'gostosa';
-          receita.porcoes = 1;
-          receita.descricao = 'Muito gostoso';
-          await receita.save();
-        }
+        // if (!receita.categorias || !receita.porcoes || !receita.descricao) {
+        //   receita.categorias = 'gostosa';
+        //   receita.porcoes = 1;
+        //   receita.descricao = 'Muito gostoso';
+        //   await receita.save();
+        // }
       }
 
       return res.json(lista);
     } catch (error) {
-      console.error('Erro ao buscar todas as receitas:', error);
-      return res.status(500).json({ error: 'Erro interno no servidor' });
+      console.error("Erro ao buscar todas as receitas:", error);
+      return res.status(500).json({ error: "Erro interno no servidor" });
     }
   }
 
@@ -91,13 +88,13 @@ class CadastroReceita {
       let receita = await Receita.findById(id);
 
       if (!receita) {
-        return res.status(404).json({ error: 'Receita não encontrada' });
+        return res.status(404).json({ error: "Receita não encontrada" });
       }
 
       return res.json(receita);
     } catch (error) {
-      console.error('Erro ao buscar receita por ID:', error);
-      return res.status(500).json({ error: 'Erro interno no servidor' });
+      console.error("Erro ao buscar receita por ID:", error);
+      return res.status(500).json({ error: "Erro interno no servidor" });
     }
   }
 
@@ -109,7 +106,7 @@ class CadastroReceita {
       const receita = await Receita.findByIdAndDelete(id);
 
       if (!receita) {
-        return res.status(404).json({ error: 'Receita não encontrada' });
+        return res.status(404).json({ error: "Receita não encontrada" });
       }
 
       // Deleta a imagem associada à receita
@@ -117,8 +114,8 @@ class CadastroReceita {
 
       return res.json(receita);
     } catch (error) {
-      console.error('Erro ao deletar receita:', error);
-      return res.status(500).json({ error: 'Erro interno no servidor' });
+      console.error("Erro ao deletar receita:", error);
+      return res.status(500).json({ error: "Erro interno no servidor" });
     }
   }
 
@@ -130,8 +127,8 @@ class CadastroReceita {
       const lista = await Receita.find({ user });
       return res.json(lista);
     } catch (error) {
-      console.error('Erro ao buscar receitas por usuário:', error);
-      return res.status(500).json({ error: 'Erro interno no servidor' });
+      console.error("Erro ao buscar receitas por usuário:", error);
+      return res.status(500).json({ error: "Erro interno no servidor" });
     }
   }
 
@@ -156,15 +153,15 @@ class CadastroReceita {
 
       return res.json(excluidas);
     } catch (error) {
-      console.error('Erro ao deletar receitas por usuário:', error);
-      return res.status(500).json({ error: 'Erro interno no servidor' });
+      console.error("Erro ao deletar receitas por usuário:", error);
+      return res.status(500).json({ error: "Erro interno no servidor" });
     }
   }
 
   // Método estático para deletar imagem da pasta de uploads
   static deleteImageInUploadsFolder(imageName) {
-    const uploadsFolderPath = path.join(__dirname, '..', 'Uploads');
-    
+    const uploadsFolderPath = path.join(__dirname, "..", "Uploads");
+
     const imagePath = path.join(uploadsFolderPath, imageName);
 
     try {
@@ -188,17 +185,17 @@ class CadastroReceita {
       const receita = await Receita.findByIdAndUpdate(
         id,
         { Titulo: titulo },
-        { new: true },
+        { new: true }
       );
 
       if (!receita) {
-        return res.status(404).json({ error: 'Receita não encontrada' });
+        return res.status(404).json({ error: "Receita não encontrada" });
       }
 
       return res.json(receita);
     } catch (error) {
-      console.error('Erro ao atualizar título da receita:', error);
-      return res.status(500).json({ error: 'Erro interno no servidor' });
+      console.error("Erro ao atualizar título da receita:", error);
+      return res.status(500).json({ error: "Erro interno no servidor" });
     }
   }
 
@@ -211,17 +208,17 @@ class CadastroReceita {
       const receita = await Receita.findByIdAndUpdate(
         id,
         { ingredientes },
-        { new: true },
+        { new: true }
       );
 
       if (!receita) {
-        return res.status(404).json({ error: 'Receita não encontrada' });
+        return res.status(404).json({ error: "Receita não encontrada" });
       }
 
       return res.json(receita);
     } catch (error) {
-      console.error('Erro ao atualizar ingredientes da receita:', error);
-      return res.status(500).json({ error: 'Erro interno no servidor' });
+      console.error("Erro ao atualizar ingredientes da receita:", error);
+      return res.status(500).json({ error: "Erro interno no servidor" });
     }
   }
 
@@ -234,17 +231,17 @@ class CadastroReceita {
       const receita = await Receita.findByIdAndUpdate(
         id,
         { modoDePreparo },
-        { new: true },
+        { new: true }
       );
 
       if (!receita) {
-        return res.status(404).json({ error: 'Receita não encontrada' });
+        return res.status(404).json({ error: "Receita não encontrada" });
       }
 
       return res.json(receita);
     } catch (error) {
-      console.error('Erro ao atualizar modo de preparo da receita:', error);
-      return res.status(500).json({ error: 'Erro interno no servidor' });
+      console.error("Erro ao atualizar modo de preparo da receita:", error);
+      return res.status(500).json({ error: "Erro interno no servidor" });
     }
   }
 
@@ -257,17 +254,17 @@ class CadastroReceita {
       const receita = await Receita.findByIdAndUpdate(
         id,
         { tempo },
-        { new: true },
+        { new: true }
       );
 
       if (!receita) {
-        return res.status(404).json({ error: 'Receita não encontrada' });
+        return res.status(404).json({ error: "Receita não encontrada" });
       }
 
       return res.json(receita);
     } catch (error) {
-      console.error('Erro ao atualizar tempo da receita:', error);
-      return res.status(500).json({ error: 'Erro interno no servidor' });
+      console.error("Erro ao atualizar tempo da receita:", error);
+      return res.status(500).json({ error: "Erro interno no servidor" });
     }
   }
 
@@ -280,17 +277,17 @@ class CadastroReceita {
       const receita = await Receita.findByIdAndUpdate(
         id,
         { porcoes },
-        { new: true },
+        { new: true }
       );
 
       if (!receita) {
-        return res.status(404).json({ error: 'Receita não encontrada' });
+        return res.status(404).json({ error: "Receita não encontrada" });
       }
 
       return res.json(receita);
     } catch (error) {
-      console.error('Erro ao atualizar porções da receita:', error);
-      return res.status(500).json({ error: 'Erro interno no servidor' });
+      console.error("Erro ao atualizar porções da receita:", error);
+      return res.status(500).json({ error: "Erro interno no servidor" });
     }
   }
 
@@ -303,17 +300,17 @@ class CadastroReceita {
       const receita = await Receita.findByIdAndUpdate(
         id,
         { categorias },
-        { new: true },
+        { new: true }
       );
 
       if (!receita) {
-        return res.status(404).json({ error: 'Receita não encontrada' });
+        return res.status(404).json({ error: "Receita não encontrada" });
       }
 
       return res.json(receita);
     } catch (error) {
-      console.error('Erro ao atualizar categorias da receita:', error);
-      return res.status(500).json({ error: 'Erro interno no servidor' });
+      console.error("Erro ao atualizar categorias da receita:", error);
+      return res.status(500).json({ error: "Erro interno no servidor" });
     }
   }
 
@@ -326,17 +323,17 @@ class CadastroReceita {
       const receita = await Receita.findByIdAndUpdate(
         id,
         { descricao },
-        { new: true },
+        { new: true }
       );
 
       if (!receita) {
-        return res.status(404).json({ error: 'Receita não encontrada' });
+        return res.status(404).json({ error: "Receita não encontrada" });
       }
 
       return res.json(receita);
     } catch (error) {
-      console.error('Erro ao atualizar descrição da receita:', error);
-      return res.status(500).json({ error: 'Erro interno no servidor' });
+      console.error("Erro ao atualizar descrição da receita:", error);
+      return res.status(500).json({ error: "Erro interno no servidor" });
     }
   }
 
@@ -349,7 +346,7 @@ class CadastroReceita {
       const receita = await Receita.findById(id);
 
       if (!receita) {
-        return res.status(404).json({ error: 'Receita não encontrada' });
+        return res.status(404).json({ error: "Receita não encontrada" });
       }
 
       // Se a receita já tinha uma imagem, exclui ela
@@ -365,8 +362,8 @@ class CadastroReceita {
 
       return res.json(receita);
     } catch (error) {
-      console.error('Erro ao atualizar imagem da receita:', error);
-      return res.status(500).json({ error: 'Erro interno no servidor' });
+      console.error("Erro ao atualizar imagem da receita:", error);
+      return res.status(500).json({ error: "Erro interno no servidor" });
     }
   }
 
@@ -375,7 +372,7 @@ class CadastroReceita {
     const { id } = req.query;
     const novosDados = req.body;
 
-    console.log({id, novosDados})
+    // console.log({ id, novosDados });
 
     try {
       const receita = await Receita.findByIdAndUpdate(id, novosDados, {
@@ -383,13 +380,13 @@ class CadastroReceita {
       });
 
       if (!receita) {
-        return res.status(404).json({ error: 'Receita não encontrada' });
+        return res.status(404).json({ error: "Receita não encontrada" });
       }
 
       return res.json(receita);
     } catch (error) {
-      console.error('Erro ao atualizar receita:', error);
-      return res.status(500).json({ error: 'Erro interno no servidor' });
+      console.error("Erro ao atualizar receita:", error);
+      return res.status(500).json({ error: "Erro interno no servidor" });
     }
   }
 }

@@ -1,5 +1,6 @@
 import { Schema, model } from 'mongoose';
 import User from './User';
+import Categoria from './Categoria';
 
 const ReceitaShema = new Schema(
   {
@@ -36,7 +37,8 @@ const ReceitaShema = new Schema(
       required: true,
     },
     categorias: {
-      type: Array,
+      type: [Schema.Types.ObjectId],
+      ref: Categoria,
       required: true,
     },
   },
