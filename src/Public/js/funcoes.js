@@ -264,10 +264,6 @@ async function obterUsuario() {
   }
 }
 
-// <<<<<<< HEAD
-// =======
-
-// >>>>>>> 6cad6ad9c39c88ae9a48596df82055dc074d1776
 async function obterReceita() {
   // Extrai o ID da receita da query da URL
   const urlParams = new URLSearchParams(window.location.search);
@@ -298,7 +294,7 @@ async function obterReceita() {
 async function mostrarReceita() {
   const dadosReceita = await obterReceita();
 
-  console.log(dadosReceita);
+  // console.log(dadosReceita);
 
   // Faça algo com os dados da receita, por exemplo, atualize a interface do usuário
 
@@ -348,69 +344,76 @@ async function mostrarReceita() {
   // Adicione outras manipulações conforme necessário
 
   try {
-    // const dadosUsuario = buscaUser()
-    buscaUser().then((data) => {
-      if (data.usuario.id == dadosReceita.user) {
-        let atualizar = document.createElement("button");
-        atualizar.setAttribute("class", "btt");
-        atualizar.setAttribute("type", "button");
-        atualizar.textContent = "Editar Receita";
+    const token = document.cookie.split("=")[1];
 
-        atualizar.addEventListener("click", function () {
-          window.location.href = `/EditarReceita?id=${dadosReceita.id}`;
-        });
+    if (token) {
+      // const dadosUsuario = buscaUser()
+      buscaUser().then((data) => {
+        if (data.usuario.id == dadosReceita.user) {
+          let atualizar = document.createElement("button");
+          atualizar.setAttribute("class", "btt");
+          atualizar.setAttribute("type", "button");
+          atualizar.textContent = "Editar Receita";
 
-        document.getElementById("atualizar").append(atualizar);
+          atualizar.addEventListener("click", function () {
+            window.location.href = `/EditarReceita?id=${dadosReceita.id}`;
+          });
 
-        //fim do bt editar rc
-        // console.log("Esse é o meu perfil")
+          document.getElementById("atualizar").append(atualizar);
 
-        let botaoDel = document.createElement("button");
-        botaoDel.setAttribute("class", "btt");
-        botaoDel.setAttribute("type", "button");
-        botaoDel.textContent = "Deletar Receita";
+          //fim do bt editar rc
+          // console.log("Esse é o meu perfil")
 
-        // Adicionar evento de clique ao botão "Deletar Conta"
-        botaoDel.addEventListener("click", async function () {
-          // Confirmar se o usuário realmente deseja deletar a conta
-          const confirmacao = confirm(
-            "Tem certeza de que deseja deletar sua receita? Esta ação não pode ser desfeita."
-          );
+          let botaoDel = document.createElement("button");
+          botaoDel.setAttribute("class", "btt");
+          botaoDel.setAttribute("type", "button");
+          botaoDel.textContent = "Deletar Receita";
 
-          if (confirmacao) {
-            try {
-              // Fazer a solicitação para deletar o usuário
-              const response = await fetch("/deletarReceita", {
-                method: "DELETE",
-                headers: {
-                  "Content-Type": "application/json",
-                  // Adicione o token de autenticação, se necessário
-                  id: `${dadosReceita.id}`,
-                },
-              });
+          // Adicionar evento de clique ao botão "Deletar Conta"
+          botaoDel.addEventListener("click", async function () {
+            // Confirmar se o usuário realmente deseja deletar a conta
+            const confirmacao = confirm(
+              "Tem certeza de que deseja deletar sua receita? Esta ação não pode ser desfeita."
+            );
 
-              if (response.ok) {
-                // Redirecionar para a rota desejada
-                window.location.href = "/";
+            if (confirmacao) {
+              try {
+                // Fazer a solicitação para deletar o usuário
+                const response = await fetch("/deletarReceita", {
+                  method: "DELETE",
+                  headers: {
+                    "Content-Type": "application/json",
+                    // Adicione o token de autenticação, se necessário
+                    id: `${dadosReceita.id}`,
+                  },
+                });
 
-                console.log("Usuário deletado com sucesso.");
-              } else {
-                console.error("Erro ao deletar usuário:", response.statusText);
+                if (response.ok) {
+                  // Redirecionar para a rota desejada
+                  window.location.href = "/";
+
+                  console.log("Usuário deletado com sucesso.");
+                } else {
+                  console.error(
+                    "Erro ao deletar usuário:",
+                    response.statusText
+                  );
+                }
+              } catch (error) {
+                console.error("Erro na solicitação:", error);
               }
-            } catch (error) {
-              console.error("Erro na solicitação:", error);
             }
-          }
-        });
+          });
 
-        document.getElementById("deletarReceita").append(botaoDel);
+          document.getElementById("deletarReceita").append(botaoDel);
 
-        // Adicionar evento de clique ao botão "Deletar Conta"
-        // document.getElementById('btnDeletarConta').addEventListener('click', async function () {
+          // Adicionar evento de clique ao botão "Deletar Conta"
+          // document.getElementById('btnDeletarConta').addEventListener('click', async function () {
 
-        // });
-      }
-    });
+          // });
+        }
+      });
+    }
   } catch {}
 }
 
@@ -697,7 +700,6 @@ async function verificarAutenticacaoOffline() {
     // Atualiza o link do botão para a página do perfil
     document.getElementById("botao-login").href = `Chef?id=${dados.idUser}`;
     addLogout("token");
-    return;
   }
 }
 
@@ -1433,9 +1435,6 @@ async function areaCategorias() {
 
   cont_cat.append(area_cat);
 }
-
-// <<<<<<< HEAD
-// =======
 
 function carregarImagem() {
   //Script input img Atualizar perfil
