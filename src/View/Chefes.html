@@ -24,9 +24,6 @@
       <div class="nome"></div>
 
       <div id="addreceita">
-        <button id="add">
-          <a href="cadastrarReceita" id="txt-box">Adicionar Receitas</a>
-        </button>
       </div>
       <!-- <div id="butao">
         <button class="bt" onclick="">Seguir</button>
@@ -57,13 +54,13 @@
   </div>
 
   <script>
+    obterUsuario();
     topBar();
     botaoResponsivo();
     bottomBar();
-    verificarAutenticacao();
-    obterUsuario();
+    verificarAutenticacaoOffline();
     obterListaDeCardsReceitaUsuario();
-    obterReceita();
+    <!-- obterReceita(); -->
   </script>
 </body>
 

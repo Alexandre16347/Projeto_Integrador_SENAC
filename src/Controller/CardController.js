@@ -33,6 +33,36 @@ class cards {
 
     return res.json(cards);
   }
+
+  async buscaReceitaPorUsuario(req, res) {
+    const { user } = req.headers;
+
+    // let receita = await Receita.findOne({ _id: String(id) });
+    // let usuario = await User.findOne({ _id: String(user) });
+
+    let cards = [];
+
+    const lista = await Receita.find({user});
+
+    for (let i = 0; i < lista.length; i++) {
+      const receita = lista[i];
+
+      const usuario = await User.findOne({ _id: user });
+
+      const card = {
+        Titulo: receita.Titulo,
+        imagem: receita.imagem,
+        idReceita: String(receita._id),
+        idUsuario: user,
+        nomeDoChef: receita.nomeDoChef,
+        fotoDoChef: (usuario && usuario.imagem) ? usuario.imagem : null,
+      };
+
+      cards.push(card);
+    }
+
+    return res.json(cards);
+  }
 }
 
 export default new cards();

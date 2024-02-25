@@ -201,7 +201,21 @@ async function obterUsuario() {
       // Verifica se o usuário está autenticado
       const token = document.cookie.split("=")[1];
 
-      if (token && token == dadosUsuario.idTemp) {
+      if (token && token === dadosUsuario.idTemp) {
+        // <button id="add">
+        //   <a href="cadastrarReceita" id="txt-box">Adicionar Receitas</a>
+        // </button>
+        // addreceita
+        let botaoAdd = document.createElement("button");
+        botaoAdd.setAttribute("id", "txt-box");
+        botaoAdd.setAttribute("type", "button");
+        botaoAdd.textContent = "Adicionar Receita";
+        // Adicionar um ouvinte de evento ao botão
+        botaoAdd.addEventListener("click", function () {
+          // Redirecionar para a página "adicionarReceita"
+          window.location.href = "/cadastrarReceita";
+        });
+
         // console.log("Esse é o meu perfil")
 
         let botaoDel = document.createElement("button");
@@ -247,6 +261,7 @@ async function obterUsuario() {
         });
 
         document.getElementById("deletar").append(botaoDel);
+        document.getElementById("addreceita").append(botaoAdd);
 
         // Adicionar evento de clique ao botão "Deletar Conta"
         // document.getElementById('btnDeletarConta').addEventListener('click', async function () {
@@ -256,6 +271,8 @@ async function obterUsuario() {
 
       // Adicione outras manipulações conforme necessário
     } else {
+      window.location.href = "NotFound";
+
       console.error("Erro ao obter dados do usuário:", response.statusText);
     }
   } catch (error) {
@@ -319,7 +336,7 @@ async function mostrarReceita() {
 
     let ingrediente = document.createElement(`li`);
     ingrediente.setAttribute("class", "ingrediente");
-    ingrediente.textContent = `* ${ig}`;
+    ingrediente.textContent = `- ${ig}`;
 
     lista_ingredientes.append(ingrediente);
   }
@@ -335,7 +352,7 @@ async function mostrarReceita() {
 
     let modo = document.createElement(`li`);
     modo.setAttribute("class", "modoDeFazer");
-    modo.textContent = `* ${mdf}`;
+    modo.textContent = `${i + 1} - ${mdf}`;
 
     lista_modo.append(modo);
   }
@@ -446,14 +463,21 @@ async function editarReceita() {
 async function obterListaDeCardsReceitaUsuario() {
   // Verifica se o usuário está autenticado
   const token = document.cookie.split("=")[1];
+  let id;
 
-  const { usuario } = await buscaUser();
+  if (token) {
+    const { usuario } = await buscaUser();
+    id = usuario.id;
+  } else {
+    const urlParams = new URLSearchParams(window.location.search);
+    id = urlParams.get("id");
+  }
 
   const response = await fetch("/buscarReceitaUser", {
     method: "GET",
     headers: {
       "Content-Type": "application/json",
-      user: usuario.id,
+      user: id,
       // Adicione cabeçalhos adicionais, se necessário
     },
   });
@@ -480,7 +504,7 @@ async function obterListaDeCardsReceitaUsuario() {
         div_img.setAttribute("class", "div-img");
 
         let img_card = document.createElement(`img`);
-        img_card.setAttribute("src", `Uploads/${cards.imagem}`);
+        img_card.setAttribute("src", `${cards.imagem}`);
         img_card.setAttribute("class", "img-card");
 
         div_img.append(img_card);
@@ -533,6 +557,8 @@ async function obterListaDeCardsReceitaUsuario() {
     for (let i = 0; i < dadosReceitas.length; i++) {
       const cards = dadosReceitas[i];
 
+      // console.log(cards)
+
       let card = document.createElement(`div`);
       card.setAttribute("class", "card");
 
@@ -540,7 +566,7 @@ async function obterListaDeCardsReceitaUsuario() {
       div_img.setAttribute("class", "div-img");
 
       let img_card = document.createElement(`img`);
-      img_card.setAttribute("src", `Uploads/${cards.imagem}`);
+      img_card.setAttribute("src", `${cards.imagem}`);
       img_card.setAttribute("class", "img-card");
 
       div_img.append(img_card);
@@ -551,9 +577,7 @@ async function obterListaDeCardsReceitaUsuario() {
       div_chef.setAttribute("class", "chef-avatar");
 
       let img_avatar = document.createElement(`img`);
-      const foto = !cards.fotoDoChef
-        ? "media/shumel.jpg"
-        : `Uploads/${cards.fotoDoChef}`;
+      const foto = `${cards.fotoDoChef}`;
       img_avatar.setAttribute("src", foto);
       img_avatar.setAttribute("class", "img-avatar");
 

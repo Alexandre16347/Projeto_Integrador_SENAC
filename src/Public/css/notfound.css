@@ -1,0 +1,27 @@
+h1 {
+    font-size: 36px;
+    margin-bottom: 20px;
+}
+
+
+p {
+    font-size: 18px;
+    margin-bottom: 20px;
+}
+
+a {
+    text-decoration: none;
+    color: #007bff;
+    font-weight: bold;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+.content{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}

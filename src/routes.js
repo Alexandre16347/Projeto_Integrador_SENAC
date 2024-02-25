@@ -74,11 +74,19 @@ routes.get('/EditarReceita', (req,res)=>{
     return res.sendFile(caminho);
 });
 
+routes.get('/NotFound', (req,res)=>{
+    const caminho = path.resolve(__dirname, "View", "NotFound.html")
+    return res.sendFile(caminho);
+});
+
 
 
 
 // Rotas para manipulação de cards
 routes.get('/cards', card.buscarCards);
+
+// Buscar receitas por usuário
+routes.get('/buscarReceitaUser', card.buscaReceitaPorUsuario);
 
 // Rotas relacionadas aos usuários
 // Cadastro de usuários
@@ -118,8 +126,7 @@ routes.post('/receita', upload.single('imagem'), receita.store);
 routes.get('/receitas', receita.buscarTudo);
 // Buscar receita por ID
 routes.get('/receita', receita.buscarPorId);
-// Buscar receitas por usuário
-routes.get('/buscarReceitaUser', receita.buscaReceitaPorUsuario);
+
 
 
 // Rota para atualizar o título da receita com o ID fornecido
