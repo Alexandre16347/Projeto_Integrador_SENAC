@@ -6,6 +6,7 @@ import receita from './Controller/ReceitaController';
 import card from './Controller/CardController';
 import path from 'path';
 import categoria from './Controller/CategoriaController';
+import RetornarReceita from './Controller/ReceitaPorCategoriaController';
 
 const upload = new multer(Upload);
 const routes = new Router();
@@ -174,6 +175,8 @@ routes.get('/todasCategoria', categoria.buscarTudo);
 //
 routes.put('/atualizarCategoria', categoria.atualizaNome)
 
+//Receita por categoria
+routes.get('/ReceitaPorCategoria', RetornarReceita.buscarPorId);
 
 
 
