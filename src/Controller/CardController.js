@@ -42,7 +42,7 @@ class cards {
 
     let cards = [];
 
-    const lista = await Receita.find({user});
+    const lista = await Receita.find({ user });
 
     for (let i = 0; i < lista.length; i++) {
       const receita = lista[i];
@@ -62,6 +62,40 @@ class cards {
     }
 
     return res.json(cards);
+  }
+
+  // Método para buscar uma receita pela categoria
+  async buscarPorId(req, res) {
+    const { id } = req.headers;
+
+    const cards = []
+
+    try {
+      const receitas = await Receita.find({ categorias: id });
+
+      for (let i = 0; i < receitas.length; i++) {
+        const receita = receitas[i];
+
+        const usuario = await User.findOne({ _id: receita.user });
+
+        const card = {
+          Titulo: receita.Titulo,
+          imagem: receita.imagem,
+          idReceita: String(receita._id),
+          idUsuario: receita.user,
+          nomeDoChef: receita.nomeDoChef,
+          fotoDoChef: (usuario && usuario.imagem) ? usuario.imagem : null,
+        };
+
+        cards.push(card);
+
+      }
+
+      return res.json(cards);
+    } catch (error) {
+      console.error("Erro ao buscar receitas por categoria:", error);
+      return res.status(500).json({ error: "Erro interno no servidor" });
+    }
   }
 }
 
