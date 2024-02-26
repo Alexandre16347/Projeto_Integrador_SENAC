@@ -305,3 +305,7 @@ p {
 .btt{
     padding: 3mm;
 }
+
+#data-publicacao{
+    color: red;
+}
