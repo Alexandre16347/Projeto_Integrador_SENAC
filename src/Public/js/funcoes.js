@@ -458,7 +458,7 @@ async function editarReceita() {
 
   console.log(dadosReceita)
 
-  if (dadosReceita.categorias !== null)
+  if (dadosReceita.categorias != null)
     categoriasMarcadas(dadosReceita.categorias);
   else
     categorias()
