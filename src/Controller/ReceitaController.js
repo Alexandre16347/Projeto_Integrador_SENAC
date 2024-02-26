@@ -372,7 +372,7 @@ class CadastroReceita {
     const { id } = req.query;
     const novosDados = req.body;
 
-    // console.log({ id, novosDados });
+    console.log({ id, novosDados });
 
     try {
       const receita = await Receita.findByIdAndUpdate(id, novosDados, {

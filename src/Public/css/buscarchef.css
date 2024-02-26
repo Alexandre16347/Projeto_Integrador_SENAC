@@ -142,7 +142,7 @@ header {
 }
 .chefs .chefs-container .chef-box {
   position: relative;
-  height: 420px;
+  height: 320px;
   flex: 1 1 18rem;
   overflow: hidden;
 }

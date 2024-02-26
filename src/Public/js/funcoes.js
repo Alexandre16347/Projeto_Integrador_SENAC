@@ -434,7 +434,7 @@ async function mostrarReceita() {
 }
 
 async function editarReceita() {
-  const dadosReceita = await obterReceita();
+  let dadosReceita = await obterReceita();
 
   // console.log(dadosReceita);
 
@@ -456,7 +456,13 @@ async function editarReceita() {
     textarea2.value += modoDePreparo + "\n"; // Adiciona cada ingrediente seguido de uma quebra de linha
   });
 
-  categoriasMarcadas(dadosReceita.categorias);
+  console.log(dadosReceita)
+
+  if (dadosReceita.categorias !== null)
+    categoriasMarcadas(dadosReceita.categorias);
+  else
+    categorias()
+
 }
 
 async function obterListaDeCardsReceitaUsuario() {
