@@ -1437,6 +1437,7 @@ async function areaCategorias() {
       if (response.ok) {
         const dadosReceitas = await response.json();
         let scrollcard = document.getElementById("scrollcard");
+        let txtcat = document.getElementById('txtcat')
 
         if (dadosReceitas.length === 0) {
           // Se não houver receitas disponíveis, exibir mensagem
@@ -1446,10 +1447,10 @@ async function areaCategorias() {
           scrollcard.innerHTML = '';
 
           // Cria um elemento de texto para mostrar o nome da categoria
-          let categoriaText = document.createElement('h2');
-          categoriaText.textContent = categorias[i].nome;
-          categoriaText.style.textAlign = 'center';
-          scrollcard.appendChild(categoriaText);
+          // let txtcat = document.createElement('div.res');
+          txtcat.textContent = categorias[i].nome;
+          txtcat.style.textAlign = 'center';
+          // scrollcard.appendChild(txtcat);
 
           let area_cards = document.createDocumentFragment();
 
