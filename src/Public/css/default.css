@@ -241,7 +241,7 @@ body {
   flex-direction: row;
 }
 
-.container-rede2{
+.container-rede2 {
   display: none;
   flex-direction: row;
 }
@@ -270,7 +270,7 @@ body {
   margin-left: 3mm;
   /* margin-top: 5mm;
   margin-left: 5mm;*/
-  margin-bottom: 5mm; 
+  margin-bottom: 5mm;
 }
 
 #resenha a {
@@ -482,7 +482,7 @@ body {
   color: white;
 }
 
-.btn-card:hover{
+.btn-card:hover {
   background-color: #fcfcfc;
   color: rgb(198, 62, 21);
 }
@@ -506,6 +506,12 @@ body {
   align-items: center;
   overflow: scroll;
   background-color: white;
+}
+
+#scrollcard p {
+  width: 100%;
+  text-align: center;
+  padding: 5mm;
 }
 
 .mobile-menu div {
@@ -552,11 +558,11 @@ body {
     margin-right: 50px;
   }
 
-  .container-redes{
+  .container-redes {
     display: none;
   }
 
-  .container-rede2{
+  .container-rede2 {
     width: 50vw;
     display: flex;
     justify-content: space-around;
@@ -564,7 +570,7 @@ body {
     padding-right: 10px;
   }
 
-  .btn-social{
+  .btn-social {
     width: 40px;
     height: 40px;
     margin: 0;
@@ -576,7 +582,7 @@ body {
     width: 23px;
   }
 
-  #bottom-bar .container-redes{
+  #bottom-bar .container-redes {
     display: flex;
   }
 
@@ -639,11 +645,12 @@ body {
   height: auto;
 }
 
-#txtcat{
+#txtcat {
   margin-top: 4mm;
   margin-bottom: 4mm;
   font-size: larger;
   text-decoration: none;
   color: black;
   font-weight: bold;
+  font: 100pt;
 }

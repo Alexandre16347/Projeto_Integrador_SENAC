@@ -1,3 +1,4 @@
+import Categoria from '../Model/Categoria';
 import Receita from '../Model/Receita';
 import User from '../Model/User';
 
@@ -94,6 +95,22 @@ class cards {
       return res.json(cards);
     } catch (error) {
       console.error("Erro ao buscar receitas por categoria:", error);
+      return res.status(500).json({ error: "Erro interno no servidor" });
+    }
+
+  }
+  async deletarCategoria(req, res) {
+    const { id } = req.headers;
+
+    try {
+      const categoria = await Categoria.findByIdAndDelete(id);
+
+      if (!categoria) {
+        return res.status(404).json({ error: "Categoria não encontrada" });
+      }
+      return res.json(categoria);
+    } catch (error) {
+      console.error("Erro ao deletar Categoria:", error);
       return res.status(500).json({ error: "Erro interno no servidor" });
     }
   }

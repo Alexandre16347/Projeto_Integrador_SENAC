@@ -177,6 +177,10 @@ routes.put('/atualizarCategoria', categoria.atualizaNome)
 //Receita por categoria
 routes.get('/ReceitaPorCategoria', card.buscarPorId);
 
+//
+routes.delete('/deletarCategoria', card.deletarCategoria);
+
+
 
 
 

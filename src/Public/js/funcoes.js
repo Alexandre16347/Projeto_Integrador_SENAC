@@ -468,15 +468,9 @@ async function editarReceita() {
 async function obterListaDeCardsReceitaUsuario() {
   // Verifica se o usuário está autenticado
   const token = document.cookie.split("=")[1];
-  let id;
 
-  if (token) {
-    const { usuario } = await buscaUser();
-    id = usuario.id;
-  } else {
-    const urlParams = new URLSearchParams(window.location.search);
-    id = urlParams.get("id");
-  }
+  const urlParams = new URLSearchParams(window.location.search);
+  const id = urlParams.get("id");
 
   const response = await fetch("/buscarReceitaUser", {
     method: "GET",
@@ -599,12 +593,12 @@ async function obterListaDeCardsReceitaUsuario() {
 
       card.append(txt_card);
 
-      let txt_chef = document.createElement(`a`);
-      txt_chef.append(`Por ${cards.nomeDoChef}`);
-      txt_chef.setAttribute("href", "Chefes.html");
-      txt_chef.setAttribute("class", "txt-chef");
+      // let txt_chef = document.createElement(`a`);
+      // txt_chef.append(`Por ${cards.nomeDoChef}`);
+      // txt_chef.setAttribute("href", "Chefes.html");
+      // txt_chef.setAttribute("class", "txt-chef");
 
-      card.append(txt_chef);
+      // card.append(txt_chef);
 
       area_cards.append(card);
     }
@@ -1443,17 +1437,25 @@ async function areaCategorias() {
       if (response.ok) {
         const dadosReceitas = await response.json();
         let scrollcard = document.getElementById("scrollcard");
-        let txtcat = document.getElementById('txtcat')
+        let txtcat = document.getElementById('txtcat');
 
         if (dadosReceitas.length === 0) {
+          txtcat.innerHTML = "";
+          scrollcard.innerHTML = '';
+          txtcat.textContent = categorias[i].nome;
+          txtcat.style.textAlign = 'center';
           // Se não houver receitas disponíveis, exibir mensagem
-          scrollcard.innerHTML = "<p>Não há receitas disponíveis para esta categoria.</p>";
+          let pText = document.createElement('p');
+          pText.classList = "paragraph";
+          pText.textContent = "Não há receitas disponíveis para esta categoria.";
+          scrollcard.appendChild(pText);
         } else {
           // Limpa o conteúdo anterior
           scrollcard.innerHTML = '';
 
           // Cria um elemento de texto para mostrar o nome da categoria
           // let txtcat = document.createElement('div.res');
+          txtcat.innerHTML = "";
           txtcat.textContent = categorias[i].nome;
           txtcat.style.textAlign = 'center';
           // scrollcard.appendChild(txtcat);
@@ -1498,7 +1500,7 @@ async function areaCategorias() {
 
             let txt_chef = document.createElement(`a`);
             txt_chef.append(`Por ${cardData.nomeDoChef}`);
-            txt_chef.setAttribute("href", "Chefes.html");
+            txt_chef.setAttribute("href", `/Chef?id=${cardData.idUsuario}`);
             txt_chef.setAttribute("class", "txt-chef");
             card.append(txt_chef);
 

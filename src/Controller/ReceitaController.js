@@ -371,7 +371,6 @@ class CadastroReceita {
   async atualizarTudo(req, res) {
     const { id } = req.query;
     const novosDados = req.body;
-    const { filename } = req.file;
 
     console.log({ id, novosDados });
 
@@ -384,17 +383,21 @@ class CadastroReceita {
         return res.status(404).json({ error: "Receita não encontrada" });
       }
 
-      // Se a receita já tinha uma imagem, exclui ela
-      if (receita.imagem) {
-        // Deleta a imagem associada à receita
-        CadastroReceita.deleteImageInUploadsFolder(receita.imagem);
+      if (req.file) {
+        const { filename } = req.file;
+        
+        // Se a receita já tinha uma imagem, exclui ela
+        if (receita.imagem) {
+          // Deleta a imagem associada à receita
+          CadastroReceita.deleteImageInUploadsFolder(receita.imagem);
+        }
+
+        // Atualiza a imagem da receita
+        receita.imagem = filename;
+
+        // Salva a receita atualizada no banco de dados
+        await receita.save();
       }
-
-      // Atualiza a imagem da receita
-      receita.imagem = filename;
-
-      // Salva a receita atualizada no banco de dados
-      await receita.save();
 
       return res.json(receita);
     } catch (error) {
