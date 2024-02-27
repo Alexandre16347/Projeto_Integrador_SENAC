@@ -1261,7 +1261,7 @@ function bottomBar() {
   bottom_bar.append(barra_bottom);
 }
 
-function areaSearch() {
+async function areaSearch() {
   // *******************************************************************************************************************************************
   // Area Search
 
@@ -1303,7 +1303,123 @@ function areaSearch() {
   area.append(divSearch);
 
   areaSearch.append(area);
+  
+
+  const categorias = await obterCategorias();
+  let cont_cat = document.getElementById("areaSearch");
+  let area_cat = document.createDocumentFragment();
+
+  for (let i = 0; i < categorias.length; i++) {
+    let cat = document.createElement(`a`);
+    let btn_cat = document.createElement(`button`);
+    btn_cat.append(categorias[i].nome);
+    btn_cat.setAttribute("class", "btn-menu");
+
+    // Adiciona evento de clique ao botão de categoria
+    btnSearch.addEventListener("click", async function () {
+      const response = await fetch("/ReceitaPorCategoria", {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+          id: categorias[i]._id
+        }
+      });
+
+      if (response.ok) {
+        const dadosReceitas = await response.json();
+        let scrollcard = document.getElementById("scrollcard");
+        let txtcat = document.getElementById('txtcat');
+
+        if (dadosReceitas.length === 0) {
+          txtcat.innerHTML = "";
+          scrollcard.innerHTML = '';
+          txtcat.textContent = categorias[i].nome;
+          txtcat.style.textAlign = 'center';
+          // Se não houver receitas disponíveis, exibir mensagem
+          let pText = document.createElement('p');
+          pText.classList = "paragraph";
+          pText.textContent = "Não há receitas disponíveis para esta categoria.";
+          scrollcard.appendChild(pText);
+        } else {
+          // Limpa o conteúdo anterior
+          scrollcard.innerHTML = '';
+
+          // Cria um elemento de texto para mostrar o nome da categoria
+          // let txtcat = document.createElement('div.res');
+          txtcat.innerHTML = "";
+          txtcat.textContent = categorias[i].nome;
+          txtcat.style.textAlign = 'center';
+          // scrollcard.appendChild(txtcat);
+
+          let area_cards = document.createDocumentFragment();
+
+          for (let j = 0; j < dadosReceitas.length; j++) {
+            const cardData = dadosReceitas[j];
+
+            // Crie os elementos de receita como antes
+            let card = document.createElement(`div`);
+            card.setAttribute("class", "card");
+
+            let div_img = document.createElement("div");
+            div_img.setAttribute("class", "div-img");
+
+            let img_card = document.createElement(`img`);
+            img_card.setAttribute("src", `${cardData.imagem}`);
+            img_card.setAttribute("class", "img-card");
+
+            div_img.append(img_card);
+            card.append(div_img);
+
+            let div_chef = document.createElement("div");
+            div_chef.setAttribute("class", "chef-avatar");
+
+            let img_avatar = document.createElement(`img`);
+            const foto = `${cardData.fotoDoChef}`;
+            img_avatar.setAttribute("src", foto);
+            img_avatar.setAttribute("class", "img-avatar");
+
+            div_chef.append(img_avatar);
+            card.append(div_chef);
+
+            let txt_card = document.createElement(`button`);
+            txt_card.append(`${cardData.Titulo}`);
+            txt_card.setAttribute("class", "btn-card");
+            txt_card.addEventListener("click", function () {
+              window.location.href = `VerReceita?id=${cardData.idReceita}`;
+            });
+            card.append(txt_card);
+
+            let txt_chef = document.createElement(`a`);
+            txt_chef.append(`Por ${cardData.nomeDoChef}`);
+            txt_chef.setAttribute("href", `/Chef?id=${cardData.idUsuario}`);
+            txt_chef.setAttribute("class", "txt-chef");
+            card.append(txt_chef);
+
+            area_cards.append(card);
+          }
+
+          // Adicione as receitas à área de cartões
+          scrollcard.append(area_cards);
+        }
+      } else {
+        console.error("Erro ao obter dados das receitas:", response.statusText);
+      }
+    });
+
+    cat.append(btn_cat);
+    area_cat.append(cat);
+  }
+
+  cont_cat.append(area_cat);
+
+
+
+
 }
+
+
+
+
 
 async function obterCategorias() {
   try {
