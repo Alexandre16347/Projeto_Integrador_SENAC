@@ -74,11 +74,12 @@ class cards {
     try {
       const receitas = await Receita.find({ categorias: id });
 
+  
       for (let i = 0; i < receitas.length; i++) {
         const receita = receitas[i];
-
+  
         const usuario = await User.findOne({ _id: receita.user });
-
+  
         const card = {
           Titulo: receita.Titulo,
           imagem: receita.imagem,
@@ -87,18 +88,19 @@ class cards {
           nomeDoChef: receita.nomeDoChef,
           fotoDoChef: (usuario && usuario.imagem) ? usuario.imagem : null,
         };
-
+  
         cards.push(card);
-
       }
-
+  
       return res.json(cards);
     } catch (error) {
       console.error("Erro ao buscar receitas por categoria:", error);
       return res.status(500).json({ error: "Erro interno no servidor" });
     }
-
   }
+  
+
+
   async deletarCategoria(req, res) {
     const { id } = req.headers;
 
@@ -114,6 +116,78 @@ class cards {
       return res.status(500).json({ error: "Erro interno no servidor" });
     }
   }
+
+
+  async buscarPorNome(req, res) {
+    const { nome } = req.query;
+  
+    const cards = [];
+  
+    try {
+      // Busca por receitas que correspondem ao nome fornecido
+      const receitasPorNome = await Receita.find({ Titulo: { $regex: new RegExp(nome, 'i') } });
+  
+      // Busca por categorias que correspondem ao nome fornecido
+      const categorias = await Categoria.find({ nome: { $regex: new RegExp(nome, 'i') } });
+  
+      // Adiciona as receitas encontradas pelo nome
+      for (let i = 0; i < receitasPorNome.length; i++) {
+        const receita = receitasPorNome[i];
+  
+        const usuario = await User.findOne({ _id: receita.user });
+  
+        const card = {
+          Titulo: receita.Titulo,
+          imagem: receita.imagem,
+          idReceita: String(receita._id),
+          idUsuario: receita.user,
+          nomeDoChef: receita.nomeDoChef,
+          fotoDoChef: (usuario && usuario.imagem) ? usuario.imagem : null,
+        };
+  
+        cards.push(card);
+      }
+  
+      // Adiciona as receitas encontradas pelas categorias
+      for (let i = 0; i < categorias.length; i++) {
+        const categoria = categorias[i];
+  
+        const receitasPorCategoria = await Receita.find({ categorias: categoria._id });
+  
+        for (let j = 0; j < receitasPorCategoria.length; j++) {
+          const receita = receitasPorCategoria[j];
+  
+          // Verifica se a receita já foi adicionada para evitar duplicatas
+          if (!cards.some(card => card.idReceita === String(receita._id))) {
+            const usuario = await User.findOne({ _id: receita.user });
+  
+            const card = {
+              Titulo: receita.Titulo,
+              imagem: receita.imagem,
+              idReceita: String(receita._id),
+              idUsuario: receita.user,
+              nomeDoChef: receita.nomeDoChef,
+              fotoDoChef: (usuario && usuario.imagem) ? usuario.imagem : null,
+            };
+  
+            cards.push(card);
+          }
+        }
+      }
+  
+      // Se não houver receitas encontradas, retorna um array vazio
+      if (cards.length === 0) {
+        return res.status(404).json({ error: "Nenhuma receita encontrada" });
+      }
+  
+      return res.json(cards);
+    } catch (error) {
+      console.error("Erro ao buscar receitas por nome:", error);
+      return res.status(500).json({ error: "Erro interno no servidor" });
+    }
+  }
+
+
 }
 
 export default new cards();

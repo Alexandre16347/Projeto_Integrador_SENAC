@@ -1303,17 +1303,7 @@ async function areaSearch() {
   area.append(divSearch);
 
   areaSearch.append(area);
-  
-
-   
-
-   
-    
 }
-
-
-
-
 
 async function obterCategorias() {
   try {
@@ -1531,8 +1521,6 @@ async function areaCategorias() {
 
   cont_cat.append(area_cat);
 }
-
-
 
 function carregarImagem() {
   //Script input img Atualizar perfil

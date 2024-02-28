@@ -404,7 +404,12 @@ class CadastroReceita {
       console.error("Erro ao atualizar receita:", error);
       return res.status(500).json({ error: "Erro interno no servidor" });
     }
+  
+    
   }
+
+ 
+  
 }
 
 export default new CadastroReceita();

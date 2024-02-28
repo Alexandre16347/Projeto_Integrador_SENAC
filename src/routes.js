@@ -180,6 +180,11 @@ routes.get('/ReceitaPorCategoria', card.buscarPorId);
 //
 routes.delete('/deletarCategoria', card.deletarCategoria);
 
+//
+routes.get('/ReceitaPorNome', card.buscarPorNome);
+
+
+
 
 
 
