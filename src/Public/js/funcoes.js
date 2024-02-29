@@ -1554,4 +1554,45 @@ function carregarImagem() {
   });
 }
 
-// >>>>>>> 6cad6ad9c39c88ae9a48596df82055dc074d1776
+
+async function buscarChefes() {
+  try {
+    const response = await fetch('/buscarUsuarios');
+    const data = await response.json();
+
+    const chefsContainer = document.querySelector('.chefs-container');
+
+    data.forEach(chefe => {
+      const chefBox = document.createElement('div');
+      chefBox.classList.add('chef-box');
+
+      const img = document.createElement('img');
+      img.src = chefe.ImagemUrl;
+      img.alt = 'Imagem do Chef';
+
+      const textDiv = document.createElement('div');
+      textDiv.classList.add('text');
+
+      const h2 = document.createElement('h2');
+      h2.textContent = chefe.Nome;
+
+      const a = document.createElement('a');
+      a.href = `/Chef?id=${chefe.id}`;
+      a.classList.add('btn');
+      a.textContent = 'Visualizar Chefe';
+
+      textDiv.appendChild(h2);
+      textDiv.appendChild(a);
+
+      chefBox.appendChild(img);
+      chefBox.appendChild(textDiv);
+
+      chefsContainer.appendChild(chefBox);
+    });
+  } catch (error) {
+    console.error('Erro ao buscar chefes:', error);
+  }
+}
+
+
+
