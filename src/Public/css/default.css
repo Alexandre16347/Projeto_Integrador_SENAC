@@ -34,7 +34,6 @@ body {
   background-color: white;
 }
 
-
 .btn-menu {
   flex-wrap: wrap;
   /* margin: 10px; */
@@ -52,7 +51,6 @@ body {
   padding-left: 20px;
   padding-right: 20px;
 }
-
 
 .btn-logout {
   margin-right: 20px;
@@ -114,16 +112,17 @@ body {
 
 .btn-menu:hover,
 .btn-social:hover,
-.btn-logout:hover {
+.btn-logout:hover,
+.fixed-edit-profile-button:hover {
   background: rgb(0, 72, 138);
-  background: linear-gradient(0deg,
-      rgba(0, 72, 138, 1) 0%,
-      rgba(0, 72, 138, 1) 100%);
+  background: linear-gradient(
+    0deg,
+    rgba(0, 72, 138, 1) 0%,
+    rgba(0, 72, 138, 1) 100%
+  );
 
   color: white;
 }
-
-
 
 #top-bar {
   background-color: white;
@@ -153,7 +152,7 @@ body {
 .recuperar-senha {
   width: 100%;
   height: 100vh;
-  background: url("../media/image\ 20.png");
+  background: url('../media/image\ 20.png');
   background-size: 100% 100%;
   display: flex;
   justify-content: center;
@@ -246,8 +245,6 @@ body {
   flex-direction: row;
 }
 
-
-
 #cont-categorias {
   padding: 20px;
   /* margin: 20px; */
@@ -334,7 +331,7 @@ body {
   width: 100%;
   /* min-height: 100px; */
   height: 430px;
-  background: url("../media/chefe-de-cozinha.jpg") no-repeat center center;
+  background: url('../media/chefe-de-cozinha.jpg') no-repeat center center;
   /* background-color: #00488a; */
   background-size: 100%;
   /* margin-top: 20px; */
@@ -467,7 +464,6 @@ body {
 }
 
 .btn-card {
-
   font-weight: bold;
   width: 85%;
   flex-wrap: wrap;
@@ -592,7 +588,6 @@ body {
     padding-left: 30px;
     padding-right: 30px;
   }
-
 }
 
 .container-menu.active {
@@ -602,12 +597,12 @@ body {
 @keyframes navLinkFade {
   from {
     opacity: 0;
-    transform: translateX(50px)
+    transform: translateX(50px);
   }
 
   to {
     opacity: 1;
-    transform: translateX(0px)
+    transform: translateX(0px);
   }
 }
 
@@ -621,9 +616,7 @@ body {
 
 .mobile-menu.active .line3 {
   transform: rotate(45deg) translate(-5px, -7px);
-
 }
-
 
 .input-group.position-relative {
   position: relative;
@@ -653,4 +646,24 @@ body {
   color: black;
   font-weight: bold;
   font: 100pt;
+}
+
+/* Estilos para o botão de edição de perfil */
+.fixed-edit-profile-button {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background-color: transparent;
+
+  cursor: pointer;
+  background-color: #f78b1f;
+  padding: 0.8%;
+  border-radius: 10px;
+  border-color: #000;
+  border: 1.5%;
+}
+
+/* Estilize a imagem dentro do botão, se necessário */
+.fixed-edit-profile-button img {
+  width: 40px; /* Ajuste o tamanho conforme necessário */
 }

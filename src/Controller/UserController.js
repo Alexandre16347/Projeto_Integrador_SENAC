@@ -136,7 +136,7 @@ class cadastroUsuario {
     try {
       const usuario = await User.findOne({ _id: id });
       if (!usuario) {
-        console.log('Usuário não encontrado')
+        console.log('Usuário não encontrado');
         return res.status(404).json({ error: 'Usuário não encontrado' });
       }
       return res.json(usuario);
@@ -286,6 +286,74 @@ class cadastroUsuario {
     } catch (error) {
       console.error('Erro na verificação do ID Temporário:', error);
       return res.status(500).json({ error: 'Erro interno no servidor' });
+    }
+  }
+
+  // Função para atualizar todos os atributos da receita de uma vez com o ID fornecido
+  async atualizarTudo(req, res) {
+    const { id } = req.query;
+    const { Nome, idade, email, senha, confirmarSenha } = req.body;
+
+    try {
+      // Validar entrada
+      if (!Nome || !idade || !email) {
+        return res
+          .status(400)
+          .json({ error: 'Por favor, preencha todos os campos obrigatórios.' });
+      }
+
+      // Validar formato de e-mail
+      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      if (!emailRegex.test(email)) {
+        return res.status(400).json({ error: 'E-mail inválido.' });
+      }
+
+      // Verificar se o usuário existe
+      let usuario = await User.findById(id);
+      if (!usuario) {
+        return res.status(404).json({ error: 'Usuário não encontrado.' });
+      }
+
+      // Atualizar os campos do usuário
+      usuario.Nome = Nome;
+      usuario.idade = idade;
+      usuario.email = email;
+
+      // Se houver uma nova imagem, atualize o campo de imagem
+      if (req.file) {
+        const { filename } = req.file;
+        // Se a receita já tinha uma imagem, exclui ela
+        if (usuario.imagem) {
+          // Deleta a imagem associada à receita
+          cadastroUsuario.deleteImageInUploadsFolder(usuario.imagem);
+        }
+
+        // Atualiza a imagem do usuario
+        usuario.imagem = filename;
+      }
+
+      // Se houver uma nova senha, atualize o campo de senha
+      if (senha && confirmarSenha && senha == confirmarSenha) {
+        // Validar comprimento da senha
+        if (senha.length < 8) {
+          return res
+            .status(400)
+            .json({ error: 'A senha deve ter pelo menos 8 caracteres.' });
+        }
+        // Gerar um hash para a nova senha usando bcrypt
+        const hashedSenha = await bcrypt.hash(senha, 10); // O número 10 é o custo do hash
+        usuario.senha = hashedSenha;
+      }
+
+      // Salvar as alterações no banco de dados
+      await usuario.save();
+
+      return res
+        .status(200)
+        .json({ message: 'Dados do usuário atualizados com sucesso.' });
+    } catch (error) {
+      console.error('Erro na atualização dos dados do usuário:', error);
+      return res.status(500).json({ error: 'Erro interno no servidor.' });
     }
   }
 }

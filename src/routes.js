@@ -114,6 +114,9 @@ routes.put('/usuarios/:id/idade', user.atualizaIdade);
 // Rota para atualizar imagem do usuário
 routes.put('/usuarios/:id/imagem', upload.single('imagem'), user.atualizaImagem);
 
+// Rota para atualizar todos os atributos da receita de uma vez com o ID fornecido
+routes.put('/usuario', upload.single('imagem'), user.atualizarTudo);
+
 
 // Deletar usuário
 routes.delete('/deletarUser', user.deletarUsuario);
