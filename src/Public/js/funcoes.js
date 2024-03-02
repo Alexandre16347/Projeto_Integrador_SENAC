@@ -1335,36 +1335,26 @@ async function areaSearch() {
   // *******************************************************************************************************************************************
   // Area Search
 
-  let areaSearch = document.getElementById('areaSearch');
+  let areaSearch = document.getElementById("areaSearch");
 
   let area = document.createDocumentFragment();
 
-  // <div id="areaSearch">
-  //     <div id="divSearch">
-  //     <img src="src/media/search3.png" alt="Buscar..."/>
-  //     <input type="text" id="txtSearch" placeholder="Buscar..."/>
-  //     <button id="btnSearch">Buscar</button>
-  //     </div>
-  // </div>
-
-  // let areaSearch = document.createElement(`div`);
-  // areaSearch.setAttribute("id", "areaSearch");
-
+  // Criação dos elementos da barra de pesquisa
   let divSearch = document.createElement(`div`);
-  divSearch.setAttribute('id', 'divSearch');
+  divSearch.setAttribute("id", "divSearch");
 
   let imgSearch = document.createElement(`img`);
-  imgSearch.setAttribute('alt', 'Buscar...');
-  imgSearch.setAttribute('src', 'media/search3.png');
+  imgSearch.setAttribute("alt", "Buscar...");
+  imgSearch.setAttribute("src", "media/search3.png");
 
   let txtSearch = document.createElement(`input`);
-  txtSearch.setAttribute('id', 'txtSearch');
-  txtSearch.setAttribute('type', 'text');
-  txtSearch.setAttribute('placeholder', 'Buscar...');
+  txtSearch.setAttribute("id", "txtSearch");
+  txtSearch.setAttribute("type", "text");
+  txtSearch.setAttribute("placeholder", "Buscar...");
 
   let btnSearch = document.createElement(`button`);
-  btnSearch.append('Buscar');
-  btnSearch.setAttribute('id', 'btnSearch');
+  btnSearch.append("Buscar");
+  btnSearch.setAttribute("id", "btnSearch");
 
   divSearch.append(imgSearch);
   divSearch.append(txtSearch);
@@ -1373,7 +1363,124 @@ async function areaSearch() {
   area.append(divSearch);
 
   areaSearch.append(area);
+
+  // Adiciona um ouvinte de evento de clique ao botão de pesquisa
+  btnSearch.addEventListener("click", async () => {
+    const termoDePesquisa = txtSearch.value.trim(); // Obtém o termo de pesquisa e remove espaços em branco extras
+
+    // Verifica se o termo de pesquisa não está vazio
+    if (termoDePesquisa !== "") {
+      try {
+        const response = await fetch(`/ReceitaPorNome?nome=${termoDePesquisa}`); // Envia uma solicitação GET para o servidor
+
+        if (response.ok) {
+          try {
+            // Extrai os dados JSON da resposta
+            const dadosReceitas = await response.json();
+
+            // Obtém referências aos elementos DOM
+            let scrollcard = document.getElementById('scrollcard');
+            let txtcat = document.getElementById('txtcat');
+
+            // Limpa o conteúdo anterior
+            scrollcard.innerHTML = '';
+
+            // Exibe o nome da categoria
+            const categorias = await obterCategorias();
+            let cont_cat = document.getElementById('cont-categorias');
+            let area_cat = document.createDocumentFragment();
+            for (let i = 0; i < categorias.length; i++) {
+              
+              let btn_cat = document.createElement(`button`);
+              btn_cat.append(categorias[i].nome);
+              btn_cat.setAttribute('class', 'btn-menu');
+              txtcat.textContent = termoDePesquisa;
+              txtcat.style.textAlign = 'center';
+            }
+
+            // Verifica se há receitas disponíveis
+            if (dadosReceitas.length === 0) {
+              // Se não houver receitas, exibe uma mensagem
+              let pText = document.createElement('p');
+              pText.classList.add('paragraph');
+              pText.textContent = 'Não há receitas disponíveis para esta categoria.';
+              scrollcard.appendChild(pText);
+            } else {
+              // Cria um fragmento de documento para adicionar os cards de receita
+              let area_cards = document.createDocumentFragment();
+
+              // Itera sobre os dados das receitas
+              for (let j = 0; j < dadosReceitas.length; j++) {
+                const cardData = dadosReceitas[j];
+
+                // Cria um elemento de card para cada receita
+                let card = document.createElement('div');
+                card.classList.add('card');
+
+                // Cria a imagem do card
+                let div_img = document.createElement('div');
+                div_img.classList.add('div-img');
+                let img_card = document.createElement('img');
+                img_card.src = cardData.imagem;
+                img_card.classList.add('img-card');
+                div_img.appendChild(img_card);
+                card.appendChild(div_img);
+
+                // Cria o avatar do chef
+                let div_chef = document.createElement('div');
+                div_chef.classList.add('chef-avatar');
+                let img_avatar = document.createElement('img');
+                img_avatar.src = cardData.fotoDoChef;
+                img_avatar.classList.add('img-avatar');
+                div_chef.appendChild(img_avatar);
+                card.appendChild(div_chef);
+
+                // Adiciona o título da receita ao card
+                let txt_card = document.createElement('button');
+                txt_card.textContent = cardData.Titulo;
+                txt_card.classList.add('btn-card');
+                txt_card.addEventListener('click', function () {
+                  window.location.href = `VerReceita?id=${cardData.idReceita}`;
+                });
+                card.appendChild(txt_card);
+
+                // Adiciona o nome do chef ao card
+                let txt_chef = document.createElement('a');
+                txt_chef.textContent = `Por ${cardData.nomeDoChef}`;
+                txt_chef.href = `/Chef?id=${cardData.idUsuario}`;
+                txt_chef.classList.add('txt-chef');
+                card.appendChild(txt_chef);
+
+                // Adiciona o card ao fragmento do documento
+                area_cards.appendChild(card);
+              }
+
+              // Adiciona os cards de receita à área de cartões
+              scrollcard.appendChild(area_cards);
+            }
+            
+            cont_cat.append(area_cat);
+          } catch (error) {
+           alert('Erro ao processar os dados das receitas:', error);
+          }
+        } else {
+          alert ('Falha na requisição de busca de receitas:', response.status);
+        }
+      } catch (error) {
+        alert("Erro ao buscar receitas:", error);
+        // Aqui você pode tratar erros de forma adequada, como exibir uma mensagem de erro para o usuário
+      }
+    } else {
+      alert("O termo de pesquisa está vazio"); // Apenas para fins de depuração
+      // Aqui você pode lidar com o caso em que o termo de pesquisa está vazio, por exemplo, exibindo uma mensagem para o usuário
+    }
+  });
+  
 }
+
+
+ 
+
 
 async function obterCategorias() {
   try {
