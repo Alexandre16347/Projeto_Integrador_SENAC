@@ -25,6 +25,13 @@
                         <div id="quadrado1">
 
                             <div class="input-group">
+                                <label class="picture" for="picture__input" tabIndex="0">
+                                    <span class="picture__image"></span>
+                                </label>
+                                <input type="file" name="imagem" id="picture__input">
+                            </div> <br><br>
+
+                            <div class="input-group">
                                 <label for="Titulo"> Título:</label>
                                 <input type="text" id="titulo" name="Titulo" placeholder="Digite o título" required>
                             </div>
@@ -47,15 +54,12 @@
                                     placeholder="Digite uma descrição para sua receita" required></textarea>
                             </div>
                             <br><br>
-                            <div class="input-group">
-                                <label for="imagem">Imagem de Perfil:&nbsp; </label>
-                                <input type="file" id="imagem" name="imagem" accept="image/*" required>
-                            </div> <br><br>
 
                             <!-- <div id="quadIngre"> -->
                             <div class="input-group">
                                 <label for="ingredientes">Ingredientes: &nbsp;</label>
-                                <textarea id="ingredientes" name="ingredientes" placeholder="Digite os ingredientes" required></textarea>
+                                <textarea id="ingredientes" name="ingredientes" placeholder="Digite os ingredientes"
+                                    required></textarea>
                             </div> <br><br>
                             <!-- </div> -->
 
@@ -181,7 +185,8 @@
 
                         <div class="input-group w50">
 
-                            <button type="button" class="btn-login" onclick="enviarFormularioEditarReceita()">Atualizar Receita</button>
+                            <button type="button" class="btn-login" onclick="enviarFormularioEditarReceita()">Atualizar
+                                Receita</button>
                         </div>
                     </form>
 
@@ -200,7 +205,8 @@
         bottomBar();
         verificarAutenticacao()
         editarReceita();
-        
+        carregarImagem();
+
     </script>
 
     <!-- <script src="../src/js/script-ours-pages.js"></script> -->
