@@ -52,7 +52,7 @@
 
 #addreceita {
     margin-top: 3mm;
-    height: 40px;
+    height: 20px;
     width: auto;
     display: flex;
     justify-content: center;
@@ -140,27 +140,32 @@
 .deletar{
     display: flex;
     justify-content: flex-end;
-    margin-top: 10mm;
-    margin-bottom: 10mm;
-    height: 200px;
-    width: 200px;
+    margin-top: 20mm;
+    margin-bottom: 20mm;
+    height: 100px;
+    width: 100px;
     background-color: aqua;
 }
 
 .btt{
     padding: 8mm;
-    border-radius: 10px;
-    background-color: red;
-    
+    border-radius: 20px;
+    margin-top: 10mm;
+    margin-bottom: 10mm;
+    background-color: tomato;
+    border: none;
+    outline: none;
+    font-size: medium;
     font-weight: bold;
-    font-size: large;
+    color: white;
 }
 
 .btt:hover{
- background-color: black;
- transform: rotate(720deg);
- transition: 2s ;
+ background-color: #cabf1f;
  color: white;
+
+ 
+
 }
 
 .btn-card{
