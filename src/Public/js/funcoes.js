@@ -948,8 +948,10 @@ async function enviarFormularioReceita() {
     });
 
     if (response.ok) {
-      alert('Receita cadastrada com sucesso!');
+      console.log('Receita cadastrada com sucesso!');
       // Redirecionar ou realizar ações necessárias após o cadastro
+      alert(response.statusText);
+      window.location.href = '/';
     } else {
       console.error('Erro no cadastro da receita:', response.statusText);
     }
