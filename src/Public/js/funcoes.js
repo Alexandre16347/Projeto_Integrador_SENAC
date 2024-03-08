@@ -948,7 +948,7 @@ async function enviarFormularioReceita() {
     });
 
     if (response.ok) {
-      console.log('Receita cadastrada com sucesso!');
+      alert('Receita cadastrada com sucesso!');
       // Redirecionar ou realizar ações necessárias após o cadastro
     } else {
       console.error('Erro no cadastro da receita:', response.statusText);
