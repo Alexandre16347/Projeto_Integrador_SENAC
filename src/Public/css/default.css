@@ -641,11 +641,13 @@ body {
 #txtcat {
   margin-top: 4mm;
   margin-bottom: 4mm;
-  font-size: larger;
+  font-size: 45px;
   text-decoration: none;
-  color: black;
+  color: #00488a;
   font-weight: bold;
-  font: 100pt;
+  text-shadow: 2px 2px 4px #959699;
+  
+
 }
 
 /* Estilos para o botão de edição de perfil */
