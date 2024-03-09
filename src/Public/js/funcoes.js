@@ -59,7 +59,7 @@ async function login() {
       const data = await response.json();
 
       if (data.authenticated) {
-        console.log('Login bem-sucedido:', data);
+        alert('Login bem-sucedido:', data);
 
         // Armazenar o token como um cookie
         definirCookie('token', data.session); // Armazena o token por 1 hora
@@ -67,7 +67,7 @@ async function login() {
         // Redirecionar para a página principal
         window.location.href = '/';
       } else {
-        console.log(response.message);
+        alert(response.message);
         alert('Credenciais inválidas');
       }
     } else {
