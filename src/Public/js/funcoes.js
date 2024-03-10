@@ -1746,7 +1746,8 @@ async function buscarChefes() {
       chefBox.classList.add('chef-box');
 
       const img = document.createElement('img');
-      img.src = chefe.ImagemUrl;
+      img.src = cards.fotoDoChef;
+      
       img.alt = 'Imagem do Chef';
 
       const textDiv = document.createElement('div');
