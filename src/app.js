@@ -34,7 +34,12 @@ class App {
         // Habilita o CORS para permitir requisições de diferentes origens
         this.server.use('/', cors(), routes);
         // Habilita o CORS para permitir requisições de diferentes origens
-       
+        this.server.use(
+            cors({
+                origin: ['http://54.207.33.250:3333/'],
+                methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+            }),
+        );
 
         this.server.use(express.static(path.resolve(__dirname, '.', 'Public')));
         this.server.use(express.static(path.resolve(__dirname, '.', 'Uploads')));
