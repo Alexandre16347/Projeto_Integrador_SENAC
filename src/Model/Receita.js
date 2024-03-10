@@ -50,6 +50,6 @@ const ReceitaShema = new Schema(
 );
 
 ReceitaShema.virtual('ImagemUrl').get(function () {
-  return `http://localhost:80/files/${this.imagem}`;
+  return `http://54.207.33.250:80/files/${this.imagem}`;
 });
 export default new model('Receita', ReceitaShema);
