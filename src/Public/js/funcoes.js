@@ -16,65 +16,6 @@ let href_redes = [
 let tam_social = logos_redes.length;
 
 // Declarações de Funções
-
-
-
-function verificarCampos() {
-  // Reseta a cor dos campos
-  document.querySelectorAll('.input-group input').forEach(input => {
-    input.style.border = '';
-  });
-
-  let camposValidos = true;
-
-  // Verifica se o campo Nome está preenchido
-  const nomeInput = document.getElementById('nome');
-  if (nomeInput.value.trim() === '') {
-    nomeInput.style.border = '1px solid red';
-    camposValidos = false;
-  }
-
-  // Verifica se o campo Email está preenchido e é um email válido
-  const emailInput = document.getElementById('email');
-  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-  if (emailInput.value.trim() === '' || !emailRegex.test(emailInput.value)) {
-    emailInput.style.border = '1px solid red';
-    camposValidos = false;
-  }
-
-  // Verifica se o campo Idade está preenchido e é um número válido
-  const idadeInput = document.getElementById('idade');
-  if (idadeInput.value.trim() === '' || isNaN(idadeInput.value) || idadeInput.value < 0) {
-    idadeInput.style.border = '1px solid red';
-    camposValidos = false;
-  }
-
-  // Verifica se o campo Senha está preenchido
-  const senhaInput = document.getElementById('senha');
-  if (senhaInput.value.trim() === '') {
-    senhaInput.style.border = '1px solid red';
-    camposValidos = false;
-  }
-
-  // Verifica se o campo Confirmar Senha coincide com o campo Senha
-  const confirmarSenhaInput = document.getElementById('confirmarSenha');
-  if (confirmarSenhaInput.value.trim() === '' || confirmarSenhaInput.value !== senhaInput.value) {
-    confirmarSenhaInput.style.border = '1px solid red';
-    camposValidos = false;
-  }
-
-  return camposValidos;
-}
-
-function enviarFormulario() {
-  if (verificarCampos()) {
-    // Envie o formulário
-    document.getElementById('cadastroForm').submit();
-  }
-}
-
-
-
 // login.js
 function togglePassword() {
   var senhaInput = document.getElementById('senha');
