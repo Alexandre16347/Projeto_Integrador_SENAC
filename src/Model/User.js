@@ -37,7 +37,7 @@ const UserSchema = new Schema({
 );
 
 UserSchema.virtual('ImagemUrl').get(function () {
-  return `http://54.207.33.250:3333/files/${this.imagem}`
+  return `http://54.207.33.250:80/files/${this.imagem}`
 })
 
 export default new model('Usuario', UserSchema);
