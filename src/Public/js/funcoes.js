@@ -17,64 +17,6 @@ let tam_social = logos_redes.length;
 
 // Declarações de Funções
 
-
-
-function verificarCampos() {
-  // Reseta a cor dos campos
-  document.querySelectorAll('.input-group input').forEach(input => {
-    input.style.border = '';
-  });
-
-  let camposValidos = true;
-
-  // Verifica se o campo Nome está preenchido
-  const nomeInput = document.getElementById('nome');
-  if (nomeInput.value.trim() === '') {
-    nomeInput.style.border = '1px solid red';
-    camposValidos = false;
-  }
-
-  // Verifica se o campo Email está preenchido e é um email válido
-  const emailInput = document.getElementById('email');
-  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-  if (emailInput.value.trim() === '' || !emailRegex.test(emailInput.value)) {
-    emailInput.style.border = '1px solid red';
-    camposValidos = false;
-  }
-
-  // Verifica se o campo Idade está preenchido e é um número válido
-  const idadeInput = document.getElementById('idade');
-  if (idadeInput.value.trim() === '' || isNaN(idadeInput.value) || idadeInput.value < 0) {
-    idadeInput.style.border = '1px solid red';
-    camposValidos = false;
-  }
-
-  // Verifica se o campo Senha está preenchido
-  const senhaInput = document.getElementById('senha');
-  if (senhaInput.value.trim() === '') {
-    senhaInput.style.border = '1px solid red';
-    camposValidos = false;
-  }
-
-  // Verifica se o campo Confirmar Senha coincide com o campo Senha
-  const confirmarSenhaInput = document.getElementById('confirmarSenha');
-  if (confirmarSenhaInput.value.trim() === '' || confirmarSenhaInput.value !== senhaInput.value) {
-    confirmarSenhaInput.style.border = '1px solid red';
-    camposValidos = false;
-  }
-
-  return camposValidos;
-}
-
-function enviarFormulario() {
-  if (verificarCampos()) {
-    // Envie o formulário
-    document.getElementById('cadastroForm').submit();
-  }
-}
-
-
-
 // login.js
 function togglePassword() {
   var senhaInput = document.getElementById('senha');
@@ -415,8 +357,9 @@ async function mostrarReceita() {
     lista_ingredientes.append(ingrediente);
   }
 
-  document.getElementById('tempo').textContent = `${dadosReceita.tempo ? dadosReceita.tempo : 0
-    } min`;
+  document.getElementById('tempo').textContent = `${
+    dadosReceita.tempo ? dadosReceita.tempo : 0
+  } min`;
 
   let lista_modo = document.getElementById('modo');
 
@@ -504,7 +447,7 @@ async function mostrarReceita() {
         }
       });
     }
-  } catch { }
+  } catch {}
 }
 
 async function editarUsuario() {
@@ -527,7 +470,7 @@ async function editarUsuario() {
     document.getElementById('email').value = dadosUsuario.email;
     document.getElementById('idade').value = dadosUsuario.idade;
     document.getElementById('img-perfil').src = `/${dadosUsuario.imagem}`;
-
+    
 
     // console.log(dadosUsuario.imagem);
   }
@@ -1302,7 +1245,8 @@ function botaoResponsivo() {
         // console.log("Hey 👀");
         link.style.animation
           ? (link.style.animation = '')
-          : (link.style.animation = `navLinkFade 0.5s ease forwards ${index / 7 + 0.5
+          : (link.style.animation = `navLinkFade 0.5s ease forwards ${
+              index / 7 + 0.5
             }s`);
       });
     }
@@ -1448,7 +1392,7 @@ async function areaSearch() {
             let cont_cat = document.getElementById('cont-categorias');
             let area_cat = document.createDocumentFragment();
             for (let i = 0; i < categorias.length; i++) {
-
+              
               let btn_cat = document.createElement(`button`);
               btn_cat.append(categorias[i].nome);
               btn_cat.setAttribute('class', 'btn-menu');
@@ -1516,13 +1460,13 @@ async function areaSearch() {
               // Adiciona os cards de receita à área de cartões
               scrollcard.appendChild(area_cards);
             }
-
+            
             cont_cat.append(area_cat);
           } catch (error) {
-            alert('Erro ao processar os dados das receitas:', error);
+           alert('Erro ao processar os dados das receitas:', error);
           }
         } else {
-          alert('Falha na requisição de busca de receitas:', response.status);
+          alert ('Falha na requisição de busca de receitas:', response.status);
         }
       } catch (error) {
         alert("Erro ao buscar receitas:", error);
@@ -1533,11 +1477,11 @@ async function areaSearch() {
       // Aqui você pode lidar com o caso em que o termo de pesquisa está vazio, por exemplo, exibindo uma mensagem para o usuário
     }
   });
-
+  
 }
 
 
-
+ 
 
 
 async function obterCategorias() {
@@ -1553,7 +1497,7 @@ async function obterCategorias() {
     if (!response.ok) {
       throw new Error(
         'Não foi possível obter as categorias. Código de status: ' +
-        response.status,
+          response.status,
       );
     }
 
