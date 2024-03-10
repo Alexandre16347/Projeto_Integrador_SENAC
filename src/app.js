@@ -36,7 +36,7 @@ class App {
         // Habilita o CORS para permitir requisições de diferentes origens
         this.server.use(
             cors({
-                origin: ['http://54.207.33.250'],
+                origin: ['54.207.33.250:80'],
                 methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
             }),
         );
