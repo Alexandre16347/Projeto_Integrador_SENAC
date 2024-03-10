@@ -16,7 +16,6 @@ let href_redes = [
 let tam_social = logos_redes.length;
 
 // Declarações de Funções
-
 // login.js
 function togglePassword() {
   var senhaInput = document.getElementById('senha');
