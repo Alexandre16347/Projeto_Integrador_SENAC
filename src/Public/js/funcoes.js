@@ -136,7 +136,7 @@ async function enviarFormulario() {
 
       window.location.href = 'Login'; // Redirecionar para a página principal
     } else {
-      alert.error('Senha invalida', response.statusText);
+      alert('Senha invalida', response.statusText);
     }
   } catch (error) {
     console.error('Erro na solicitação:', error);
