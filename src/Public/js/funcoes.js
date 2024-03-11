@@ -16,6 +16,7 @@ let href_redes = [
 let tam_social = logos_redes.length;
 
 // Declarações de Funções
+
 // login.js
 function togglePassword() {
   var senhaInput = document.getElementById('senha');
@@ -356,9 +357,8 @@ async function mostrarReceita() {
     lista_ingredientes.append(ingrediente);
   }
 
-  document.getElementById('tempo').textContent = `${
-    dadosReceita.tempo ? dadosReceita.tempo : 0
-  } min`;
+  document.getElementById('tempo').textContent = `${dadosReceita.tempo ? dadosReceita.tempo : 0
+    } min`;
 
   let lista_modo = document.getElementById('modo');
 
@@ -446,7 +446,7 @@ async function mostrarReceita() {
         }
       });
     }
-  } catch {}
+  } catch { }
 }
 
 async function editarUsuario() {
@@ -469,7 +469,7 @@ async function editarUsuario() {
     document.getElementById('email').value = dadosUsuario.email;
     document.getElementById('idade').value = dadosUsuario.idade;
     document.getElementById('img-perfil').src = `/${dadosUsuario.imagem}`;
-    
+
 
     // console.log(dadosUsuario.imagem);
   }
@@ -1244,8 +1244,7 @@ function botaoResponsivo() {
         // console.log("Hey 👀");
         link.style.animation
           ? (link.style.animation = '')
-          : (link.style.animation = `navLinkFade 0.5s ease forwards ${
-              index / 7 + 0.5
+          : (link.style.animation = `navLinkFade 0.5s ease forwards ${index / 7 + 0.5
             }s`);
       });
     }
@@ -1391,7 +1390,7 @@ async function areaSearch() {
             let cont_cat = document.getElementById('cont-categorias');
             let area_cat = document.createDocumentFragment();
             for (let i = 0; i < categorias.length; i++) {
-              
+
               let btn_cat = document.createElement(`button`);
               btn_cat.append(categorias[i].nome);
               btn_cat.setAttribute('class', 'btn-menu');
@@ -1459,13 +1458,13 @@ async function areaSearch() {
               // Adiciona os cards de receita à área de cartões
               scrollcard.appendChild(area_cards);
             }
-            
+
             cont_cat.append(area_cat);
           } catch (error) {
-           alert('Erro ao processar os dados das receitas:', error);
+            alert('Erro ao processar os dados das receitas:', error);
           }
         } else {
-          alert ('Falha na requisição de busca de receitas:', response.status);
+          alert('Falha na requisição de busca de receitas:', response.status);
         }
       } catch (error) {
         alert("Erro ao buscar receitas:", error);
@@ -1476,11 +1475,11 @@ async function areaSearch() {
       // Aqui você pode lidar com o caso em que o termo de pesquisa está vazio, por exemplo, exibindo uma mensagem para o usuário
     }
   });
-  
+
 }
 
 
- 
+
 
 
 async function obterCategorias() {
@@ -1496,7 +1495,7 @@ async function obterCategorias() {
     if (!response.ok) {
       throw new Error(
         'Não foi possível obter as categorias. Código de status: ' +
-          response.status,
+        response.status,
       );
     }
 
